@@ -1,33 +1,36 @@
 ---
-// Bülten kayıt bileşeni (placeholder).
-// NOT: Gerçek e-posta sağlayıcısı entegrasyonu Faz 3'te eklenecek (sağlayıcı TBD).
-// Form şu an gönderim yapmaz; yalnızca arayüzü temsil eder.
+import { siteConfig } from '../config/site';
 ---
 
-<section class="my-8 rounded-lg border border-gray-200 bg-gray-50 p-6">
-  <h2 class="text-lg font-semibold">Bültene katıl</h2>
-  <p class="mt-1 text-sm text-gray-600">
-    Online satıcılar için yeni AI araçları ve rehberleri e-postana gelsin.
-  </p>
-  <form class="mt-4 flex flex-col gap-2 sm:flex-row" data-newsletter="placeholder">
-    <label class="sr-only" for="newsletter-email">E-posta adresi</label>
-    <input
-      id="newsletter-email"
-      type="email"
-      name="email"
-      required
-      placeholder="ornek@eposta.com"
-      class="w-full rounded-md border border-gray-300 px-3 py-2 text-sm"
-    />
-    <button
-      type="submit"
-      disabled
-      class="rounded-md bg-brand-accent px-4 py-2 text-sm font-medium text-white opacity-60"
-    >
-      Kayıt ol (yakında)
-    </button>
-  </form>
-  <p class="mt-2 text-xs text-gray-400">
-    Kişisel verileriniz KVKK/GDPR uyumlu işlenecektir. Sağlayıcı entegrasyonu: TBD.
-  </p>
-</section>
+{
+  siteConfig.newsletterEnabled && (
+    <section class="my-8 rounded-lg border border-gray-200 bg-gray-50 p-6">
+      <h2 class="text-lg font-semibold">Bültene katıl</h2>
+      <p class="mt-1 text-sm text-gray-600">
+        Online satıcılar için yeni AI araçları ve rehberleri e-postana gelsin.
+      </p>
+      <form class="mt-4 flex flex-col gap-2 sm:flex-row" data-newsletter>
+        <label class="sr-only" for="newsletter-email">
+          E-posta adresi
+        </label>
+        <input
+          id="newsletter-email"
+          type="email"
+          name="email"
+          required
+          placeholder="ornek@eposta.com"
+          class="w-full rounded-md border border-gray-300 px-3 py-2 text-sm"
+        />
+        <button
+          type="submit"
+          class="rounded-md bg-brand-accent px-4 py-2 text-sm font-medium text-white hover:opacity-90"
+        >
+          Kayıt ol
+        </button>
+      </form>
+      <p class="mt-2 text-xs text-gray-400">
+        Kişisel verileriniz KVKK/GDPR uyumlu işlenir.
+      </p>
+    </section>
+  )
+}

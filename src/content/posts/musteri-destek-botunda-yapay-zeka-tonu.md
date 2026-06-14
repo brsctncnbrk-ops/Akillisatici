@@ -2,6 +2,7 @@
 baslik: 'Müşteri Desteğinde Yağcı Yapay Zeka Tuzağı: Doğru Tonu Nasıl Kurarsınız?'
 ozet: 'Online satıcılar müşteri destek botlarında doğru tonu nasıl yakalar? Yağcı değil, dürüst ve yardımcı bir yapay zeka tonu için pratik rehber.'
 tarih: 2026-06-14
+guncellenme: 2026-06-14
 yazar: 'Barış ÇETİN'
 kategori: 'Müşteri desteği'
 etiketler: ['müşteri desteği', 'yapay zeka', 'chatbot', 'e-ticaret', 'marka tonu']
@@ -75,7 +76,7 @@ Doğru tonu kurmak pahalı bir yatırım değil; çoğunlukla talimatları düze
 - Müşteri sinirliyse bot da sakin ve çözüm odaklı kalsın; savunmaya geçmesin.
 - Türkçe yazım ve dil bilgisine dikkat edin; bozuk Türkçe güveni zedeler.
 
-> Belirli araçların ton ayarı özellikleri ve fiyatlandırması değişkendir; kullanmadan önce sağladıkları kontrolleri kendiniz doğrulayın (**TBD — doğrulanmalı**).
+> Belirli araçların ton ayarı özellikleri ve fiyatlandırması değişkendir; kullanmadan önce ilgili aracın güncel dokümantasyonunu ve fiyat sayfasını kendiniz kontrol edin.
 
 ## Sonuç
 

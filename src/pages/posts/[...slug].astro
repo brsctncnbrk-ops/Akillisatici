@@ -6,6 +6,7 @@ import AdSlot from '../../components/AdSlot.astro';
 import PostCard from '../../components/PostCard.astro';
 import { slugByKategori } from '../../lib/categories';
 import { getYayindaPosts } from '../../lib/content';
+import { AUTHORS } from '../../data/authors';
 
 export async function getStaticPaths() {
   // Yalnızca yayında olan yazılar için sayfa üretilir (editöryel kapı).
@@ -23,6 +24,7 @@ interface Props {
 const { post } = Astro.props;
 const { Content } = await render(post);
 const data = post.data;
+const yazar = AUTHORS[data.yazar];
 
 const kategoriSlug = slugByKategori(data.kategori);
 const affiliateVar = data.incelenenAraclar.length > 0;
@@ -87,12 +89,17 @@ const jsonLd = {
 
     <AdSlot slot="yazi-alti" />
 
-    <footer class="mt-10 rounded-lg border border-gray-200 bg-gray-50 p-4">
-      <p class="text-sm font-semibold text-brand">Yazar: {data.yazar}</p>
-      <p class="mt-1 text-sm text-gray-600">
-        Yazar biyografisi: TBD — gerçek kimlik ve uzmanlık bilgisi (E-E-A-T) eklenecek.
-      </p>
-    </footer>
+    {
+      yazar && (
+        <footer class="mt-10 rounded-lg border border-gray-200 bg-gray-50 p-4">
+          <p class="text-sm font-semibold text-brand">{yazar.ad}</p>
+          <p class="mt-1 text-sm text-gray-600">{yazar.kisaBio}</p>
+          <a href={yazar.hakkindaUrl} class="mt-2 inline-block text-xs text-brand-accent underline">
+            Yazar hakkında →
+          </a>
+        </footer>
+      )
+    }
   </article>
 
   {

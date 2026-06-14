@@ -13,7 +13,7 @@ const { ad, kategori, fiyat, artilar, eksiler, affiliateAnahtar, websiteUrl, aci
 <article class="flex flex-col rounded-lg border border-gray-200 p-5" data-kategori={kategori}>
   <div class="flex items-baseline justify-between gap-2">
     <h3 class="text-lg font-semibold text-brand">{ad}</h3>
-    <span class="whitespace-nowrap text-xs text-gray-500">{fiyat}</span>
+    {fiyat && <span class="whitespace-nowrap text-xs text-gray-500">{fiyat}</span>}
   </div>
   <p class="mt-1 text-xs text-brand-accent">{kategori}</p>
   {aciklama && <p class="mt-2 text-sm text-gray-600">{aciklama}</p>}
@@ -57,9 +57,7 @@ const { ad, kategori, fiyat, artilar, eksiler, affiliateAnahtar, websiteUrl, aci
         >
           {ad} → Siteye Git ↗
         </a>
-      ) : (
-        <span class="text-xs text-gray-400">Link yakında eklenecek</span>
-      )
+      ) : null
     }
   </div>
 </article>

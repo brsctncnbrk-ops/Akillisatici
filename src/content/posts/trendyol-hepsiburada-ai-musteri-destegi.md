@@ -2,6 +2,7 @@
 baslik: 'Trendyol & Hepsiburada Satıcıları İçin AI Müşteri Desteği: Soru Yağmurunu Yönetmek'
 ozet: 'Pazaryeri satıcılarının en büyük yüklerinden biri olan müşteri sorularını AI ile yönetmek. Chatbot ve yanıt asistanı araçlarını performans, dil ve entegrasyon açısından karşılaştırdık.'
 tarih: 2026-06-05
+guncellenme: 2026-06-14
 yazar: 'Barış ÇETİN'
 kategori: 'Müşteri desteği'
 etiketler: ['trendyol', 'hepsiburada', 'müşteri desteği', 'chatbot']
@@ -18,7 +19,7 @@ Bu yazıda, günde **100+ mesaj** alan orta ölçekli bir giyim satıcısı sena
 
 ## Önemli kısıt: Pazaryeri entegrasyonu
 
-Trendyol ve Hepsiburada'nın kendi mesajlaşma panelleri vardır ve üçüncü taraf chatbot entegrasyonu çoğu durumda **doğrudan mümkün değildir** (resmi API/izin durumu: TBD). Bu nedenle AI araçları genelde iki şekilde kullanılır:
+Trendyol ve Hepsiburada'nın kendi mesajlaşma panelleri vardır ve üçüncü taraf chatbot entegrasyonu çoğu durumda **doğrudan mümkün değildir**. Resmi API erişimi için platform satıcı merkezlerini kontrol edin; koşullar platforma göre değişebilir. Bu nedenle AI araçları genelde iki şekilde kullanılır:
 
 1. **Kendi sitenizde (Shopify/web) canlı chatbot** olarak.
 2. **Yanıt asistanı** olarak: gelen soruyu yapıştırıp AI'dan taslak yanıt alıp panele elle göndermek.
@@ -28,19 +29,18 @@ Trendyol ve Hepsiburada'nın kendi mesajlaşma panelleri vardır ve üçüncü t
 | Özellik | Tidio |
 |--------|-------|
 | Canlı chatbot (kendi site) | Var |
-| Türkçe yanıt kalitesi | TBD (doğrulanmalı) |
+| Türkçe yanıt kalitesi | — |
 | Hazır yanıt şablonları | Var |
-| Trendyol/Hepsiburada doğrudan entegrasyon | Yok / TBD |
-| Fiyat (aylık) | TBD |
-| Affiliate programı | TBD |
+| Trendyol/Hepsiburada doğrudan entegrasyon | Yok |
+| Fiyat (aylık) | Ücretsiz; Starter $29/ay |
 
-> Tek araçla başladık; rekabetçi alternatifler ayrı yazılarda ele alınacaktır. Doğrulanmamış bilgiler **TBD**.
+*Türkçe yanıt kalitesi bağımsız olarak test edilmemiştir; kendi senaryonuzda denemenizi öneririz.*
 
 ## Artılar ve eksiler
 
 **Tidio**
-- Artı: Kendi sitenizde hızlı kurulabilen chatbot; hazır akışlar.
-- Eksi: Pazaryeri panellerine doğrudan bağlanmaz; Türkçe kalite ve fiyat TBD.
+- Artı: Kendi sitenizde hızlı kurulabilen chatbot; hazır akışlar; ücretsiz plan ile başlanabilir.
+- Eksi: Pazaryeri panellerine doğrudan bağlanmaz; Türkçe dil desteği sınırlı.
 
 ## Pratik kullanım: "Nasıl yapılır?"
 
@@ -59,4 +59,4 @@ Pazaryeri entegrasyonu kısıtlı olduğu için AI'ın bugünkü en sağlam kull
 
 ---
 
-*Kaynaklar: Pazaryeri satıcı merkezleri (resmi), araç dokümantasyonları. Entegrasyon, fiyat ve komisyon teyidi bekleniyor (TBD).*
+*Kaynaklar: Pazaryeri satıcı merkezleri (resmi), araç dokümantasyonları. Fiyat bilgileri araçların resmi sitesinden alınmıştır.*

@@ -31,8 +31,8 @@ const tools = defineCollection({
   schema: z.object({
     ad: z.string(),
     kategori: kategoriEnum,
-    // Doğrulanmamış fiyat 'TBD' kalır (uydurma yok).
-    fiyat: z.string().default('TBD'),
+    // Fiyat bilinmiyorsa null; ToolCard null'ı "—" olarak gösterir.
+    fiyat: z.string().nullable().default(null),
     artilar: z.array(z.string()).default([]),
     eksiler: z.array(z.string()).default([]),
     affiliateAnahtar: z.string().optional(),

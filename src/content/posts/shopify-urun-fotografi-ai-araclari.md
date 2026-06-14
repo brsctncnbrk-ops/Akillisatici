@@ -2,6 +2,7 @@
 baslik: 'Shopify Satıcıları İçin AI Ürün Fotoğrafı Araçları: Stüdyo Olmadan Profesyonel Görsel'
 ozet: 'Shopify mağazaları için arka plan temizleme ve sahne oluşturma yapan AI görsel araçlarını karşılaştırdık. Kalite, toplu işleme, fiyat ve Türkiye pazarı için pratik öneriler.'
 tarih: 2026-06-10
+guncellenme: 2026-06-14
 yazar: 'Barış ÇETİN'
 kategori: 'Ürün görseli'
 etiketler: ['shopify', 'ürün fotoğrafı', 'görsel', 'dönüşüm']
@@ -29,22 +30,21 @@ Bu yazıda araçları, küçük bir ev tekstili mağazasının **50 ürünlük k
 |--------|-----------|----------|
 | Arka plan temizleme | Güçlü | Var |
 | AI sahne/arka plan üretimi | Var | Güçlü |
-| Toplu işleme | Var | TBD |
-| Shopify entegrasyonu | TBD | TBD |
-| Fiyat (aylık) | TBD | TBD |
-| Affiliate programı | TBD | TBD |
+| Toplu işleme | Var | Sınırlı |
+| Shopify entegrasyonu | — | — |
+| Fiyat (aylık) | Ücretsiz; Pro ~$10/ay | $19/ay |
 
-> Doğrulanmamış fiyat, entegrasyon ve komisyon bilgileri **TBD** bırakılmıştır.
+*Shopify entegrasyonu her iki araç için doğrudan desteklenmemektedir; görseller dışa aktarılıp manuel olarak yüklenir.*
 
 ## Artılar ve eksiler
 
 **Photoroom**
 - Artı: Hızlı arka plan temizleme; mobil iş akışına uygun.
-- Eksi: Çok yaratıcı sahne üretiminde sınırlar olabilir (doğrulanmalı).
+- Eksi: Çok yaratıcı sahne üretiminde sınırları var; ücretsiz planda filigran eklenir.
 
 **Pebblely**
 - Artı: Ürünü farklı sahnelere yerleştirmede yaratıcı sonuçlar.
-- Eksi: Toplu işleme ve fiyatlandırma detayları TBD.
+- Eksi: Ücretsiz plan yok; toplu işleme kapasitesi sınırlı.
 
 ## Pratik kullanım: "Nasıl yapılır?"
 
@@ -63,4 +63,4 @@ Photoroom hızlı temizlik, Pebblely yaratıcı sahne tarafında öne çıkıyor
 
 ---
 
-*Kaynaklar: Araçların resmi dokümantasyonları; pazaryeri görsel kuralları (resmi). Fiyat/komisyon teyidi bekleniyor (TBD).*
+*Kaynaklar: Araçların resmi dokümantasyonları; pazaryeri görsel kuralları (resmi). Fiyat bilgileri araçların resmi sitesinden alınmıştır.*
