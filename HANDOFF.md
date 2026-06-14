@@ -19,12 +19,14 @@
 - TASK-001: build + lint + test altyapısı + 1 geçen örnek test + CI workflow.
 - 3 örnek yazı (Etsy açıklama AI / Shopify ürün fotoğrafı AI / Trendyol-Hepsiburada müşteri desteği AI) — doğrulanmamış figürler TBD.
 
+### Deploy — TAMAMLANDI (2026-06-14)
+- Vercel + Git Integration ile yayına alındı (ADR-007). **Site canlı:** saticikutusu.com (kullanıcı doğruladı).
+- `main` dalı oluşturuldu ve push edildi (production branch). Geliştirme `claude/project-initialization-system-4xz843` dalında sürüyor.
+- CLI yolu bu ortamın ağ egress politikası (`api.vercel.com` allowlist dışı) nedeniyle kullanılamadı; Git Integration tercih edildi.
+
 ### Sırada (Sonraki adım)
-- **Deploy (devam ediyor):** Vercel + Git Integration seçildi (ADR-007). Kullanıcı panelden repo'yu import edecek; adımlar `docs/DEPLOYMENT.md`. CLI yolu ağ egress politikası (`api.vercel.com` allowlist dışı) nedeniyle bu ortamda çalışmıyor.
-  - Production branch kararı bekliyor: feature branch'i `main`'e merge (önerilen) **veya** Vercel'de production branch = feature branch.
-  - Domain `saticikutusu.com` Vercel Domains'ten bağlanacak (DNS kayıtları).
+- **Faz 2 (TASK-008):** Trend keşif ajanı (`scripts/`) + `/drafts/` skorlama + editöryel onay + GitHub Actions cron. Otomatik yayın YASAK — yalnızca taslak üretir, insan onaylar.
 - Kullanıcıdan açık TBD'lerin yanıtları beklenir (aşağıya bkz.).
-- Faz 2: Trend keşif ajanı (`scripts/`) + `/drafts/` skorlama + editöryel onay komutu + GitHub Actions cron.
 
 ### Açık Sorular / TBD
 - ~~Marka adı + domain~~ → **Çözüldü (2026-06-14):** "Satıcı Kutusu" / saticikutusu.com (ADR-006). `site` URL güncellendi.
