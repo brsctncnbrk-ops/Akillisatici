@@ -1,12 +1,10 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ToolCard from '../components/ToolCard.astro';
-import AffiliateDisclosure from '../components/AffiliateDisclosure.astro';
 import { KATEGORILER } from '../lib/categories';
 import { getTools } from '../lib/content';
 
 const tools = await getTools();
-const affiliateVar = tools.some((t) => t.data.affiliateAnahtar);
 ---
 
 <BaseLayout
@@ -17,8 +15,6 @@ const affiliateVar = tools.some((t) => t.data.affiliateAnahtar);
   <p class="mt-2 text-gray-600">
     Online satıcılar için yapay zeka araçları. Kategoriye göre filtreleyin.
   </p>
-
-  {affiliateVar && <AffiliateDisclosure />}
 
   <!-- Kategori filtresi (ilerlemeli geliştirme: JS olmadan tümü görünür) -->
   <div class="my-6 flex flex-wrap gap-2" data-filtre-grup>
