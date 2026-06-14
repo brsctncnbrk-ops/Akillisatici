@@ -2,7 +2,7 @@
 baslik: 'Hazır Yapay Zeka Videosu Yetmiyor: Satıcılar İçin Gerçek Reklam Üretimi'
 ozet: 'Tek komutla üretilen yapay zeka videoları satış getirmiyor. Online satıcılar için işe yarayan üretim akışını adım adım anlatıyoruz.'
 tarih: 2026-06-14
-yazar: 'Editör'
+yazar: 'Barış ÇETİN'
 kategori: 'SEO & reklam'
 etiketler: ['yapay zeka', 'video reklam', 'ürün tanıtımı', 'SEO', 'reklam']
 seoBaslik: 'Yapay Zeka Video Reklamı: Satıcılar İçin Rehber'
@@ -55,7 +55,7 @@ Aşağıdaki akış, küçük bir ekiple veya tek başınıza uygulanabilir:
 
 **5. Kurgu ve markalama.** Logo, renk ve yazı tipinizi ekleyin. İlk saniyeyi en güçlü görselle açın.
 
-**6. Platforma göre dışa aktarın.** Dikey (9:16) ve kare (1:1) versiyonları ayrı hazırlayın. Her platformun süre ve boyut kuralları farklı olabilir (kesin limitler için ilgili platform kuralları **TBD — doğrulanmalı**).
+**6. Platforma göre dışa aktarın.** Dikey (9:16) ve kare (1:1) versiyonları ayrı hazırlayın. Her platformun süre ve boyut kuralları farklı olabilir; kesin limitler için ilgili platformun güncel kurallarını kontrol edin.
 
 **7. Küçük test edin.** Tek bir video yerine 2-3 varyasyonu küçük bütçeyle deneyin, en iyi performans gösteren kurguyu ölçeklendirin.
 
@@ -63,7 +63,7 @@ Aşağıdaki akış, küçük bir ekiple veya tek başınıza uygulanabilir:
 
 Yapay zeka, üretim hızınızı ciddi şekilde artırabilir; özellikle alt yazı, varyasyon üretme ve düzenleme gibi işlerde. Ama "tek tıkla viral reklam" beklentisi gerçekçi değil. İzleyici sahteliği hızlı fark eder; özellikle ürünün gerçekte sizdeki haliyle uyuşmaması iade ve güvensizlik yaratır.
 
-Ayrıca AI ile üretilen içeriklerde telif ve platform kuralları zamanla değişebiliyor. Bir aracın hangi kullanımlara izin verdiğini, ticari kullanım haklarını yayınlamadan önce kontrol edin (her aracın koşulu farklıdır, **TBD — doğrulanmalı**).
+Ayrıca AI ile üretilen içeriklerde telif ve platform kuralları zamanla değişebiliyor. Bir aracın hangi kullanımlara izin verdiğini, ticari kullanım haklarını yayınlamadan önce kontrol edin (her aracın koşulu farklıdır).
 
 ## Sonuç
 

@@ -42,7 +42,7 @@ export function buildDraftMarkdown(draft: DraftContent, opts: BuildDraftOptions 
     `baslik: ${yamlStr(draft.baslik)}`,
     `ozet: ${yamlStr(draft.ozet)}`,
     `tarih: ${gun}`,
-    `yazar: ${yamlStr('Editör')}`,
+    `yazar: ${yamlStr('Barış ÇETİN')}`,
     `kategori: ${yamlStr(draft.kategori)}`,
     `etiketler: ${yamlListe(draft.etiketler)}`,
     `seoBaslik: ${yamlStr(draft.seoBaslik)}`,

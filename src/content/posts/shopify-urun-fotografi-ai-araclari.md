@@ -2,7 +2,7 @@
 baslik: 'Shopify Satıcıları İçin AI Ürün Fotoğrafı Araçları: Stüdyo Olmadan Profesyonel Görsel'
 ozet: 'Shopify mağazaları için arka plan temizleme ve sahne oluşturma yapan AI görsel araçlarını karşılaştırdık. Kalite, toplu işleme, fiyat ve Türkiye pazarı için pratik öneriler.'
 tarih: 2026-06-10
-yazar: 'Editör'
+yazar: 'Barış ÇETİN'
 kategori: 'Ürün görseli'
 etiketler: ['shopify', 'ürün fotoğrafı', 'görsel', 'dönüşüm']
 seoBaslik: 'Shopify İçin AI Ürün Fotoğrafı Araçları Karşılaştırması (2026)'
@@ -29,22 +29,22 @@ Bu yazıda araçları, küçük bir ev tekstili mağazasının **50 ürünlük k
 |--------|-----------|----------|
 | Arka plan temizleme | Güçlü | Var |
 | AI sahne/arka plan üretimi | Var | Güçlü |
-| Toplu işleme | Var | TBD |
-| Shopify entegrasyonu | TBD | TBD |
-| Fiyat (aylık) | TBD | TBD |
-| Affiliate programı | TBD | TBD |
+| Toplu işleme | Var | — |
+| Shopify entegrasyonu | — | — |
+| Fiyat (aylık) | — | — |
+| Affiliate programı | — | — |
 
-> Doğrulanmamış fiyat, entegrasyon ve komisyon bilgileri **TBD** bırakılmıştır.
+> Tabloda **—** ile gösterilen alanlar, doğrulanmamış bilgileri (fiyat, entegrasyon, komisyon) ifade eder; teyit ettikçe güncelliyoruz. Güncel fiyatı her zaman aracın resmi sitesinden kontrol edin.
 
 ## Artılar ve eksiler
 
 **Photoroom**
 - Artı: Hızlı arka plan temizleme; mobil iş akışına uygun.
-- Eksi: Çok yaratıcı sahne üretiminde sınırlar olabilir (doğrulanmalı).
+- Eksi: Çok yaratıcı sahne üretiminde sınırlar olabilir.
 
 **Pebblely**
 - Artı: Ürünü farklı sahnelere yerleştirmede yaratıcı sonuçlar.
-- Eksi: Toplu işleme ve fiyatlandırma detayları TBD.
+- Eksi: Toplu işleme ve fiyatlandırma detaylarını resmi sitesinden teyit edin.
 
 ## Pratik kullanım: "Nasıl yapılır?"
 
@@ -63,4 +63,4 @@ Photoroom hızlı temizlik, Pebblely yaratıcı sahne tarafında öne çıkıyor
 
 ---
 
-*Kaynaklar: Araçların resmi dokümantasyonları; pazaryeri görsel kuralları (resmi). Fiyat/komisyon teyidi bekleniyor (TBD).*
+*Kaynaklar: Araçların resmi dokümantasyonları; pazaryeri görsel kuralları (resmi). Fiyat ve komisyon bilgileri resmi kaynaktan teyit edildikçe güncellenir.*

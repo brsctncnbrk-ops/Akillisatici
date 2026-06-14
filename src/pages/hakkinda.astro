@@ -1,12 +1,32 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { MARKA_ADI } from '../data/site';
+import { VARSAYILAN_YAZAR } from '../data/authors';
 
-const markaAdi = 'Satıcı Kutusu';
+const markaAdi = MARKA_ADI;
+const yazar = VARSAYILAN_YAZAR;
+
+// Yazar için Person / ProfilePage şeması (Hakkında ile birebir tutarlı tek kaynaktan).
+const site = Astro.site?.href.replace(/\/$/, '') ?? '';
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfilePage',
+  mainEntity: {
+    '@type': 'Person',
+    name: yazar.name,
+    jobTitle: yazar.rol,
+    description: yazar.kisaBio,
+    email: `mailto:${yazar.email}`,
+    url: `${site}${yazar.hakkindaYolu}`,
+    worksFor: { '@type': 'Organization', name: markaAdi, url: site || undefined },
+  },
+};
 ---
 
 <BaseLayout
   title={`Hakkında — ${markaAdi}`}
   description="Online satıcılar için yapay zeka araçları yayınımız hakkında ve yazar kadromuz."
+  jsonLd={jsonLd}
 >
   <h1 class="text-3xl font-bold text-brand">Hakkında</h1>
 
@@ -23,13 +43,17 @@ const markaAdi = 'Satıcı Kutusu';
       geçer. Doğrulanmamış bilgileri (fiyat, komisyon, özellik) yayımlamayız.
     </p>
 
-    <h2>Yazar(lar)</h2>
-    <p>
-      Yazar kimliği ve uzmanlık bilgileri (E-E-A-T): <strong>TBD</strong> — gerçek yazar adı,
-      biyografisi ve iletişim bilgisi eklenecektir.
-    </p>
+    <h2>Yazar</h2>
+    <div class="mt-2">
+      <h3 class="text-xl font-semibold">{yazar.name}</h3>
+      <p class="text-sm text-gray-500">{yazar.rol}</p>
+      {yazar.tamBio.map((p) => <p class="mt-2">{p}</p>)}
+    </div>
 
     <h2>İletişim</h2>
-    <p>İletişim bilgisi: <strong>TBD</strong>.</p>
+    <p>
+      Soru, öneri veya iş birliği teklifleri için:{' '}
+      <a href={`mailto:${yazar.email}`} class="text-brand underline">{yazar.email}</a>
+    </p>
   </div>
 </BaseLayout>

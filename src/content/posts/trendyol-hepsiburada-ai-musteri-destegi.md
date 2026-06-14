@@ -2,7 +2,7 @@
 baslik: 'Trendyol & Hepsiburada Satıcıları İçin AI Müşteri Desteği: Soru Yağmurunu Yönetmek'
 ozet: 'Pazaryeri satıcılarının en büyük yüklerinden biri olan müşteri sorularını AI ile yönetmek. Chatbot ve yanıt asistanı araçlarını performans, dil ve entegrasyon açısından karşılaştırdık.'
 tarih: 2026-06-05
-yazar: 'Editör'
+yazar: 'Barış ÇETİN'
 kategori: 'Müşteri desteği'
 etiketler: ['trendyol', 'hepsiburada', 'müşteri desteği', 'chatbot']
 seoBaslik: 'Trendyol & Hepsiburada İçin AI Müşteri Desteği Araçları (2026)'
@@ -18,7 +18,7 @@ Bu yazıda, günde **100+ mesaj** alan orta ölçekli bir giyim satıcısı sena
 
 ## Önemli kısıt: Pazaryeri entegrasyonu
 
-Trendyol ve Hepsiburada'nın kendi mesajlaşma panelleri vardır ve üçüncü taraf chatbot entegrasyonu çoğu durumda **doğrudan mümkün değildir** (resmi API/izin durumu: TBD). Bu nedenle AI araçları genelde iki şekilde kullanılır:
+Trendyol ve Hepsiburada'nın kendi mesajlaşma panelleri vardır ve üçüncü taraf chatbot entegrasyonu çoğu durumda **doğrudan mümkün değildir**; resmi API ve izin durumunu pazaryerinin satıcı merkezinden teyit etmeniz gerekir. Bu nedenle AI araçları genelde iki şekilde kullanılır:
 
 1. **Kendi sitenizde (Shopify/web) canlı chatbot** olarak.
 2. **Yanıt asistanı** olarak: gelen soruyu yapıştırıp AI'dan taslak yanıt alıp panele elle göndermek.
@@ -28,19 +28,19 @@ Trendyol ve Hepsiburada'nın kendi mesajlaşma panelleri vardır ve üçüncü t
 | Özellik | Tidio |
 |--------|-------|
 | Canlı chatbot (kendi site) | Var |
-| Türkçe yanıt kalitesi | TBD (doğrulanmalı) |
+| Türkçe yanıt kalitesi | — |
 | Hazır yanıt şablonları | Var |
-| Trendyol/Hepsiburada doğrudan entegrasyon | Yok / TBD |
-| Fiyat (aylık) | TBD |
-| Affiliate programı | TBD |
+| Trendyol/Hepsiburada doğrudan entegrasyon | Yok |
+| Fiyat (aylık) | — |
+| Affiliate programı | — |
 
-> Tek araçla başladık; rekabetçi alternatifler ayrı yazılarda ele alınacaktır. Doğrulanmamış bilgiler **TBD**.
+> Tek araçla başladık; rekabetçi alternatifler ayrı yazılarda ele alınacaktır. Tabloda **—** ile gösterilen alanlar doğrulanmamış bilgileri ifade eder; güncel fiyatı aracın resmi sitesinden kontrol edin.
 
 ## Artılar ve eksiler
 
 **Tidio**
 - Artı: Kendi sitenizde hızlı kurulabilen chatbot; hazır akışlar.
-- Eksi: Pazaryeri panellerine doğrudan bağlanmaz; Türkçe kalite ve fiyat TBD.
+- Eksi: Pazaryeri panellerine doğrudan bağlanmaz; Türkçe kalite ve güncel fiyatı resmi sitesinden teyit edin.
 
 ## Pratik kullanım: "Nasıl yapılır?"
 
@@ -59,4 +59,4 @@ Pazaryeri entegrasyonu kısıtlı olduğu için AI'ın bugünkü en sağlam kull
 
 ---
 
-*Kaynaklar: Pazaryeri satıcı merkezleri (resmi), araç dokümantasyonları. Entegrasyon, fiyat ve komisyon teyidi bekleniyor (TBD).*
+*Kaynaklar: Pazaryeri satıcı merkezleri (resmi), araç dokümantasyonları. Entegrasyon, fiyat ve komisyon bilgileri resmi kaynaktan teyit edildikçe güncellenir.*

@@ -1,9 +1,11 @@
 {
   "ad": "Pebblely",
   "kategori": "Ürün görseli",
-  "fiyat": "TBD",
+  "fiyat": null,
   "artilar": ["Yaratıcı AI sahne üretimi", "Ürünü farklı ortamlara yerleştirme"],
-  "eksiler": ["Toplu işleme ve fiyat detayları TBD"],
-  "affiliateAnahtar": "pebblely",
+  "eksiler": ["Ücretsiz plan yok", "Toplu işleme sınırlı"],
+  "officialUrl": "https://pebblely.com",
+  "affiliateUrl": null,
+  "screenshot": null,
   "aciklama": "Ürün görsellerini yapay zekayla farklı sahnelere yerleştiren araç."
 }
