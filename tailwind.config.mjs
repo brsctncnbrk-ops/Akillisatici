@@ -3,11 +3,11 @@ export default {
   content: ['./src/**/*.{astro,html,js,jsx,md,mdx,ts,tsx}'],
   theme: {
     extend: {
-      // Marka rengi TBD - kullanıcıdan bekleniyor. Şimdilik nötr palet.
       colors: {
         brand: {
-          DEFAULT: '#1f2937',
-          accent: '#2563eb',
+          DEFAULT: '#f97316',
+          dark: '#ea6c0a',
+          accent: '#1e3a5f',
         },
       },
       fontFamily: {
