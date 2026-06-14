@@ -21,7 +21,8 @@ Astro (statik, SEO) + Content Collections (Markdown/MDX), Tailwind CSS, TypeScri
 - `src/components`, `src/layouts`, `src/pages` — UI
 - `drafts/` — ajanın ürettiği onay bekleyen taslaklar (Faz 2)
 - `scripts/` — trend keşif ajanı (Faz 2) · `.github/workflows` — CI + zamanlama
-- `affiliate.config.ts` — affiliate link tek kaynağı · `docs/` — tüm dokümanlar
+- Araç verisi (`src/content/tools/*.json`) — `officialUrl`/`affiliateUrl` link kaynağı
+- `src/data/authors.ts` — yazar (E-E-A-T) tek kaynağı · `docs/` — tüm dokümanlar
 
 ## Kodlama Standartları
 - Kod dili (değişken/fonksiyon/dosya): **İngilizce**

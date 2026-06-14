@@ -1,12 +1,32 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { MARKA_ADI } from '../data/site';
+import { VARSAYILAN_YAZAR } from '../data/authors';
 
-const markaAdi = 'Satıcı Kutusu';
+const markaAdi = MARKA_ADI;
+const yazar = VARSAYILAN_YAZAR;
+
+// Yazar için Person / ProfilePage şeması (Hakkında ile birebir tutarlı tek kaynaktan).
+const site = Astro.site?.href.replace(/\/$/, '') ?? '';
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfilePage',
+  mainEntity: {
+    '@type': 'Person',
+    name: yazar.name,
+    jobTitle: yazar.rol,
+    description: yazar.kisaBio,
+    email: `mailto:${yazar.email}`,
+    url: `${site}${yazar.hakkindaYolu}`,
+    worksFor: { '@type': 'Organization', name: markaAdi, url: site || undefined },
+  },
+};
 ---
 
 <BaseLayout
   title={`Hakkında — ${markaAdi}`}
   description="Online satıcılar için yapay zeka araçları yayınımız hakkında ve yazar kadromuz."
+  jsonLd={jsonLd}
 >
   <h1 class="text-3xl font-bold text-brand">Hakkında</h1>
 
@@ -25,32 +45,15 @@ const markaAdi = 'Satıcı Kutusu';
 
     <h2>Yazar</h2>
     <div class="mt-2">
-      <h3 class="text-xl font-semibold">Barış ÇETİN</h3>
-      <p class="mt-2">
-        Barış ÇETİN, e-ticaret ve dijital pazarlama alanında 5 yılı aşkın deneyime sahip bağımsız
-        bir içerik üreticisi ve araştırmacısıdır. Trendyol, Hepsiburada, Etsy, Shopify ve Amazon
-        gibi önde gelen pazaryerlerinde hem aktif satıcı hem de danışman olarak çalışmıştır.
-      </p>
-      <p class="mt-2">
-        Bu pratik deneyimi sayesinde Barış, online satıcıların günlük iş akışlarında karşılaştığı
-        sorunları birinci elden bilmektedir: ürün açıklaması yazmak, müşteri sorularını yanıtlamak,
-        ürün fotoğraflarını hazırlamak ve reklam metni üretmek. Satıcı Kutusu'nda paylaştığı
-        içerikler, bu süreçleri hızlandırmak ve kalitesini artırmak için test ettiği yapay zeka
-        araçlarının gerçek değerlendirmelerine dayanır.
-      </p>
-      <p class="mt-2">
-        Satıcı Kutusu'nu, Türkiye'deki online satıcıların yapay zeka araçlarına güvenilir,
-        bağımsız ve Türkiye pazarına özel bir kaynaktan ulaşabilmesi için kurdu. Sitedeki hiçbir
-        bilgi doğrulanmadan yayımlanmaz; araç incelemeleri bizzat test ve karşılaştırmaya dayalıdır.
-      </p>
+      <h3 class="text-xl font-semibold">{yazar.name}</h3>
+      <p class="text-sm text-gray-500">{yazar.rol}</p>
+      {yazar.tamBio.map((p) => <p class="mt-2">{p}</p>)}
     </div>
 
     <h2>İletişim</h2>
     <p>
       Soru, öneri veya iş birliği teklifleri için:{' '}
-      <a href="mailto:info@saticikutusu.com" class="text-brand underline"
-        >info@saticikutusu.com</a
-      >
+      <a href={`mailto:${yazar.email}`} class="text-brand underline">{yazar.email}</a>
     </p>
   </div>
 </BaseLayout>

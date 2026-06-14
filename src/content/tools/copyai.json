@@ -4,7 +4,8 @@
   "fiyat": "Ücretsiz plan var; Pro $36/ay (yıllık)",
   "artilar": ["Ücretsiz plan ile başlanabilir", "Hızlı şablonlar", "Basit arayüz"],
   "eksiler": ["Uzun/özgün içerikte derinlik sınırı"],
-  "affiliateAnahtar": "copyai",
-  "websiteUrl": "https://www.copy.ai",
+  "officialUrl": "https://www.copy.ai",
+  "affiliateUrl": null,
+  "screenshot": null,
   "aciklama": "Ürün açıklaması ve pazarlama metni için şablon odaklı AI yazım aracı."
 }

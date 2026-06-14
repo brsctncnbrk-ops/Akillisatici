@@ -6,6 +6,8 @@ import AdSlot from '../../components/AdSlot.astro';
 import PostCard from '../../components/PostCard.astro';
 import { slugByKategori } from '../../lib/categories';
 import { getYayindaPosts } from '../../lib/content';
+import { getAuthorByName } from '../../data/authors';
+import { MARKA_ADI } from '../../data/site';
 
 export async function getStaticPaths() {
   // Yalnızca yayında olan yazılar için sayfa üretilir (editöryel kapı).
@@ -27,13 +29,19 @@ const data = post.data;
 const kategoriSlug = slugByKategori(data.kategori);
 const affiliateVar = data.incelenenAraclar.length > 0;
 
+// Yazar bilgisi tek kaynaktan (Hakkında ile tutarlı).
+const yazar = getAuthorByName(data.yazar);
+
 // İlgili yazılar: aynı kategoriden, mevcut yazı hariç en fazla 2.
 const tumPosts = await getYayindaPosts();
 const ilgili = tumPosts
   .filter((p) => p.data.kategori === data.kategori && p.id !== post.id)
   .slice(0, 2);
 
-// JSON-LD Article şeması
+const site = Astro.site?.href.replace(/\/$/, '') ?? '';
+const canonical = `${site}/posts/${post.id}/`;
+
+// JSON-LD Article şeması — yazar Person'ı authors tek kaynağıyla birebir tutarlı.
 const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Article',
@@ -41,7 +49,18 @@ const jsonLd = {
   description: data.seoAciklama ?? data.ozet,
   datePublished: data.tarih.toISOString(),
   dateModified: (data.guncellenme ?? data.tarih).toISOString(),
-  author: { '@type': 'Person', name: data.yazar },
+  mainEntityOfPage: { '@type': 'WebPage', '@id': canonical },
+  author: {
+    '@type': 'Person',
+    name: yazar.name,
+    jobTitle: yazar.rol,
+    url: `${site}${yazar.hakkindaYolu}`,
+  },
+  publisher: {
+    '@type': 'Organization',
+    name: MARKA_ADI,
+    url: site || undefined,
+  },
   keywords: data.anahtarKelime,
 };
 ---
@@ -88,10 +107,12 @@ const jsonLd = {
     <AdSlot slot="yazi-alti" />
 
     <footer class="mt-10 rounded-lg border border-gray-200 bg-gray-50 p-4">
-      <p class="text-sm font-semibold text-brand">Yazar: {data.yazar}</p>
-      <p class="mt-1 text-sm text-gray-600">
-        Yazar biyografisi: TBD — gerçek kimlik ve uzmanlık bilgisi (E-E-A-T) eklenecek.
-      </p>
+      <p class="text-sm font-semibold text-brand">{yazar.name}</p>
+      <p class="text-xs text-gray-500">{yazar.rol}</p>
+      <p class="mt-2 text-sm text-gray-600">{yazar.kisaBio}</p>
+      <a class="mt-2 inline-block text-sm text-brand-accent hover:underline" href={yazar.hakkindaYolu}>
+        Yazar hakkında →
+      </a>
     </footer>
   </article>
 

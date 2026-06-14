@@ -5,11 +5,30 @@ import { KATEGORILER } from '../lib/categories';
 import { getTools } from '../lib/content';
 
 const tools = await getTools();
+
+// ItemList şeması; her araç için Product (fiyat serbest metin/null olduğundan offer EKLENMEZ).
+const itemListLd = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: 'Online satıcılar için AI araçları',
+  itemListElement: tools.map((tool, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    item: {
+      '@type': 'Product',
+      name: tool.data.ad,
+      category: tool.data.kategori,
+      ...(tool.data.aciklama ? { description: tool.data.aciklama } : {}),
+      ...(tool.data.officialUrl ? { url: tool.data.officialUrl } : {}),
+    },
+  })),
+};
 ---
 
 <BaseLayout
   title="AI Araçları Dizini — Online satıcılar için"
   description="Online satıcılar için yapay zeka araçlarının filtrelenebilir dizini: kategori, fiyat, artılar ve eksiler."
+  jsonLd={itemListLd}
 >
   <h1 class="text-3xl font-bold text-brand">AI Araçları Dizini</h1>
   <p class="mt-2 text-gray-600">

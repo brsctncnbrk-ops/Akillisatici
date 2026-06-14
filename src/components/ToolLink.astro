@@ -1,0 +1,27 @@
+---
+import { resolveToolLink } from '../lib/toolLink';
+
+interface Props {
+  officialUrl?: string | null;
+  affiliateUrl?: string | null;
+  label?: string;
+}
+
+const { officialUrl, affiliateUrl, label } = Astro.props;
+const link = resolveToolLink({ officialUrl, affiliateUrl });
+// Buton metni her durumda nötr ("affiliate"/"TBD" geçmez).
+const text = label ?? 'Siteye git';
+---
+
+{
+  link && (
+    <a
+      href={link.href}
+      rel={link.rel}
+      target="_blank"
+      class="inline-flex items-center gap-1 rounded-md border border-brand px-3 py-1.5 text-sm font-medium text-brand hover:bg-orange-50"
+    >
+      {text} ↗{link.isAffiliate && <span class="text-[10px] uppercase opacity-70">sponsorlu</span>}
+    </a>
+  )
+}
