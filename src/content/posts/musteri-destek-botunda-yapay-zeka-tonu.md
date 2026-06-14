@@ -2,7 +2,7 @@
 baslik: 'Müşteri Desteğinde Yağcı Yapay Zeka Tuzağı: Doğru Tonu Nasıl Kurarsınız?'
 ozet: 'Online satıcılar müşteri destek botlarında doğru tonu nasıl yakalar? Yağcı değil, dürüst ve yardımcı bir yapay zeka tonu için pratik rehber.'
 tarih: 2026-06-14
-yazar: 'Editör'
+yazar: 'Barış ÇETİN'
 kategori: 'Müşteri desteği'
 etiketler: ['müşteri desteği', 'yapay zeka', 'chatbot', 'e-ticaret', 'marka tonu']
 seoBaslik: 'Müşteri Destek Botunda Doğru AI Tonu'

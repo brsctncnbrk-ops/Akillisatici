@@ -2,7 +2,7 @@
 baslik: 'Etsy Ürün Açıklamaları İçin AI Araçları: Hangisi Satıcıya Gerçekten Değer Katıyor?'
 ozet: 'Etsy satıcıları için ürün açıklaması yazan yapay zeka araçlarını gerçek iş akışı, SEO etkisi ve Türkiye pazarı açısından karşılaştırdık. Artıları, eksileri ve pratik kullanım.'
 tarih: 2026-06-14
-yazar: 'Editör'
+yazar: 'Barış ÇETİN'
 kategori: 'İçerik üretimi'
 etiketler: ['etsy', 'ürün açıklaması', 'içerik üretimi', 'seo']
 seoBaslik: 'Etsy Ürün Açıklamaları İçin En İyi AI Araçları (2026)'

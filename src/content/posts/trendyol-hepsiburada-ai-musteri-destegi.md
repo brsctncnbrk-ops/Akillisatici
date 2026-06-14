@@ -2,7 +2,7 @@
 baslik: 'Trendyol & Hepsiburada Satıcıları İçin AI Müşteri Desteği: Soru Yağmurunu Yönetmek'
 ozet: 'Pazaryeri satıcılarının en büyük yüklerinden biri olan müşteri sorularını AI ile yönetmek. Chatbot ve yanıt asistanı araçlarını performans, dil ve entegrasyon açısından karşılaştırdık.'
 tarih: 2026-06-05
-yazar: 'Editör'
+yazar: 'Barış ÇETİN'
 kategori: 'Müşteri desteği'
 etiketler: ['trendyol', 'hepsiburada', 'müşteri desteği', 'chatbot']
 seoBaslik: 'Trendyol & Hepsiburada İçin AI Müşteri Desteği Araçları (2026)'
