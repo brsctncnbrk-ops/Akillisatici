@@ -2,7 +2,7 @@
 baslik: 'Shopify Satıcıları İçin AI Ürün Fotoğrafı Araçları: Stüdyo Olmadan Profesyonel Görsel'
 ozet: 'Shopify mağazaları için arka plan temizleme ve sahne oluşturma yapan AI görsel araçlarını karşılaştırdık. Kalite, toplu işleme, fiyat ve Türkiye pazarı için pratik öneriler.'
 tarih: 2026-06-10
-yazar: 'Editör'
+yazar: 'Barış ÇETİN'
 kategori: 'Ürün görseli'
 etiketler: ['shopify', 'ürün fotoğrafı', 'görsel', 'dönüşüm']
 seoBaslik: 'Shopify İçin AI Ürün Fotoğrafı Araçları Karşılaştırması (2026)'

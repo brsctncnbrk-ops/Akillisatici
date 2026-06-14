@@ -2,7 +2,7 @@
 baslik: 'Hazır Yapay Zeka Videosu Yetmiyor: Satıcılar İçin Gerçek Reklam Üretimi'
 ozet: 'Tek komutla üretilen yapay zeka videoları satış getirmiyor. Online satıcılar için işe yarayan üretim akışını adım adım anlatıyoruz.'
 tarih: 2026-06-14
-yazar: 'Editör'
+yazar: 'Barış ÇETİN'
 kategori: 'SEO & reklam'
 etiketler: ['yapay zeka', 'video reklam', 'ürün tanıtımı', 'SEO', 'reklam']
 seoBaslik: 'Yapay Zeka Video Reklamı: Satıcılar İçin Rehber'
