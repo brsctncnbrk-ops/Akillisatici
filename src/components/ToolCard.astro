@@ -7,7 +7,7 @@ interface Props {
 }
 
 const { tool } = Astro.props;
-const { ad, kategori, fiyat, artilar, eksiler, affiliateAnahtar, aciklama } = tool.data;
+const { ad, kategori, fiyat, artilar, eksiler, affiliateAnahtar, websiteUrl, aciklama } = tool.data;
 ---
 
 <article class="flex flex-col rounded-lg border border-gray-200 p-5" data-kategori={kategori}>
@@ -48,8 +48,17 @@ const { ad, kategori, fiyat, artilar, eksiler, affiliateAnahtar, aciklama } = to
     {
       affiliateAnahtar ? (
         <AffiliateLink toolKey={affiliateAnahtar} label={`${ad} → İncele`} />
+      ) : websiteUrl ? (
+        <a
+          href={websiteUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-1 rounded-md border border-brand px-3 py-1.5 text-sm font-medium text-brand hover:bg-orange-50"
+        >
+          {ad} → Siteye Git ↗
+        </a>
       ) : (
-        <span class="text-xs text-gray-400">Affiliate linki: TBD</span>
+        <span class="text-xs text-gray-400">Link yakında eklenecek</span>
       )
     }
   </div>

@@ -1,9 +1,10 @@
 {
   "ad": "Photoroom",
   "kategori": "Ürün görseli",
-  "fiyat": "TBD",
-  "artilar": ["Hızlı arka plan temizleme", "Mobil iş akışına uygun", "Toplu işleme"],
-  "eksiler": ["Çok yaratıcı sahnelerde sınır (doğrulanmalı)"],
+  "fiyat": "Ücretsiz plan var; Pro ~$10/ay",
+  "artilar": ["Hızlı arka plan temizleme", "Mobil uygulaması mevcut", "Toplu işleme"],
+  "eksiler": ["Ücretsiz planda filigran", "Çok yaratıcı sahnelerde sınır var"],
   "affiliateAnahtar": "photoroom",
+  "websiteUrl": "https://www.photoroom.com",
   "aciklama": "Ürün fotoğraflarından arka planı temizleyen ve sahne oluşturan AI görsel aracı."
 }

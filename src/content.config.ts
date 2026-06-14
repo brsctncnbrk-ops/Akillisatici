@@ -36,6 +36,7 @@ const tools = defineCollection({
     artilar: z.array(z.string()).default([]),
     eksiler: z.array(z.string()).default([]),
     affiliateAnahtar: z.string().optional(),
+    websiteUrl: z.string().optional(),
     aciklama: z.string().optional(),
   }),
 });
