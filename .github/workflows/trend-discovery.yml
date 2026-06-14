@@ -1,0 +1,56 @@
+name: Trend Keşif Ajanı (Faz 2)
+
+# Zamanlanmış + elle tetiklenebilir. Otomatik YAYIN YAPMAZ: yalnızca taslak
+# üretip bir Pull Request açar. Birleştirme ve yayın kararı insandadır.
+on:
+  schedule:
+    # Her Pazartesi 06:00 UTC
+    - cron: '0 6 * * 1'
+  workflow_dispatch:
+    inputs:
+      draft_count:
+        description: 'Üretilecek taslak sayısı (1-10)'
+        required: false
+        default: '2'
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  taslak-uret:
+    name: Trend keşfi + taslak üretimi
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Node.js kurulumu
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Bağımlılıkları yükle
+        run: npm ci
+
+      - name: Taslak üret (Claude API)
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          DRAFT_COUNT: ${{ github.event.inputs.draft_count || '2' }}
+        run: npm run agent:drafts
+
+      - name: Taslakları PR olarak aç
+        uses: peter-evans/create-pull-request@v6
+        with:
+          branch: trend-agent/drafts
+          title: 'İçerik: yeni taslaklar (trend ajanı)'
+          commit-message: 'chore(agent): yeni trend taslakları'
+          body: |
+            Trend keşif ajanı tarafından üretilen yeni yazı taslakları (`durumu: taslak`).
+
+            **Yayın değildir.** İnceleyip düzenleyin, doğrulanmamış verileri (fiyat/komisyon = TBD)
+            teyit edin, ardından dosyayı `src/content/posts/`'a taşıyıp `durumu: yayinda` yapın.
+          add-paths: |
+            drafts/**
+          delete-branch: true

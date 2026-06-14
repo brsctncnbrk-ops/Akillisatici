@@ -73,7 +73,11 @@
 
 ### TASK-008 (Faz 2)
 - **Görev:** Trend keşif ajanı + `drafts/` skorlama + editöryel onay + cron.
-- **Öncelik:** Orta · **Bağımlılıklar:** Faz 1 tamam · **Durum:** Bekliyor
+- **Öncelik:** Orta · **Bağımlılıklar:** Faz 1 tamam
+- **Etkilenen Dosyalar:** `scripts/lib/*` (config, types, score, trends, existing, frontmatter, drafter, discover), `scripts/discover-trends.ts`, `scripts/generate-drafts.ts`, `.github/workflows/trend-discovery.yml`, `drafts/`
+- **Tamamlanma Kriteri:** Keşif + skorlama + Claude taslak üretimi çalışır; taslaklar `durumu: taslak`; cron + PR akışı kurulu; testler yeşil.
+- **Test Gereksinimi:** Var (score, frontmatter, trends parse — 19 test).
+- **Durum:** Tamamlandı ✓ (altyapı). Üretim için CI'da `ANTHROPIC_API_KEY` secret gerekir.
 
 ---
 

@@ -34,3 +34,6 @@ coverage/
 
 # Geçici / ajan çıktıları kontrol dışı tutulmaz; sadece gizli olanlar
 *.local
+
+# Trend ajanı keşif raporları (her çalıştırmada değişir; klasör korunur)
+drafts/reports/*.json

@@ -24,8 +24,15 @@
 - `main` dalı oluşturuldu ve push edildi (production branch). Geliştirme `claude/project-initialization-system-4xz843` dalında sürüyor.
 - CLI yolu bu ortamın ağ egress politikası (`api.vercel.com` allowlist dışı) nedeniyle kullanılamadı; Git Integration tercih edildi.
 
+### Faz 2 — Trend keşif ajanı KURULDU (2026-06-14, ADR-008)
+- `scripts/lib/*` (config, score, trends/RSS parse, existing, frontmatter, drafter, discover) + iki giriş noktası (`agent:discover`, `agent:drafts`).
+- Claude API ile taslak üretimi (model varsayılanı `claude-opus-4-8`); çıktı `drafts/*.md` `durumu: taslak`.
+- `.github/workflows/trend-discovery.yml`: haftalık cron + elle tetik → PR açar (insan onayı).
+- Kalite kapısı yeşil: test 29/29 (19 yeni) · lint 0/0 · build 13 sayfa. Script tsx ile uçtan uca çalışır (RSS bu ortamda egress ile engelli; CI'da erişilebilir).
+- **Kullanıcı aksiyonu gerekli:** GitHub repo → Settings → Secrets → Actions → `ANTHROPIC_API_KEY` ekle (taslak üretimi için).
+
 ### Sırada (Sonraki adım)
-- **Faz 2 (TASK-008):** Trend keşif ajanı (`scripts/`) + `/drafts/` skorlama + editöryel onay + GitHub Actions cron. Otomatik yayın YASAK — yalnızca taslak üretir, insan onaylar.
+- İlk gerçek çalıştırma: secret eklenince workflow'u elle tetikle (workflow_dispatch) → üretilen taslakları PR'da incele/onayla.
 - Kullanıcıdan açık TBD'lerin yanıtları beklenir (aşağıya bkz.).
 
 ### Açık Sorular / TBD

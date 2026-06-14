@@ -48,3 +48,10 @@
 - **Gerekçe:** Claude Code web oturumunun ağ egress politikası `api.vercel.com`'a erişimi engelliyor ("Host not in allowlist"), bu yüzden container'dan `vercel` CLI ile deploy yapılamadı. Git Integration'da build Vercel sunucusunda çalışır ve bu kısıttan etkilenmez; ayrıca otomatik CI/CD + PR önizlemeleri sağlar.
 - **Alternatifler:** CLI ile token bazlı deploy (ağ politikası nedeniyle bu ortamda çalışmıyor); egress allowlist'e Vercel host'ları ekleyip CLI (ortam yapılandırması değişikliği gerektirir).
 - **Sonuç:** Adımlar `DEPLOYMENT.md`'de. Production branch ve domain bağlama notları eklendi.
+
+## ADR-008 — Faz 2: Trend keşif ajanı mimarisi
+- **Tarih:** 2026-06-14
+- **Karar:** TypeScript + `tsx` ile çalışan iki aşamalı hat: (1) RSS keşfi + saf skorlama (LLM yok), (2) Claude API ile taslak üretimi. Çıktı yalnızca `drafts/` altına `durumu: taslak`. GitHub Actions cron + `peter-evans/create-pull-request` ile PR tabanlı insan onayı.
+- **Gerekçe:** Saf skorlama/ayrıştırma birim testlenebilir ve secret gerektirmez; LLM yalnızca metin üretimi için. PR akışı "otomatik yayın YASAK" kuralını (CLAUDE.md #3) yapısal olarak garanti eder — site yalnızca `durumu: yayinda` build eder. Model varsayılanı `claude-opus-4-8` (`ANTHROPIC_MODEL` ile override).
+- **Alternatifler:** Managed Agents (fazla ağır, kalıcı altyapı gerektirir); doğrudan `src/content`'a yazma (yayın kontrolünü kırar — reddedildi).
+- **Sonuç:** `scripts/lib/*` + iki giriş noktası + `.github/workflows/trend-discovery.yml`. Skorlama/frontmatter/RSS-parse için 19 birim testi. `ANTHROPIC_API_KEY` GitHub secret olarak verilmeli.
