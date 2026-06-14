@@ -31,12 +31,18 @@ const tools = defineCollection({
   schema: z.object({
     ad: z.string(),
     kategori: kategoriEnum,
-    // Doğrulanmamış fiyat 'TBD' kalır (uydurma yok).
-    fiyat: z.string().default('TBD'),
+    // Doğrulanmamış fiyat null kalır (uydurma yok); UI null iken fiyatı gizler.
+    fiyat: z.string().nullable().default(null),
     artilar: z.array(z.string()).default([]),
     eksiler: z.array(z.string()).default([]),
-    affiliateAnahtar: z.string().optional(),
-    websiteUrl: z.string().optional(),
+    // Aracın resmi sitesi (affiliate OLMAYAN). Linkler şimdilik buradan çalışır.
+    officialUrl: z.string().url().optional(),
+    // Affiliate (ortaklık) yönlendirme URL'i. Doldurulunca link otomatik affiliate'e geçer.
+    affiliateUrl: z.string().url().nullable().default(null),
+    // İleride eklenebilecek araç ekran görüntüsü (yoksa null).
+    screenshot: z.string().nullable().default(null),
+    // Araca özel OG görseli (yoksa site varsayılanına düşülür).
+    ogImage: z.string().optional(),
     aciklama: z.string().optional(),
   }),
 });

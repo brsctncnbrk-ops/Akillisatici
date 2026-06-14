@@ -1,5 +1,7 @@
 ---
-// Tüm sayfaların <head> içeriği: meta, Open Graph, canonical, opsiyonel JSON-LD.
+// Tüm sayfaların <head> içeriği: meta, Open Graph, canonical, JSON-LD.
+import { MARKA_ADI, VARSAYILAN_OG_GORSEL } from '../data/site';
+
 interface Props {
   title: string;
   description: string;
@@ -12,7 +14,31 @@ const { title, description, image, article = false, jsonLd } = Astro.props;
 
 const fallback = Astro.site ?? Astro.url;
 const canonical = new URL(Astro.url.pathname, fallback).href;
-const ogImage = image ? new URL(image, fallback).href : undefined;
+// Sayfaya özel görsel yoksa site varsayılan OG görseline düş.
+const ogImage = new URL(image ?? VARSAYILAN_OG_GORSEL, fallback).href;
+const siteUrl = (Astro.site ?? Astro.url).href.replace(/\/$/, '');
+
+// Site geneli yapılandırılmış veri: Organization + WebSite (her sayfada).
+const siteJsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Organization',
+      '@id': `${siteUrl}/#organization`,
+      name: MARKA_ADI,
+      url: `${siteUrl}/`,
+      logo: `${siteUrl}${VARSAYILAN_OG_GORSEL}`,
+    },
+    {
+      '@type': 'WebSite',
+      '@id': `${siteUrl}/#website`,
+      name: MARKA_ADI,
+      url: `${siteUrl}/`,
+      inLanguage: 'tr-TR',
+      publisher: { '@id': `${siteUrl}/#organization` },
+    },
+  ],
+};
 ---
 
 <meta charset="utf-8" />
@@ -27,12 +53,15 @@ const ogImage = image ? new URL(image, fallback).href : undefined;
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
 <meta property="og:url" content={canonical} />
-{ogImage && <meta property="og:image" content={ogImage} />}
+<meta property="og:site_name" content={MARKA_ADI} />
+<meta property="og:image" content={ogImage} />
 
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content={title} />
 <meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={ogImage} />
 
+<script is:inline type="application/ld+json" set:html={JSON.stringify(siteJsonLd)} />
 {jsonLd && <script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
 
 <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-7TYLWS8G6S"></script>

@@ -75,7 +75,7 @@ Doğru tonu kurmak pahalı bir yatırım değil; çoğunlukla talimatları düze
 - Müşteri sinirliyse bot da sakin ve çözüm odaklı kalsın; savunmaya geçmesin.
 - Türkçe yazım ve dil bilgisine dikkat edin; bozuk Türkçe güveni zedeler.
 
-> Belirli araçların ton ayarı özellikleri ve fiyatlandırması değişkendir; kullanmadan önce sağladıkları kontrolleri kendiniz doğrulayın (**TBD — doğrulanmalı**).
+> Belirli araçların ton ayarı özellikleri ve fiyatlandırması değişkendir; kullanmadan önce sağladıkları kontrolleri ve güncel fiyatı aracın resmi sitesinden kendiniz doğrulayın.
 
 ## Sonuç
 
