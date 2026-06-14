@@ -7,6 +7,10 @@ sürümleme [Semantic Versioning](https://semver.org/lang/tr/) yaklaşımına da
 
 ## [Unreleased]
 
+### Changed
+- Marka adı "Satıcı Kutusu" ve domain `saticikutusu.com` olarak ayarlandı;
+  `site` URL'i, robots.txt fallback'i ve placeholder marka adları güncellendi (ADR-006).
+
 ### Added
 - Evrensel proje başlatma dokümantasyon seti: `CLAUDE.md`, `/docs` altında
   PROJECT_CONTEXT, ARCHITECTURE, ROADMAP, TASKS, CHANGELOG, DECISIONS, RISKS,

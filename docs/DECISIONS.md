@@ -35,3 +35,9 @@
 - **Karar:** Yalnızca `durumu: yayinda` içerik build'e girer; otomatik yayın yok.
 - **Gerekçe:** Google scaled-content-abuse cezasından kaçınma; insan onayı zorunlu (en kritik kısıt).
 - **Sonuç:** `src/content/config.ts` şemasına `durumu` eklendi; sayfalar filtreler.
+
+## ADR-006 — Marka adı ve domain
+- **Tarih:** 2026-06-14
+- **Karar:** Marka adı **"Satıcı Kutusu"**, domain **saticikutusu.com**.
+- **Gerekçe:** Kullanıcı `saticikutusu.com` domainini aldı; marka adı domainden türetildi. Önceki placeholder ("Akıllı Satıcı") ve `https://example.com` kaldırıldı.
+- **Sonuç:** `astro.config.mjs` `site` değeri, `robots.txt` fallback, tüm `markaAdi` placeholder'ları ve `package.json` adı güncellendi.

@@ -1,7 +1,7 @@
 import type { APIRoute } from 'astro';
 
 export const GET: APIRoute = ({ site }) => {
-  const sitemapUrl = new URL('sitemap-index.xml', site ?? 'https://example.com').href;
+  const sitemapUrl = new URL('sitemap-index.xml', site ?? 'https://saticikutusu.com').href;
   const body = `User-agent: *
 Allow: /
 

@@ -24,7 +24,7 @@
 - Faz 2: Trend keşif ajanı (`scripts/`) + `/drafts/` skorlama + editöryel onay komutu + GitHub Actions cron.
 
 ### Açık Sorular / TBD
-- Marka adı + domain (canonical/sitemap için `astro.config.mjs` içinde `site` placeholder)
+- ~~Marka adı + domain~~ → **Çözüldü (2026-06-14):** "Satıcı Kutusu" / saticikutusu.com (ADR-006). `site` URL güncellendi.
 - Marka rengi (Tailwind teması şu an nötr)
 - Gerçek yazar kimliği + biyografi (E-E-A-T)
 - Araç fiyatları & affiliate komisyon oranları (uydurulmadı, TBD)

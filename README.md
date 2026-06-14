@@ -1,4 +1,7 @@
-# Akıllı Satıcı (marka: TBD)
+# Satıcı Kutusu
+
+> Domain: **saticikutusu.com**
+
 
 Online satıcılar (Shopify, Etsy, Amazon, Trendyol, Hepsiburada) için yapay zeka araçlarını inceleyen, karşılaştıran ve rehberler sunan Türkçe niş blog.
 
