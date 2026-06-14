@@ -1,9 +1,10 @@
 {
   "ad": "Jasper",
   "kategori": "İçerik üretimi",
-  "fiyat": "TBD",
+  "fiyat": "$39/ay'dan (yıllık)",
   "artilar": ["Güçlü marka sesi tanımlama", "Uzun içerikte tutarlılık", "Workflow ile toplu üretim"],
-  "eksiler": ["Öğrenme eğrisi", "Maliyet (doğrulanmalı)"],
+  "eksiler": ["Öğrenme eğrisi var", "Ücretli plan gerekli"],
   "affiliateAnahtar": "jasper",
+  "websiteUrl": "https://www.jasper.ai",
   "aciklama": "E-ticaret ürün açıklamaları ve blog içeriği için yapay zeka yazım asistanı."
 }
