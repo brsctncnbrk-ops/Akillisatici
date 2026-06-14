@@ -1,10 +1,10 @@
 {
   "ad": "Photoroom",
   "kategori": "Ürün görseli",
-  "fiyat": "Ücretsiz plan var; Pro ~$10/ay",
+  "fiyat": "Ücretsiz plan var; Pro 125 TL/ay",
   "artilar": ["Hızlı arka plan temizleme", "Mobil uygulaması mevcut", "Toplu işleme"],
   "eksiler": ["Ücretsiz planda filigran", "Çok yaratıcı sahnelerde sınır var"],
-  "officialUrl": "https://www.photoroom.com",
+  "officialUrl": "https://www.photoroom.com/tr",
   "affiliateUrl": null,
   "screenshot": null,
   "aciklama": "Ürün fotoğraflarından arka planı temizleyen ve sahne oluşturan AI görsel aracı."
