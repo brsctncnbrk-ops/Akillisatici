@@ -1,0 +1,30 @@
+---
+import { KATEGORILER } from '../lib/categories';
+// Marka adı TBD - kullanıcıdan bekleniyor.
+const markaAdi = 'Akıllı Satıcı';
+---
+
+<header class="border-b border-gray-200 bg-white">
+  <div class="mx-auto flex max-w-5xl flex-wrap items-center justify-between gap-3 px-4 py-4">
+    <a href="/" class="text-xl font-bold text-brand">{markaAdi}</a>
+    <nav aria-label="Ana menü">
+      <ul class="flex flex-wrap items-center gap-4 text-sm">
+        {
+          KATEGORILER.map((k) => (
+            <li>
+              <a class="text-gray-600 hover:text-brand-accent" href={`/kategori/${k.slug}/`}>
+                {k.ad}
+              </a>
+            </li>
+          ))
+        }
+        <li>
+          <a class="text-gray-600 hover:text-brand-accent" href="/araclar/">AI Araçları</a>
+        </li>
+        <li>
+          <a class="text-gray-600 hover:text-brand-accent" href="/hakkinda/">Hakkında</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>

@@ -1,0 +1,42 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Temel okunabilirlik ayarları (mobil öncelikli) */
+:root {
+  color-scheme: light;
+}
+
+body {
+  @apply bg-white text-gray-900 antialiased;
+}
+
+/* Yazı içeriği için basit tipografi (prose eklentisi yerine sade kurallar) */
+.icerik h2 {
+  @apply mt-10 mb-3 text-2xl font-bold;
+}
+.icerik h3 {
+  @apply mt-8 mb-2 text-xl font-semibold;
+}
+.icerik p {
+  @apply my-4 leading-7;
+}
+.icerik ul {
+  @apply my-4 list-disc pl-6;
+}
+.icerik ol {
+  @apply my-4 list-decimal pl-6;
+}
+.icerik a {
+  @apply text-brand-accent underline underline-offset-2;
+}
+.icerik table {
+  @apply my-6 w-full border-collapse text-sm;
+}
+.icerik th,
+.icerik td {
+  @apply border border-gray-200 px-3 py-2 text-left;
+}
+.icerik th {
+  @apply bg-gray-50 font-semibold;
+}

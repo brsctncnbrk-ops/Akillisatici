@@ -1,0 +1,56 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import AffiliateLink from './AffiliateLink.astro';
+
+interface Props {
+  tool: CollectionEntry<'tools'>;
+}
+
+const { tool } = Astro.props;
+const { ad, kategori, fiyat, artilar, eksiler, affiliateAnahtar, aciklama } = tool.data;
+---
+
+<article class="flex flex-col rounded-lg border border-gray-200 p-5" data-kategori={kategori}>
+  <div class="flex items-baseline justify-between gap-2">
+    <h3 class="text-lg font-semibold text-brand">{ad}</h3>
+    <span class="whitespace-nowrap text-xs text-gray-500">{fiyat}</span>
+  </div>
+  <p class="mt-1 text-xs text-brand-accent">{kategori}</p>
+  {aciklama && <p class="mt-2 text-sm text-gray-600">{aciklama}</p>}
+
+  {
+    artilar.length > 0 && (
+      <div class="mt-3">
+        <p class="text-xs font-semibold text-green-700">Artılar</p>
+        <ul class="mt-1 list-disc pl-5 text-sm text-gray-700">
+          {artilar.map((a) => (
+            <li>{a}</li>
+          ))}
+        </ul>
+      </div>
+    )
+  }
+
+  {
+    eksiler.length > 0 && (
+      <div class="mt-2">
+        <p class="text-xs font-semibold text-red-700">Eksiler</p>
+        <ul class="mt-1 list-disc pl-5 text-sm text-gray-700">
+          {eksiler.map((e) => (
+            <li>{e}</li>
+          ))}
+        </ul>
+      </div>
+    )
+  }
+
+  <div class="mt-4">
+    {
+      affiliateAnahtar ? (
+        <AffiliateLink toolKey={affiliateAnahtar} label={`${ad} → İncele`} />
+      ) : (
+        <span class="text-xs text-gray-400">Affiliate linki: TBD</span>
+      )
+    }
+  </div>
+</article>

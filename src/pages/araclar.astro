@@ -1,0 +1,74 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ToolCard from '../components/ToolCard.astro';
+import AffiliateDisclosure from '../components/AffiliateDisclosure.astro';
+import { KATEGORILER } from '../lib/categories';
+import { getTools } from '../lib/content';
+
+const tools = await getTools();
+const affiliateVar = tools.some((t) => t.data.affiliateAnahtar);
+---
+
+<BaseLayout
+  title="AI Araçları Dizini — Online satıcılar için"
+  description="Online satıcılar için yapay zeka araçlarının filtrelenebilir dizini: kategori, fiyat, artılar ve eksiler."
+>
+  <h1 class="text-3xl font-bold text-brand">AI Araçları Dizini</h1>
+  <p class="mt-2 text-gray-600">
+    Online satıcılar için yapay zeka araçları. Kategoriye göre filtreleyin.
+  </p>
+
+  {affiliateVar && <AffiliateDisclosure />}
+
+  <!-- Kategori filtresi (ilerlemeli geliştirme: JS olmadan tümü görünür) -->
+  <div class="my-6 flex flex-wrap gap-2" data-filtre-grup>
+    <button
+      class="rounded-full border border-brand-accent bg-brand-accent px-3 py-1 text-sm text-white"
+      data-filtre="all">Tümü</button
+    >
+    {
+      KATEGORILER.map((k) => (
+        <button
+          class="rounded-full border border-gray-200 px-3 py-1 text-sm text-gray-700 hover:border-brand-accent"
+          data-filtre={k.ad}
+        >
+          {k.ad}
+        </button>
+      ))
+    }
+  </div>
+
+  <div class="grid gap-4 sm:grid-cols-2" data-arac-liste>
+    {
+      tools.length > 0 ? (
+        tools.map((tool) => <ToolCard tool={tool} />)
+      ) : (
+        <p class="text-sm text-gray-500">Henüz araç eklenmedi.</p>
+      )
+    }
+  </div>
+</BaseLayout>
+
+<script>
+  // Basit istemci tarafı kategori filtresi.
+  const butonlar = document.querySelectorAll<HTMLButtonElement>('[data-filtre]');
+  const kartlar = document.querySelectorAll<HTMLElement>('[data-arac-liste] [data-kategori]');
+
+  butonlar.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const secili = btn.dataset.filtre;
+
+      butonlar.forEach((b) => {
+        b.classList.remove('bg-brand-accent', 'text-white', 'border-brand-accent');
+        b.classList.add('border-gray-200', 'text-gray-700');
+      });
+      btn.classList.add('bg-brand-accent', 'text-white', 'border-brand-accent');
+      btn.classList.remove('border-gray-200', 'text-gray-700');
+
+      kartlar.forEach((kart) => {
+        const goster = secili === 'all' || kart.dataset.kategori === secili;
+        kart.style.display = goster ? '' : 'none';
+      });
+    });
+  });
+</script>

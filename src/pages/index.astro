@@ -1,0 +1,71 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PostCard from '../components/PostCard.astro';
+import NewsletterSignup from '../components/NewsletterSignup.astro';
+import AdSlot from '../components/AdSlot.astro';
+import { KATEGORILER } from '../lib/categories';
+import { getYayindaPosts } from '../lib/content';
+
+const posts = await getYayindaPosts();
+const oneCikan = posts[0];
+const digerleri = posts.slice(1);
+
+const markaAdi = 'Akıllı Satıcı'; // TBD
+---
+
+<BaseLayout
+  title={`${markaAdi} — Online satıcılar için yapay zeka araçları`}
+  description="Shopify, Etsy, Amazon, Trendyol ve Hepsiburada satıcıları için yapay zeka araçlarının incelemeleri, karşılaştırmaları ve kullanım rehberleri."
+>
+  <section class="mb-8">
+    <h1 class="text-3xl font-bold text-brand">Online satıcılar için yapay zeka araçları</h1>
+    <p class="mt-2 max-w-2xl text-gray-600">
+      İşinizi kolaylaştıran AI araçlarının özgün incelemeleri, karşılaştırmaları ve pratik
+      rehberleri. Türkiye pazarına ve pazaryeri satıcılarına özel yorumlarla.
+    </p>
+  </section>
+
+  {
+    oneCikan && (
+      <section class="mb-10">
+        <h2 class="mb-3 text-sm font-semibold uppercase tracking-wide text-gray-500">Öne çıkan</h2>
+        <PostCard post={oneCikan} />
+      </section>
+    )
+  }
+
+  <AdSlot slot="anasayfa" />
+
+  <section class="mb-10">
+    <h2 class="mb-3 text-sm font-semibold uppercase tracking-wide text-gray-500">En yeni yazılar</h2>
+    {
+      digerleri.length > 0 ? (
+        <div class="grid gap-4 sm:grid-cols-2">
+          {digerleri.map((post) => (
+            <PostCard post={post} />
+          ))}
+        </div>
+      ) : (
+        <p class="text-sm text-gray-500">Henüz başka yazı yok.</p>
+      )
+    }
+  </section>
+
+  <section class="mb-10">
+    <h2 class="mb-3 text-sm font-semibold uppercase tracking-wide text-gray-500">Kategoriler</h2>
+    <div class="flex flex-wrap gap-2">
+      {
+        KATEGORILER.map((k) => (
+          <a
+            href={`/kategori/${k.slug}/`}
+            class="rounded-full border border-gray-200 px-3 py-1 text-sm text-gray-700 hover:border-brand-accent hover:text-brand-accent"
+          >
+            {k.ad}
+          </a>
+        ))
+      }
+    </div>
+  </section>
+
+  <NewsletterSignup />
+</BaseLayout>

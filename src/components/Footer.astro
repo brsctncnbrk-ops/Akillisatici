@@ -1,0 +1,21 @@
+---
+const yil = new Date().getFullYear();
+const markaAdi = 'Akıllı Satıcı'; // TBD
+---
+
+<footer class="border-t border-gray-200 bg-gray-50">
+  <div
+    class="mx-auto flex max-w-5xl flex-col gap-3 px-4 py-6 text-sm text-gray-500 sm:flex-row sm:items-center sm:justify-between"
+  >
+    <p>© {yil} {markaAdi}. Tüm hakları saklıdır.</p>
+    <nav aria-label="Alt menü">
+      <ul class="flex flex-wrap gap-4">
+        <li><a class="hover:text-brand-accent" href="/hakkinda/">Hakkında</a></li>
+        <li><a class="hover:text-brand-accent" href="/gizlilik/">Gizlilik</a></li>
+        <li>
+          <a class="hover:text-brand-accent" href="/affiliate-aciklama/">Affiliate Açıklaması</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</footer>

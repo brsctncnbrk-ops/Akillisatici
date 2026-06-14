@@ -1,0 +1,17 @@
+---
+// Reklam yerleşimi placeholder'ı.
+// NOT: AdSense scripti, yeterli nitelikli içerik onayı alındıktan SONRA kullanıcı
+// tarafından aktive edilecektir. Şimdilik yalnızca yer tutucu gösterilir.
+interface Props {
+  slot?: string;
+}
+const { slot = 'genel' } = Astro.props;
+---
+
+<div
+  class="my-6 flex items-center justify-center rounded-md border border-dashed border-gray-300 bg-gray-50 p-6 text-xs text-gray-400"
+  data-ad-slot={slot}
+  aria-hidden="true"
+>
+  Reklam alanı ({slot}) — AdSense onay sonrası aktive edilecek
+</div>

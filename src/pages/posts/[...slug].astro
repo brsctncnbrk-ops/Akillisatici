@@ -1,0 +1,112 @@
+---
+import { type CollectionEntry, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import AffiliateDisclosure from '../../components/AffiliateDisclosure.astro';
+import AdSlot from '../../components/AdSlot.astro';
+import PostCard from '../../components/PostCard.astro';
+import { slugByKategori } from '../../lib/categories';
+import { getYayindaPosts } from '../../lib/content';
+
+export async function getStaticPaths() {
+  // Yalnızca yayında olan yazılar için sayfa üretilir (editöryel kapı).
+  const posts = await getYayindaPosts();
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+interface Props {
+  post: CollectionEntry<'posts'>;
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+const data = post.data;
+
+const kategoriSlug = slugByKategori(data.kategori);
+const affiliateVar = data.incelenenAraclar.length > 0;
+
+// İlgili yazılar: aynı kategoriden, mevcut yazı hariç en fazla 2.
+const tumPosts = await getYayindaPosts();
+const ilgili = tumPosts
+  .filter((p) => p.data.kategori === data.kategori && p.id !== post.id)
+  .slice(0, 2);
+
+// JSON-LD Article şeması
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: data.baslik,
+  description: data.seoAciklama ?? data.ozet,
+  datePublished: data.tarih.toISOString(),
+  dateModified: (data.guncellenme ?? data.tarih).toISOString(),
+  author: { '@type': 'Person', name: data.yazar },
+  keywords: data.anahtarKelime,
+};
+---
+
+<BaseLayout
+  title={data.seoBaslik ?? data.baslik}
+  description={data.seoAciklama ?? data.ozet}
+  image={data.kapakGorsel}
+  article={true}
+  jsonLd={jsonLd}
+>
+  <article>
+    <header class="mb-6">
+      {
+        kategoriSlug && (
+          <a class="text-sm text-brand-accent" href={`/kategori/${kategoriSlug}/`}>
+            {data.kategori}
+          </a>
+        )
+      }
+      <h1 class="mt-1 text-3xl font-bold text-brand">{data.baslik}</h1>
+      <div class="mt-2 flex flex-wrap items-center gap-2 text-sm text-gray-500">
+        <span>{data.yazar}</span>
+        <span>·</span>
+        <time datetime={data.tarih.toISOString()}>{data.tarih.toLocaleDateString('tr-TR')}</time>
+        {
+          data.guncellenme && (
+            <>
+              <span>·</span>
+              <span>Güncellendi: {data.guncellenme.toLocaleDateString('tr-TR')}</span>
+            </>
+          )
+        }
+      </div>
+      <p class="mt-3 text-lg text-gray-700">{data.ozet}</p>
+    </header>
+
+    {affiliateVar && <AffiliateDisclosure />}
+
+    <div class="icerik">
+      <Content />
+    </div>
+
+    <AdSlot slot="yazi-alti" />
+
+    <footer class="mt-10 rounded-lg border border-gray-200 bg-gray-50 p-4">
+      <p class="text-sm font-semibold text-brand">Yazar: {data.yazar}</p>
+      <p class="mt-1 text-sm text-gray-600">
+        Yazar biyografisi: TBD — gerçek kimlik ve uzmanlık bilgisi (E-E-A-T) eklenecek.
+      </p>
+    </footer>
+  </article>
+
+  {
+    ilgili.length > 0 && (
+      <section class="mt-10">
+        <h2 class="mb-3 text-sm font-semibold uppercase tracking-wide text-gray-500">
+          İlgili yazılar
+        </h2>
+        <div class="grid gap-4 sm:grid-cols-2">
+          {ilgili.map((p) => (
+            <PostCard post={p} />
+          ))}
+        </div>
+      </section>
+    )
+  }
+</BaseLayout>

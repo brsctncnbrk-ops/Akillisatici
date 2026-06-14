@@ -1,0 +1,35 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const markaAdi = 'Akıllı Satıcı'; // TBD
+---
+
+<BaseLayout
+  title={`Hakkında — ${markaAdi}`}
+  description="Online satıcılar için yapay zeka araçları yayınımız hakkında ve yazar kadromuz."
+>
+  <h1 class="text-3xl font-bold text-brand">Hakkında</h1>
+
+  <div class="icerik mt-4 max-w-2xl">
+    <p>
+      {markaAdi}, online satıcıların (Shopify, Etsy, Amazon, Trendyol, Hepsiburada) işini
+      kolaylaştıran yapay zeka araçlarını bağımsız ve özgün bir bakışla inceler. Amacımız, gerçek
+      kullanım deneyimine ve karşılaştırmaya dayalı, Türkiye pazarına özel içerik üretmektir.
+    </p>
+
+    <h2>Editöryel ilkemiz</h2>
+    <p>
+      Bu site bir otomatik içerik fabrikası değildir. Her yazı, yayınlanmadan önce insan onayından
+      geçer. Doğrulanmamış bilgileri (fiyat, komisyon, özellik) yayımlamayız.
+    </p>
+
+    <h2>Yazar(lar)</h2>
+    <p>
+      Yazar kimliği ve uzmanlık bilgileri (E-E-A-T): <strong>TBD</strong> — gerçek yazar adı,
+      biyografisi ve iletişim bilgisi eklenecektir.
+    </p>
+
+    <h2>İletişim</h2>
+    <p>İletişim bilgisi: <strong>TBD</strong>.</p>
+  </div>
+</BaseLayout>
