@@ -20,6 +20,9 @@
 - 3 örnek yazı (Etsy açıklama AI / Shopify ürün fotoğrafı AI / Trendyol-Hepsiburada müşteri desteği AI) — doğrulanmamış figürler TBD.
 
 ### Sırada (Sonraki adım)
+- **Deploy (devam ediyor):** Vercel + Git Integration seçildi (ADR-007). Kullanıcı panelden repo'yu import edecek; adımlar `docs/DEPLOYMENT.md`. CLI yolu ağ egress politikası (`api.vercel.com` allowlist dışı) nedeniyle bu ortamda çalışmıyor.
+  - Production branch kararı bekliyor: feature branch'i `main`'e merge (önerilen) **veya** Vercel'de production branch = feature branch.
+  - Domain `saticikutusu.com` Vercel Domains'ten bağlanacak (DNS kayıtları).
 - Kullanıcıdan açık TBD'lerin yanıtları beklenir (aşağıya bkz.).
 - Faz 2: Trend keşif ajanı (`scripts/`) + `/drafts/` skorlama + editöryel onay komutu + GitHub Actions cron.
 
