@@ -1,7 +1,6 @@
 ---
 import { type CollectionEntry, render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import AffiliateDisclosure from '../../components/AffiliateDisclosure.astro';
 import AdSlot from '../../components/AdSlot.astro';
 import PostCard from '../../components/PostCard.astro';
 import { slugByKategori } from '../../lib/categories';
@@ -27,7 +26,6 @@ const { Content } = await render(post);
 const data = post.data;
 
 const kategoriSlug = slugByKategori(data.kategori);
-const affiliateVar = data.incelenenAraclar.length > 0;
 
 // Yazar bilgisi tek kaynaktan (Hakkında ile tutarlı).
 const yazar = getAuthorByName(data.yazar);
@@ -97,8 +95,6 @@ const jsonLd = {
       </div>
       <p class="mt-3 text-lg text-gray-700">{data.ozet}</p>
     </header>
-
-    {affiliateVar && <AffiliateDisclosure />}
 
     <div class="icerik">
       <Content />
