@@ -41,7 +41,7 @@ Büyük bütçeye ihtiyacınız yok. Pratik bir akış:
 
 1. **Hammadde toplayın:** Ürünün farklı açılardan 5-10 net fotoğrafı, varsa kısa kullanım videosu.
 2. **Mesajı netleştirin:** Tek bir ana fayda seçin (örneğin "15 saniyede kurulum"). Videoyu bunun etrafında kurun.
-3. **AI aracıyla taslak üretin:** Görsel iyileştirme, arka plan temizleme veya kısa animasyon için bir AI video aracı kullanın. (Hangi aracın hangi özelliği sunduğu sürekli değişiyor; seçtiğiniz aracın ücretsiz deneme ve dışa aktarma sınırlarını kullanmadan önce kontrol edin — TBD, doğrulanmalı.)
+3. **AI aracıyla taslak üretin:** Görsel iyileştirme, arka plan temizleme veya kısa animasyon için bir AI video aracı kullanın. (Hangi aracın hangi özelliği sunduğu sürekli değişiyor; seçtiğiniz aracın ücretsiz deneme ve dışa aktarma sınırlarını kullanmadan önce kontrol edin.)
 4. **Gerçeklik kontrolü yapın:** Çıktıdaki ürün, satışta olan ürünle birebir uyuşuyor mu? Renk, oran, detay farkı varsa düzeltin. Müşteriyi yanıltan görsel, iadeyi büyütür.
 5. **Alt yazı ve ses ekleyin:** Çoğu kullanıcı videoları sessiz izler. Net, kısa alt yazılar ekleyin.
 6. **Platforma uyarlayın:** Trendyol ürün videosu, Instagram Reels ve Etsy listeleme videosu farklı en-boy oranları ister. Tek videodan birkaç versiyon çıkarın.

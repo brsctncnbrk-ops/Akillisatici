@@ -43,11 +43,11 @@ Görsel üretiminde AI araçları son yıllarda ciddi yol aldı. Ancak gerçekç
 - Ürünün kendi şeklini, dokusunu veya rengini gerçeğe aykırı biçimde değiştirmek. Bu hem iade hem güven sorunu yaratır.
 - Var olmayan bir özelliği görselde ima etmek. Yasal ve etik açıdan risklidir.
 
-Kısa kural: AI ile sunumu güçlendirin, ürünün gerçeğini değiştirmeyin. Platformların görsel kuralları (ör. ana görselde beyaz arka plan zorunluluğu) zaman zaman güncellenebildiği için, kullandığınız pazaryerinin güncel kılavuzunu kontrol etmeniz gerekir (TBD - doğrulanmalı).
+Kısa kural: AI ile sunumu güçlendirin, ürünün gerçeğini değiştirmeyin. Platformların görsel kuralları (ör. ana görselde beyaz arka plan zorunluluğu) zaman zaman güncellenebildiği için, kullandığınız pazaryerinin güncel kılavuzunu kontrol etmeniz gerekir.
 
 ## Hangi Araçları Kullanabilirsiniz?
 
-Piyasada arka plan kaldırma, sahne oluşturma ve görsel iyileştirme yapan birçok araç var. Belirli bir aracın fiyatını veya ücretsiz kota sınırını burada vermiyoruz, çünkü bunlar sık değişiyor (TBD - doğrulanmalı). Bunun yerine seçim yaparken şu kriterlere bakın:
+Piyasada arka plan kaldırma, sahne oluşturma ve görsel iyileştirme yapan birçok araç var. Belirli bir aracın fiyatını veya ücretsiz kota sınırını burada vermiyoruz, çünkü bunlar sık değişiyor. Bunun yerine seçim yaparken şu kriterlere bakın:
 
 - Çıktı çözünürlüğü pazaryeri gereksinimlerini karşılıyor mu?
 - Ticari kullanım hakkı net mi? (Özellikle AI üretimi görsellerde bu önemli.)

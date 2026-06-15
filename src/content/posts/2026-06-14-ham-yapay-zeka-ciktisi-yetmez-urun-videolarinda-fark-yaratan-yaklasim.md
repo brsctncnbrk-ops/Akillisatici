@@ -39,7 +39,7 @@ Yapay zekayı bu bilgilerle besleyip çıktısını ham bırakmadan düzenlersen
 
 ## Nasıl Yapılır? Adım Adım Uygulama
 
-Aşağıdaki akış, çoğu video ve metin üreten AI aracıyla uygulanabilir. Belirli araç fiyatları ve özellikleri zamanla değiştiği için burada marka önermiyoruz (fiyat ve özellikler TBD — doğrulanmalı).
+Aşağıdaki akış, çoğu video ve metin üreten AI aracıyla uygulanabilir. Belirli araç fiyatları ve özellikleri zamanla değiştiği için burada marka önermiyoruz; güncel karşılaştırma için araçların resmi sitelerini inceleyin.
 
 1. **Amacı netleştirin.** Video ne için? Reklam mı, ürün sayfası tanıtımı mı, sosyal medya gönderisi mi? Her birinin uzunluğu ve tonu farklıdır.
 2. **Kaba senaryoyu yapay zekayla çıkarın.** Ürün açıklamanızı ve müşteri yorumlarınızı bir metin üreten AI aracına verip 3-4 sahnelik bir taslak isteyin.
@@ -53,7 +53,7 @@ Aşağıdaki akış, çoğu video ve metin üreten AI aracıyla uygulanabilir. B
 Meta, Google veya pazaryeri içi reklamlarda yapay zeka ile üretilmiş içerik kullanırken iki noktaya dikkat edin:
 
 - **Yanıltıcı görsel kullanmayın.** Ürünün AI ile abartılmış, gerçekte var olmayan bir versiyonunu göstermek hem reklam politikalarına aykırı olabilir hem de iade oranını artırır.
-- **Platform kurallarını takip edin.** Bazı platformlar yapay zeka ile üretilen içeriğin etiketlenmesini isteyebilir. Bu kurallar sık değiştiği için kampanya öncesi güncel politikayı kontrol edin (TBD — doğrulanmalı).
+- **Platform kurallarını takip edin.** Bazı platformlar yapay zeka ile üretilen içeriğin etiketlenmesini isteyebilir. Bu kurallar sık değiştiği için kampanya öncesi güncel politikayı kontrol edin.
 
 Deneyimimiz şunu gösteriyor: En iyi sonuç veren içerikler, yapay zekanın hızını insanın yargısıyla birleştirenler oluyor. Tamamen otomatik üretilen içerikler kısa vadede zaman kazandırsa da, marka güveni açısından genellikle geri tepiyor.
 
