@@ -18,12 +18,18 @@
   kanal bazlı kopyala-yapıştır şablonlar ve yayındaki 6 ana yazı için hazır metinler (uydurma
   rakam yok). Haftalık ritim eklendi.
 - `docs/TRAFFIC_PLAYBOOK.md` durum tablosu + §5 güncellendi (kit + butonlara referans).
-- Kalite kapısı yeşil: **build 33 · lint 0/0 · test 27/27.**
+- **Pinterest doğrulama (canlı):** `PINTEREST_DOMAIN_VERIFY` meta etiketi (`site.ts` + `BaseHead`).
+  Kullanıcı alan adını Pinterest'te doğruladı ✓. GSC zaten doğruluydu (tekrar gerekmez).
+- **Dikey Pinterest görseli (canlı):** `src/pages/pin/[slug].png.ts` → her yazı için otomatik
+  1000×1500 PNG (marka + kategori + başlık + özet + CTA; içerik gerçek frontmatter'dan).
+  `ShareButtons` Pinterest butonu artık dikey `/pin/<slug>.png` görselini kullanır (yatay OG
+  diğer kanallarda kalır). Kit + playbook bu görsele yönlendirildi.
+- Kalite kapısı yeşil: **build 33 (+22 pin görseli) · lint 0/0 · test 27/27.** main'e merge + canlı.
 
 ### Sırada / Kullanıcı aksiyonu
-1. (Hâlâ açık, kritik) Google Search Console doğrula + sitemap gönder.
-2. `docs/DISTRIBUTION_KIT.md` ile Pinterest işletme hesabı + ilk pinler; 2-3 gruba değerle katıl.
-3. Dikey (1000×1500) Pinterest görseli üretimi ileride eklenebilir (OG şu an 1200×630).
+1. Pinterest: panoları aç + ilk pinler (`/pin/<slug>.png` + kit §4 metinleri). En kolayı yazı altı buton.
+2. 2-3 ilgili Facebook/Reddit grubuna değerle katıl (kit §1 anahtarlar).
+3. (Tamam) GSC + Pinterest doğrulama bitti; Bing Webmaster GSC'den içe aktarılabilir.
 
 ---
 

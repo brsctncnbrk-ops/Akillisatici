@@ -87,9 +87,10 @@ SEO meyvesini aylar içinde verir; dağıtım ilk ziyaretçiyi ve ilk backlink/s
 > **paylaşım butonları** var (okuyucu da dağıtıma katılır).
 
 ### Pinterest (TR e-ticaret için en güçlü ücretsiz kanal)
-- İşletme hesabı aç, alan adını doğrula.
-- Her yazının OG görseli (`/og/<slug>.png`) zaten 1200×630 hazır → pin olarak paylaş.
-- Dikey (1000×1500) pin'ler daha iyi performans verir; ileride dikey görsel üretimi eklenebilir.
+- İşletme hesabı aç, alan adını doğrula. (Doğrulama meta etiketi sitede kurulu — `PINTEREST_DOMAIN_VERIFY`.)
+- Her yazının **dikey pin görseli** (`/pin/<slug>.png`, 1000×1500) otomatik üretilir → doğrudan pin'le.
+  (Yatay `/og/<slug>.png` 1200×630 de mevcut; sosyal kart önizlemesi için kullanılır.)
+- En kolayı: yazı altındaki Pinterest paylaş butonu dikey görseli + açıklamayı önceden doldurur.
 - Konu panoları: "Etsy satıcı ipuçları", "Shopify görsel", "E-ticaret yapay zeka".
 
 ### Facebook satıcı grupları

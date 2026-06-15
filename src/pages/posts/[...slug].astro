@@ -216,7 +216,12 @@ const jsonLd = {
       )
     }
 
-    <ShareButtons url={canonical} title={data.baslik} image={`${site}${kapakUrl}`} />
+    <ShareButtons
+      url={canonical}
+      title={data.baslik}
+      image={`${site}${kapakUrl}`}
+      pinImage={`${site}/pin/${post.id}.png`}
+    />
 
     <AdSlot slot="yazi-alti" />
 

@@ -48,7 +48,7 @@
 
 Yeni bir yazı `durumu: yayinda` olduğunda:
 
-- [ ] **Pinterest:** OG görseli (`/og/<slug>.png`) ile 1 pin. (Dikey 1000×1500 daha iyi — ileride.)
+- [ ] **Pinterest:** dikey pin görseli (`/pin/<slug>.png`, 1000×1500, otomatik üretilir) ile 1 pin. En kolayı: yazı altındaki Pinterest butonu (görsel + açıklama önceden dolu gelir).
 - [ ] **LinkedIn:** 2-3 cümlelik ipucu + link.
 - [ ] **1-2 ilgili grup/forum:** yalnızca o an konuyla ilgili bir soru/tartışma varsa, değerle.
 - [ ] **Telegram/WhatsApp:** kendi listene/uygun gruba kısa not + link.
