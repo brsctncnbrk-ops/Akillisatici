@@ -1,0 +1,47 @@
+---
+// Yazı kapağı bannerı (görünür) — kart ve makale hero'sunda kullanılır.
+// Dekoratif/markalı bir görsel; başlığı tekrar etmez (başlık metinde zaten var).
+// OG görseli (/og/[slug].png) ile aynı renk paletinden beslenir.
+import { kapakRenk } from '../lib/postCover';
+import BrandMark from './BrandMark.astro';
+
+interface Props {
+  kategori: string;
+  class?: string;
+}
+
+const { kategori, class: className = '' } = Astro.props;
+const renk = kapakRenk(kategori);
+---
+
+<div
+  class={`relative isolate flex items-end overflow-hidden ${className}`}
+  style={`background-image: linear-gradient(135deg, ${renk.from}, ${renk.to})`}
+  aria-hidden="true"
+>
+  {/* Dekoratif geometrik motif */}
+  <div
+    class="pointer-events-none absolute -right-10 -top-14 h-48 w-48 rounded-full opacity-30 blur-2xl"
+    style={`background:${renk.accent}`}
+  >
+  </div>
+  <div
+    class="pointer-events-none absolute -bottom-8 right-16 h-28 w-28 rotate-12 rounded-3xl opacity-20"
+    style={`background:${renk.accent}`}
+  >
+  </div>
+
+  {/* Marka + kategori */}
+  <div class="relative flex w-full items-center justify-between gap-3 p-5 sm:p-6">
+    <span class="flex items-center gap-2 text-white">
+      <span style={`color:${renk.accent}`}><BrandMark class="h-6 w-6" /></span>
+      <span class="font-display text-sm font-bold tracking-tight sm:text-base">Satıcı Kutusu</span>
+    </span>
+    <span
+      class="rounded-full bg-white/10 px-3 py-1 text-xs font-semibold backdrop-blur"
+      style={`color:${renk.accent}`}
+    >
+      {kategori}
+    </span>
+  </div>
+</div>

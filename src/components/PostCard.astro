@@ -1,6 +1,7 @@
 ---
 import type { CollectionEntry } from 'astro:content';
 import { slugByKategori } from '../lib/categories';
+import PostCover from './PostCover.astro';
 
 interface Props {
   post: CollectionEntry<'posts'>;
@@ -11,7 +12,12 @@ const { post, featured = false } = Astro.props;
 const kategoriSlug = slugByKategori(post.data.kategori);
 ---
 
-<article class={`card group flex flex-col p-6 ${featured ? 'sm:p-8' : ''}`}>
+<article class="card group flex flex-col overflow-hidden">
+  <a href={`/posts/${post.id}/`} aria-hidden="true" tabindex="-1" class="block">
+    <PostCover kategori={post.data.kategori} class={featured ? 'aspect-[16/7]' : 'aspect-[16/9]'} />
+  </a>
+
+  <div class={`flex flex-1 flex-col p-6 ${featured ? 'sm:p-8' : ''}`}>
   <div class="flex flex-wrap items-center gap-2 text-xs">
     {
       kategoriSlug && (
@@ -39,11 +45,12 @@ const kategoriSlug = slugByKategori(post.data.kategori);
     </p>
   </a>
 
-  <a
-    href={`/posts/${post.id}/`}
-    class="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-brand-dark transition group-hover:gap-2"
-    aria-label={`${post.data.baslik} yazısını oku`}
-  >
-    Devamını oku <span aria-hidden="true">→</span>
-  </a>
+    <a
+      href={`/posts/${post.id}/`}
+      class="mt-auto pt-4 inline-flex items-center gap-1 text-sm font-semibold text-brand-dark transition group-hover:gap-2"
+      aria-label={`${post.data.baslik} yazısını oku`}
+    >
+      Devamını oku <span aria-hidden="true">→</span>
+    </a>
+  </div>
 </article>
