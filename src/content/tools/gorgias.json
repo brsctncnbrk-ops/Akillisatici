@@ -1,0 +1,11 @@
+{
+  "ad": "Gorgias",
+  "kategori": "Müşteri desteği",
+  "fiyat": "Starter $10/ay",
+  "artilar": ["Shopify entegrasyonu çok güçlü", "Sipariş verisi direkt destek ekranında görünür", "Makro ile tekrar eden yanıtlar otomatikleşir", "Çoklu kanal (e-posta, chat, sosyal) tek ekranda"],
+  "eksiler": ["Fiyat ticket hacmiyle artar", "Küçük mağazalar için başlangıçta fazla özellik olabilir", "Türkçe arayüz desteği sınırlı"],
+  "officialUrl": "https://www.gorgias.com/",
+  "affiliateUrl": null,
+  "screenshot": null,
+  "aciklama": "E-ticaret odaklı AI müşteri destek platformu. Shopify mağazaları için sipariş verisiyle entegre, makro ve otomasyon destekli helpdesk çözümü."
+}
