@@ -1,7 +1,11 @@
 ---
-// Bülten kayıt bileşeni.
-// E-posta sağlayıcısı entegrasyonu henüz aktif olmadığından form net bir "yakında"
-// durumundadır: input ve buton devre dışı, gönderim yapmaz.
+// Bülten kayıt bileşeni — çift onaylı (double opt-in).
+// E-posta, Google Apps Script web app uç noktasına gönderilir; oradan kullanıcıya
+// bir "doğrulama" maili çıkar ve adres ancak linke tıklanınca listeye "onaylandı" yazılır.
+// Uç nokta (PUBLIC_NEWSLETTER_ENDPOINT) tanımlı değilse form "yakında" durumunda pasif
+// kalır; böylece anahtar girilmeden üretim ortamı bozulmaz.
+const endpoint = import.meta.env.PUBLIC_NEWSLETTER_ENDPOINT;
+const aktif = Boolean(endpoint);
 ---
 
 <section
@@ -11,26 +15,136 @@
   <p class="mx-auto mt-2 max-w-md text-sm leading-6 text-slate-300">
     Online satıcılar için yeni AI araçları ve rehberleri doğrudan e-postana gelsin.
   </p>
-  <form class="mx-auto mt-6 flex max-w-md flex-col gap-2 sm:flex-row" aria-disabled="true">
-    <label class="sr-only" for="newsletter-email">E-posta adresi</label>
-    <input
-      id="newsletter-email"
-      type="email"
-      name="email"
-      disabled
-      placeholder="ornek@eposta.com"
-      class="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder:text-slate-500 disabled:cursor-not-allowed"
-    />
-    <button
-      type="submit"
-      disabled
-      class="shrink-0 cursor-not-allowed rounded-xl bg-brand px-5 py-3 text-sm font-semibold text-white opacity-70"
-    >
-      Kayıt ol (yakında)
-    </button>
-  </form>
-  <p class="mx-auto mt-3 max-w-md text-xs text-slate-400">
-    Bülten kaydı çok yakında açılacak. Kayıt açıldığında kişisel verileriniz KVKK/GDPR uyumlu
-    işlenecektir.
-  </p>
+
+  {
+    aktif ? (
+      <>
+        <form
+          id="newsletter-form"
+          data-endpoint={endpoint}
+          class="mx-auto mt-6 flex max-w-md flex-col gap-3"
+        >
+          <div class="flex flex-col gap-2 sm:flex-row">
+            <label class="sr-only" for="newsletter-email">
+              E-posta adresi
+            </label>
+            <input
+              id="newsletter-email"
+              type="email"
+              name="email"
+              required
+              autocomplete="email"
+              placeholder="ornek@eposta.com"
+              class="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder:text-slate-500"
+            />
+            <button
+              type="submit"
+              class="shrink-0 rounded-xl bg-brand px-5 py-3 text-sm font-semibold text-white transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60"
+            >
+              Kayıt ol
+            </button>
+          </div>
+
+          <label class="flex items-start gap-2 text-left text-xs leading-5 text-slate-400">
+            <input
+              type="checkbox"
+              name="consent"
+              required
+              class="mt-0.5 h-4 w-4 shrink-0 rounded border-white/20 bg-white/5 accent-brand"
+            />
+            <span>
+              Bülten almak ve e-posta adresimin bu amaçla işlenmesini kabul ediyorum.{' '}
+              <a href="/gizlilik" class="text-brand underline">
+                Aydınlatma Metni
+              </a>{' '}
+              kapsamında verilerim işlenecektir.
+            </span>
+          </label>
+
+          <p
+            id="newsletter-status"
+            role="status"
+            aria-live="polite"
+            class="min-h-[1rem] text-xs text-slate-400"
+          />
+        </form>
+
+        <div id="newsletter-success" hidden class="mx-auto mt-6 max-w-md">
+          <p class="text-sm font-semibold text-white">Son bir adım kaldı! 📩</p>
+          <p class="mt-2 text-sm leading-6 text-slate-300">
+            E-posta adresine bir <strong>doğrulama bağlantısı</strong> gönderdik. Kaydını
+            tamamlamak için lütfen gelen kutunu (ve spam klasörünü) kontrol edip linke tıkla.
+          </p>
+        </div>
+      </>
+    ) : (
+      <form class="mx-auto mt-6 flex max-w-md flex-col gap-2 sm:flex-row" aria-disabled="true">
+        <label class="sr-only" for="newsletter-email">
+          E-posta adresi
+        </label>
+        <input
+          id="newsletter-email"
+          type="email"
+          name="email"
+          disabled
+          placeholder="ornek@eposta.com"
+          class="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder:text-slate-500 disabled:cursor-not-allowed"
+        />
+        <button
+          type="submit"
+          disabled
+          class="shrink-0 cursor-not-allowed rounded-xl bg-brand px-5 py-3 text-sm font-semibold text-white opacity-70"
+        >
+          Kayıt ol (yakında)
+        </button>
+      </form>
+    )
+  }
+
+  {
+    !aktif && (
+      <p class="mx-auto mt-3 max-w-md text-xs text-slate-400">
+        Bülten kaydı çok yakında açılacak. Kayıt açıldığında kişisel verileriniz KVKK/GDPR
+        uyumlu işlenecektir.
+      </p>
+    )
+  }
 </section>
+
+<script>
+  // Çift onaylı bülten kaydı: e-postayı Apps Script uç noktasına gönderir, ardından
+  // kullanıcıya "doğrulama maili gönderildi" durumunu gösterir. Apps Script web app'leri
+  // CORS başlığı döndürmediğinden istek `no-cors` ile yapılır (yanıt okunmaz, iyimser akış).
+  const form = document.getElementById('newsletter-form') as HTMLFormElement | null;
+  if (form) {
+    const endpoint = form.dataset.endpoint as string;
+    const status = document.getElementById('newsletter-status') as HTMLElement;
+    const successBox = document.getElementById('newsletter-success') as HTMLElement;
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const email = (form.elements.namedItem('email') as HTMLInputElement).value.trim();
+      const consent = (form.elements.namedItem('consent') as HTMLInputElement).checked;
+      const button = form.querySelector('button') as HTMLButtonElement;
+
+      if (!consent) {
+        status.textContent = 'Devam etmek için onay kutusunu işaretlemelisin.';
+        return;
+      }
+
+      button.disabled = true;
+      status.textContent = 'Gönderiliyor…';
+
+      const body = new URLSearchParams({ email, consent: 'true', source: 'site' });
+
+      try {
+        await fetch(endpoint, { method: 'POST', mode: 'no-cors', body });
+        form.hidden = true;
+        successBox.hidden = false;
+      } catch {
+        status.textContent = 'Bir sorun oluştu, lütfen tekrar dene.';
+        button.disabled = false;
+      }
+    });
+  }
+</script>

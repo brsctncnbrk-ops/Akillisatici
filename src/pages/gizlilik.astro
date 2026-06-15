@@ -12,14 +12,57 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
   <div class="icerik mt-6 max-w-2xl">
     <p>
-      Bu sayfa, kişisel verilerinizin nasıl işlendiğini açıklar. Politikamız KVKK ve GDPR uyumlu
-      olarak hazırlanmaktadır ve düzenli olarak güncellenir.
+      Bu sayfa (Aydınlatma Metni), kişisel verilerinizin 6698 sayılı Kişisel Verilerin
+      Korunması Kanunu (KVKK) ve Avrupa Birliği Genel Veri Koruma Tüzüğü (GDPR) kapsamında nasıl
+      işlendiğini açıklar ve düzenli olarak güncellenir.
     </p>
 
-    <h2>Toplanan veriler</h2>
+    <h2>Veri sorumlusu</h2>
     <p>
-      Bülten kaydı açıldığında, yalnızca paylaştığınız e-posta adresi toplanır. Sitede anonim
-      kullanım istatistikleri ölçmek için analitik araçlar kullanılabilir.
+      Verilerinizin işlenmesinden <strong>Satıcı Kutusu</strong> sorumludur. Her türlü soru ve
+      talebiniz için{' '}
+      <a href="mailto:info@saticikutusu.com" class="text-brand underline">info@saticikutusu.com</a>
+      {' '}adresinden bize ulaşabilirsiniz.
+    </p>
+
+    <h2>İşlenen veriler</h2>
+    <p>
+      Bülten kaydı sırasında yalnızca şu veriler işlenir: paylaştığınız <strong>e-posta
+      adresiniz</strong>, kaydın gerçekleştiği <strong>tarih ve saat</strong>, <strong>onay
+      durumunuz</strong> ve verdiğiniz <strong>rızanın metin sürümü</strong> (rızanın kanıtı
+      olarak). Bunun dışında ad, soyad veya başka bir kişisel veri talep edilmez. Sitede ayrıca
+      anonim kullanım istatistikleri ölçmek için analitik araçlar kullanılabilir.
+    </p>
+
+    <h2>İşleme amacı ve hukuki sebep</h2>
+    <p>
+      E-posta adresiniz, yalnızca size bülten ve bilgilendirme içerikleri göndermek amacıyla
+      işlenir. İşlemenin hukuki sebebi, KVKK m.5/1 ve GDPR m.6/1-(a) uyarınca verdiğiniz{' '}
+      <strong>açık rızadır</strong>. Adresiniz pazarlama amacıyla üçüncü taraflara satılmaz veya
+      kiralanmaz.
+    </p>
+
+    <h2>Çift onaylı kayıt (double opt-in)</h2>
+    <p>
+      Kayıt formunu doldurduğunuzda adresinize bir <strong>doğrulama bağlantısı</strong>
+      gönderilir. E-posta adresiniz, ancak bu bağlantıya tıklayarak onay verdiğinizde listeye
+      "onaylandı" olarak eklenir. Onaylamadığınız sürece adresiniz bülten gönderiminde
+      kullanılmaz.
+    </p>
+
+    <h2>Veri işleyen ve yurt dışına aktarım</h2>
+    <p>
+      Kayıtlarınız, altyapı sağlayıcısı olarak <strong>Google</strong> hizmetleri (Google
+      Sheets ve Google Apps Script) üzerinde tutulur. Google bu kapsamda veri işleyen
+      konumundadır ve verileriniz, sunucularının bulunduğu <strong>yurt dışı ülkeler dahil</strong>
+      Google altyapısında saklanabilir. Kaydolarak verdiğiniz açık rıza, bu yurt dışı aktarımı da
+      kapsar.
+    </p>
+
+    <h2>Saklama süresi</h2>
+    <p>
+      E-posta adresiniz, siz aboneliğinizi iptal edene veya verilerinizin silinmesini talep
+      edene kadar saklanır. Rızanızı geri çektiğinizde kaydınız listeden çıkarılır.
     </p>
 
     <h2>Çerezler</h2>
@@ -30,10 +73,12 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
     <h2>Haklarınız</h2>
     <p>
-      KVKK kapsamında verilerinize erişme, düzeltme ve silinmesini talep etme haklarına sahipsiniz.
-      Talepleriniz için{' '}
+      KVKK m.11 ve GDPR kapsamında; verilerinize erişme, düzeltilmesini veya silinmesini isteme,
+      işlemeye itiraz etme ve istediğiniz an <strong>rızanızı geri çekme</strong> haklarına
+      sahipsiniz. Her bülten e-postasında yer alan <strong>abonelikten çık</strong> bağlantısıyla
+      tek tıkla listeden çıkabilir veya{' '}
       <a href="mailto:info@saticikutusu.com" class="text-brand underline">info@saticikutusu.com</a>
-      {' '}adresinden bize ulaşabilirsiniz.
+      {' '}adresinden talepte bulunabilirsiniz.
     </p>
   </div>
 </BaseLayout>
