@@ -4,6 +4,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import AdSlot from '../../components/AdSlot.astro';
 import PostCard from '../../components/PostCard.astro';
 import PostCover from '../../components/PostCover.astro';
+import ShareButtons from '../../components/ShareButtons.astro';
 import ToolLink from '../../components/ToolLink.astro';
 import { slugByKategori } from '../../lib/categories';
 import { getYayindaPosts, getTools } from '../../lib/content';
@@ -214,6 +215,8 @@ const jsonLd = {
         </section>
       )
     }
+
+    <ShareButtons url={canonical} title={data.baslik} image={`${site}${kapakUrl}`} />
 
     <AdSlot slot="yazi-alti" />
 
