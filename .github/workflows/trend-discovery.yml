@@ -65,8 +65,14 @@ jobs:
           fi
 
       - name: Telegram bildirimi gönder
-        if: steps.commit_drafts.outputs.has_drafts == 'true'
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-        run: npx tsx scripts/notify-telegram.ts ${{ steps.commit_drafts.outputs.draft_files }}
+        run: |
+          # Onay bekleyen tüm taslakları bildir (yeni + önceki birikmiş).
+          DRAFTS=$(ls drafts/*.md 2>/dev/null | grep -v 'README.md' | tr '\n' ' ' || true)
+          if [ -n "$DRAFTS" ]; then
+            npx tsx scripts/notify-telegram.ts $DRAFTS
+          else
+            echo "[telegram] Bekleyen taslak yok."
+          fi
