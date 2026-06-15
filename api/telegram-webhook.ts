@@ -120,9 +120,13 @@ async function approveDraft(filename: string): Promise<void> {
   const file = await ghGet(draftPath);
   const raw = Buffer.from(file.content, 'base64').toString('utf-8');
 
-  // Tek satırlık durum değişikliği — frontmatter.ts'nin yamlStr formatıyla eşleşir.
-  const published = raw.replace("durumu: 'taslak'", "durumu: 'yayinda'");
+  // durumu değişikliği
+  let published = raw.replace("durumu: 'taslak'", "durumu: 'yayinda'");
   if (published === raw) throw new Error(`durumu değeri bulunamadı: ${filename}`);
+
+  // Ajan tarafından eklenen "Bu taslak ... üretildi" dipnotunu kaldır.
+  // frontmatter.ts'in buildDraftMarkdown'u bunu --- sonrasına yazar.
+  published = published.replace(/\n---\n\n\*Bu taslak trend keşif ajanı[\s\S]*?\*\n$/, '\n');
 
   const postPath = `src/content/posts/${filename}`;
   await ghPut(postPath, published, `content: ${filename} yayınlandı (Telegram onayı)`);
