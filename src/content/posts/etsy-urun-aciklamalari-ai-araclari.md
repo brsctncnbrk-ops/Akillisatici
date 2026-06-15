@@ -9,6 +9,26 @@ seoBaslik: 'Etsy Ürün Açıklamaları İçin En İyi AI Araçları (2026)'
 seoAciklama: 'Etsy ürün açıklaması yazan AI araçlarının karşılaştırması: özellik, fiyat, artı/eksi ve Türkiye pazarına özel pratik kullanım rehberi.'
 anahtarKelime: 'etsy ürün açıklaması ai'
 incelenenAraclar: ['jasper', 'copyai']
+sss:
+  - soru: >-
+      Etsy ürün açıklamasını tamamen yapay zekaya yazdırabilir miyim?
+    cevap: >-
+      Taslak üretimi için evet, ancak çıktıyı olduğu gibi yayımlamak risklidir.
+      Düzenlenmemiş ve birbirine benzeyen AI metinleri hem dönüşümü düşürür hem
+      de uzun vadede arama görünürlüğünü zedeler. AI taslağını bir insan gözüyle
+      düzenleyin ve kişisel bir detay ekleyin.
+  - soru: >-
+      Etsy açıklamasında anahtar kelimeyi nereye koymalıyım?
+    cevap: >-
+      Anahtar kelimeyi başlıkta, ilk cümlede ve en az bir alt başlıkta doğal
+      biçimde kullanın. Anahtar kelime doldurmaktan kaçının; hem Etsy araması hem
+      de alıcı deneyimi bundan zarar görür.
+  - soru: >-
+      Türkiye'den Etsy'ye satışta açıklamayı Türkçe mi İngilizce mi yazmalıyım?
+    cevap: >-
+      Çoğu satıcı İngilizce pazara sattığı için listelemeler genelde İngilizce
+      olur. AI çıktısını çift dilde üretirken kargo, üretim süresi ve gümrük gibi
+      Türkiye'ye özgü pratik bilgileri eklemek dönüşümü artırır.
 durumu: 'yayinda'
 ---
 
