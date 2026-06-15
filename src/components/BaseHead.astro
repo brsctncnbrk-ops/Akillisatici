@@ -1,6 +1,11 @@
 ---
 // Tüm sayfaların <head> içeriği: meta, Open Graph, canonical, JSON-LD.
-import { MARKA_ADI, VARSAYILAN_OG_GORSEL, GOOGLE_SITE_VERIFICATION } from '../data/site';
+import {
+  MARKA_ADI,
+  VARSAYILAN_OG_GORSEL,
+  GOOGLE_SITE_VERIFICATION,
+  PINTEREST_DOMAIN_VERIFY,
+} from '../data/site';
 
 // Makaleye özel Open Graph alanları (yalnızca article=true sayfalarda kullanılır).
 interface ArticleMeta {
@@ -80,6 +85,7 @@ const siteJsonLd = {
     <meta name="google-site-verification" content={GOOGLE_SITE_VERIFICATION} />
   )
 }
+{PINTEREST_DOMAIN_VERIFY && <meta name="p:domain_verify" content={PINTEREST_DOMAIN_VERIFY} />}
 <link rel="canonical" href={canonical} />
 <link rel="alternate" type="application/rss+xml" title={MARKA_ADI} href={`${siteUrl}/rss.xml`} />
 
