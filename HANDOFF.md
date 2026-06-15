@@ -30,6 +30,8 @@
   "En yeni yazılar" başlığına "Tüm yazılar →" linki eklendi. (Kullanıcı geri bildirimi: yazıları
   bulmak zordu → çözüldü.)
 - Kalite kapısı yeşil: **build 34 (+22 pin görseli +Rehberler) · lint 0/0 · test 27/27.** main'e merge + canlı.
+- **Süreç kuralı (CLAUDE.md #8):** oturum kapanışında ("bitti"/`/clear`/`/compact` öncesi)
+  önce HANDOFF güncellenip commit edilir → bağlam kaybolmadan ucuz oturum sıfırlama.
 
 ### Sırada / Kullanıcı aksiyonu
 1. Pinterest: panoları aç + ilk pinler (`/pin/<slug>.png` + kit §4 metinleri). En kolayı yazı altı buton.
