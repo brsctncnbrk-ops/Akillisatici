@@ -20,6 +20,11 @@ const posts = defineCollection({
     seoAciklama: z.string().optional(),
     anahtarKelime: z.string().optional(),
     incelenenAraclar: z.array(z.string()).default([]),
+    // Sık sorulan sorular: hem görünür SSS bölümü hem FAQPage yapısal verisi.
+    // "İnsanlar şunu da soruyor" / sesli arama / AI cevap motoru hedefleme.
+    sss: z
+      .array(z.object({ soru: z.string(), cevap: z.string() }))
+      .default([]),
     // Editöryel kapı: yalnızca 'yayinda' olanlar listelenir/build'e girer.
     durumu: z.enum(['taslak', 'onaylandi', 'yayinda']),
   }),

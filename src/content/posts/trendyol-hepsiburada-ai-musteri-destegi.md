@@ -9,6 +9,27 @@ seoBaslik: 'Trendyol & Hepsiburada İçin AI Müşteri Desteği Araçları (2026
 seoAciklama: 'Pazaryeri satıcıları için AI müşteri desteği araçlarının karşılaştırması: yanıt hızı, Türkçe kalitesi, entegrasyon ve pratik kurulum rehberi.'
 anahtarKelime: 'pazaryeri ai müşteri desteği'
 incelenenAraclar: ['tidio']
+sss:
+  - soru: >-
+      Trendyol veya Hepsiburada paneline chatbot doğrudan bağlanır mı?
+    cevap: >-
+      Çoğu durumda hayır. Pazaryerlerinin kendi mesajlaşma panelleri kapalı
+      yapıdadır ve üçüncü taraf chatbot doğrudan entegrasyonu genelde mümkün
+      değildir. Resmi API ve izin durumunu pazaryerinin satıcı merkezinden teyit
+      edin.
+  - soru: >-
+      Pazaryeri müşteri sorularında AI'ı nasıl kullanabilirim?
+    cevap: >-
+      En sağlam yöntem yanıt asistanlığıdır: gelen soruyu kopyalayıp AI'dan taslak
+      yanıt alır, düzenler ve panele elle gönderirsiniz. En sık gelen soruları bir
+      bilgi tabanı olarak AI'a verin; kargo ve iade gibi politika cümlelerini
+      sabitleyin ki AI yanlış taahhütte bulunmasın.
+  - soru: >-
+      AI müşteri yanıtları satıcı puanımı etkiler mi?
+    cevap: >-
+      Pazaryerlerinde yanıt süresi satıcı puanını etkiler. AI'ı tam otomatik yanıt
+      için değil, insan onaylı hızlı taslak için kullanmak hem puanı korur hem de
+      yanlış bilgi riskini düşürür.
 durumu: 'yayinda'
 ---
 
