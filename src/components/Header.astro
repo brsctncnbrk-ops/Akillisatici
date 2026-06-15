@@ -34,6 +34,64 @@ import BrandMark from './BrandMark.astro';
         class="rounded-lg bg-ink px-4 py-2 text-sm font-semibold text-white transition hover:bg-ink-soft"
         href="/araclar/">AI Araçları</a
       >
+
+      <!-- Mobil menü düğmesi (yalnızca küçük ekranlarda) -->
+      <button
+        id="menu-toggle"
+        type="button"
+        class="inline-flex items-center justify-center rounded-lg p-2 text-slate-600 transition hover:bg-slate-100 hover:text-ink md:hidden"
+        aria-controls="mobile-menu"
+        aria-expanded="false"
+        aria-label="Menüyü aç/kapat"
+      >
+        <svg id="menu-icon-open" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+        <svg id="menu-icon-close" xmlns="http://www.w3.org/2000/svg" class="hidden h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </nav>
+  </div>
+
+  <!-- Mobil açılır menü -->
+  <div id="mobile-menu" class="hidden border-t border-slate-200/70 bg-white/95 backdrop-blur-md md:hidden">
+    <nav aria-label="Mobil menü" class="mx-auto max-w-5xl px-4 py-3">
+      <p class="px-2 pb-1.5 text-xs font-semibold uppercase tracking-wide text-slate-400">Kategoriler</p>
+      <ul class="grid gap-1">
+        {
+          KATEGORILER.map((k) => (
+            <li>
+              <a
+                class="block rounded-lg px-3 py-2.5 text-sm font-medium text-slate-700 transition hover:bg-slate-100 hover:text-brand"
+                href={`/kategori/${k.slug}/`}
+              >
+                {k.ad}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+      <div class="mt-2 border-t border-slate-100 pt-2">
+        <a
+          class="block rounded-lg px-3 py-2.5 text-sm font-medium text-slate-700 transition hover:bg-slate-100 hover:text-brand"
+          href="/hakkinda/">Hakkında</a
+        >
+      </div>
     </nav>
   </div>
 </header>
+
+<script>
+  const toggle = document.getElementById('menu-toggle');
+  const menu = document.getElementById('mobile-menu');
+  const iconOpen = document.getElementById('menu-icon-open');
+  const iconClose = document.getElementById('menu-icon-close');
+
+  toggle?.addEventListener('click', () => {
+    const acik = menu?.classList.toggle('hidden') === false;
+    toggle.setAttribute('aria-expanded', String(acik));
+    iconOpen?.classList.toggle('hidden', acik);
+    iconClose?.classList.toggle('hidden', !acik);
+  });
+</script>
