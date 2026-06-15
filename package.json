@@ -15,7 +15,8 @@
     "format": "prettier --write .",
     "test": "vitest run",
     "agent:discover": "tsx scripts/discover-trends.ts",
-    "agent:drafts": "tsx scripts/generate-drafts.ts"
+    "agent:drafts": "tsx scripts/generate-drafts.ts",
+    "agent:notify": "tsx scripts/notify-telegram.ts"
   },
   "dependencies": {
     "@astrojs/mdx": "^4.0.0",
