@@ -2,6 +2,31 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ——— Hero dekoratif yardımcıları ——— */
+@layer utilities {
+  /* İnce nokta ızgarası — hero arka planına derinlik katar */
+  .bg-dot-grid {
+    background-image: radial-gradient(rgb(249 115 22 / 0.12) 1px, transparent 1px);
+    background-size: 22px 22px;
+  }
+  /* Başlık vurgusu için marka gradyanı (metne uygulanır) */
+  .text-gradient-brand {
+    @apply bg-gradient-to-r from-brand-dark via-brand to-amber-400 bg-clip-text text-transparent;
+  }
+}
+
+/* Hareket azaltma tercihi: dekoratif animasyonları kapat (erişilebilirlik) */
+@media (prefers-reduced-motion: reduce) {
+  .animate-float,
+  .animate-float-slow,
+  .animate-fade-up {
+    animation: none !important;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}
+
 /* ——— Temel katman: tipografi ve okunabilirlik (mobil öncelikli) ——— */
 @layer base {
   :root {

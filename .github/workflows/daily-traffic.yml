@@ -1,0 +1,37 @@
+name: Günlük Trafik Raporu
+
+# Her sabah dünün GA4 trafiğini özetleyip Telegram'a (trend ajanıyla aynı bot) gönderir.
+# Sadece okuma yapar; siteye/depoya yazmaz. Elle de tetiklenebilir.
+on:
+  schedule:
+    # Her gün 04:00 UTC = 07:00 Türkiye saati (dün verisi tamamlanmış olur)
+    - cron: '0 4 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  trafik-raporu:
+    name: GA4 → Telegram günlük özet
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Node.js kurulumu
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Bağımlılıkları yükle
+        run: npm ci
+
+      - name: Trafik raporunu gönder
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          GA4_PROPERTY_ID: ${{ secrets.GA4_PROPERTY_ID }}
+          GA_SERVICE_ACCOUNT_JSON: ${{ secrets.GA_SERVICE_ACCOUNT_JSON }}
+        run: npm run agent:traffic
