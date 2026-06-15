@@ -1,0 +1,11 @@
+{
+  "ad": "Remove.bg",
+  "kategori": "Ürün görseli",
+  "fiyat": "Ücretsiz (düşük çözünürlük); ücretli plan var",
+  "artilar": ["Otomatik arka plan silme, sürükle-bırak kadar kolay", "API ile toplu işlem yapılabilir", "Ücretsiz plan ile test edilebilir"],
+  "eksiler": ["Ücretsiz planda çözünürlük düşük kalır", "Yüksek hacimli kullanımda maliyeti artar", "Tek işlev — sadece arka plan silme"],
+  "officialUrl": "https://www.remove.bg/",
+  "affiliateUrl": null,
+  "screenshot": null,
+  "aciklama": "Otomatik yapay zeka ile arka plan silen özelleşmiş araç. Amazon, Trendyol gibi pazaryerleri için beyaz arka plan hazırlama sürecini hızlandırır."
+}

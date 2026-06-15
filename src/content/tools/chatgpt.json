@@ -1,0 +1,11 @@
+{
+  "ad": "ChatGPT",
+  "kategori": "İçerik üretimi",
+  "fiyat": "Ücretsiz plan var; Plus $20/ay",
+  "artilar": ["Ücretsiz plan ile başlanabilir", "Genel amaçlı, çok yönlü kullanım", "Türkçe dahil çok dil desteği", "Hızlı ve anlaşılır yanıtlar"],
+  "eksiler": ["E-ticarete özel şablon yok", "Uzun dönemli hafıza sınırlı", "Doğrulamanız gereken çıktılar üretebilir"],
+  "officialUrl": "https://chat.openai.com/",
+  "affiliateUrl": null,
+  "screenshot": null,
+  "aciklama": "OpenAI'ın genel amaçlı AI asistanı. Ürün açıklaması, reklam metni, müşteri yanıtı gibi her türlü metin üretiminde kullanılabilir."
+}

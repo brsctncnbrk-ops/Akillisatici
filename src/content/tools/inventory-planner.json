@@ -1,0 +1,11 @@
+{
+  "ad": "Inventory Planner",
+  "kategori": "Stok & operasyon",
+  "fiyat": "Ücretsiz deneme var; ücretli",
+  "artilar": ["Satış geçmişine dayalı AI stok tahmini", "Shopify, Amazon, WooCommerce entegrasyonu", "Mevsimsellik ve trend etkisini hesaba katar", "Satın alma siparişi önerisi otomatik oluşur"],
+  "eksiler": ["Küçük mağazalar için kurulum süreci karmaşık gelebilir", "Fiyat bilgisi resmi siteden alınmalı", "Türkçe arayüz yok"],
+  "officialUrl": "https://inventory-planner.com/",
+  "affiliateUrl": null,
+  "screenshot": null,
+  "aciklama": "AI ile stok tahmin ve satın alma planlaması aracı. Geçmiş satış verilerini analiz ederek fazla stok ve tükenme riskini azaltır."
+}
