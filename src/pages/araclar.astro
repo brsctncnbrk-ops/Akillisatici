@@ -30,35 +30,28 @@ const itemListLd = {
   description="Online satıcılar için yapay zeka araçlarının filtrelenebilir dizini: kategori, fiyat, artılar ve eksiler."
   jsonLd={itemListLd}
 >
-  <h1 class="text-3xl font-bold text-brand">AI Araçları Dizini</h1>
-  <p class="mt-2 text-gray-600">
-    Online satıcılar için yapay zeka araçları. Kategoriye göre filtreleyin.
-  </p>
+  <header class="mb-8 max-w-2xl">
+    <h1 class="font-display text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
+      AI Araçları Dizini
+    </h1>
+    <p class="mt-3 text-lg leading-8 text-slate-600">
+      Online satıcılar için yapay zeka araçları. Kategoriye göre filtreleyin; her araç için
+      artılar, eksiler ve fiyat bir bakışta.
+    </p>
+  </header>
 
   <!-- Kategori filtresi (ilerlemeli geliştirme: JS olmadan tümü görünür) -->
-  <div class="my-6 flex flex-wrap gap-2" data-filtre-grup>
-    <button
-      class="rounded-full border border-brand-accent bg-brand-accent px-3 py-1 text-sm text-white"
-      data-filtre="all">Tümü</button
-    >
-    {
-      KATEGORILER.map((k) => (
-        <button
-          class="rounded-full border border-gray-200 px-3 py-1 text-sm text-gray-700 hover:border-brand-accent"
-          data-filtre={k.ad}
-        >
-          {k.ad}
-        </button>
-      ))
-    }
+  <div class="mb-8 flex flex-wrap gap-2" data-filtre-grup>
+    <button class="chip chip-active" data-filtre="all">Tümü</button>
+    {KATEGORILER.map((k) => <button class="chip" data-filtre={k.ad}>{k.ad}</button>)}
   </div>
 
-  <div class="grid gap-4 sm:grid-cols-2" data-arac-liste>
+  <div class="grid gap-5 sm:grid-cols-2" data-arac-liste>
     {
       tools.length > 0 ? (
         tools.map((tool) => <ToolCard tool={tool} />)
       ) : (
-        <p class="text-sm text-gray-500">Henüz araç eklenmedi.</p>
+        <p class="text-sm text-slate-500">Henüz araç eklenmedi.</p>
       )
     }
   </div>
@@ -73,12 +66,8 @@ const itemListLd = {
     btn.addEventListener('click', () => {
       const secili = btn.dataset.filtre;
 
-      butonlar.forEach((b) => {
-        b.classList.remove('bg-brand-accent', 'text-white', 'border-brand-accent');
-        b.classList.add('border-gray-200', 'text-gray-700');
-      });
-      btn.classList.add('bg-brand-accent', 'text-white', 'border-brand-accent');
-      btn.classList.remove('border-gray-200', 'text-gray-700');
+      butonlar.forEach((b) => b.classList.remove('chip-active'));
+      btn.classList.add('chip-active');
 
       kartlar.forEach((kart) => {
         const goster = secili === 'all' || kart.dataset.kategori === secili;

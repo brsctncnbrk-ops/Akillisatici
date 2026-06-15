@@ -28,9 +28,9 @@ const jsonLd = {
   description="Online satıcılar için yapay zeka araçları yayınımız hakkında ve yazar kadromuz."
   jsonLd={jsonLd}
 >
-  <h1 class="text-3xl font-bold text-brand">Hakkında</h1>
+  <h1 class="font-display text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">Hakkında</h1>
 
-  <div class="icerik mt-4 max-w-2xl">
+  <div class="icerik mt-6 max-w-2xl">
     <p>
       {markaAdi}, online satıcıların (Shopify, Etsy, Amazon, Trendyol, Hepsiburada) işini
       kolaylaştıran yapay zeka araçlarını bağımsız ve özgün bir bakışla inceler. Amacımız, gerçek
@@ -44,16 +44,24 @@ const jsonLd = {
     </p>
 
     <h2>Yazar</h2>
-    <div class="mt-2">
-      <h3 class="text-xl font-semibold">{yazar.name}</h3>
-      <p class="text-sm text-gray-500">{yazar.rol}</p>
-      {yazar.tamBio.map((p) => <p class="mt-2">{p}</p>)}
+    <div class="mt-2 flex items-center gap-3 not-prose">
+      <div
+        class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-brand/10 font-display text-lg font-bold text-brand-dark"
+        aria-hidden="true"
+      >
+        {yazar.name.charAt(0)}
+      </div>
+      <div>
+        <h3 class="text-xl font-semibold text-ink">{yazar.name}</h3>
+        <p class="text-sm text-slate-500">{yazar.rol}</p>
+      </div>
     </div>
+    {yazar.tamBio.map((p) => <p>{p}</p>)}
 
     <h2>İletişim</h2>
     <p>
       Soru, öneri veya iş birliği teklifleri için:{' '}
-      <a href={`mailto:${yazar.email}`} class="text-brand underline">{yazar.email}</a>
+      <a href={`mailto:${yazar.email}`}>{yazar.email}</a>
     </p>
   </div>
 </BaseLayout>

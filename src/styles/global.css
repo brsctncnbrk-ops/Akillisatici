@@ -2,41 +2,94 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Temel okunabilirlik ayarları (mobil öncelikli) */
-:root {
-  color-scheme: light;
+/* ——— Temel katman: tipografi ve okunabilirlik (mobil öncelikli) ——— */
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    @apply bg-white text-slate-700 antialiased;
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-display text-ink;
+    text-wrap: balance;
+  }
+  ::selection {
+    @apply bg-brand/20 text-ink;
+  }
+  :focus-visible {
+    @apply outline-none ring-2 ring-brand ring-offset-2;
+  }
 }
 
-body {
-  @apply bg-white text-gray-900 antialiased;
+/* ——— Bileşen sınıfları: tutarlı buton / çip / kart ——— */
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-1.5 rounded-xl bg-brand px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-brand-dark hover:shadow-md;
+  }
+  .btn-outline {
+    @apply inline-flex items-center justify-center gap-1.5 rounded-xl border border-slate-300 px-5 py-2.5 text-sm font-semibold text-slate-700 transition hover:border-brand hover:text-brand;
+  }
+  .chip {
+    @apply inline-flex items-center rounded-full border border-slate-200 bg-white px-3.5 py-1.5 text-sm font-medium text-slate-600 transition hover:border-brand hover:text-brand;
+  }
+  .chip-active {
+    @apply border-brand bg-brand text-white hover:text-white;
+  }
+  .card {
+    @apply rounded-2xl border border-slate-200 bg-white shadow-soft transition duration-200 hover:-translate-y-1 hover:border-slate-300 hover:shadow-lg;
+  }
 }
 
-/* Yazı içeriği için basit tipografi (prose eklentisi yerine sade kurallar) */
+/* ——— Yazı içeriği tipografisi (prose eklentisi yerine sade kurallar) ——— */
+.icerik {
+  @apply text-[1.0625rem] leading-8 text-slate-700;
+}
 .icerik h2 {
-  @apply mt-10 mb-3 text-2xl font-bold;
+  @apply mt-12 mb-4 text-2xl font-bold tracking-tight;
 }
 .icerik h3 {
-  @apply mt-8 mb-2 text-xl font-semibold;
+  @apply mt-8 mb-2 text-xl font-semibold tracking-tight;
 }
 .icerik p {
-  @apply my-4 leading-7;
+  @apply my-5;
 }
 .icerik ul {
-  @apply my-4 list-disc pl-6;
+  @apply my-5 list-disc pl-6 marker:text-brand;
 }
 .icerik ol {
-  @apply my-4 list-decimal pl-6;
+  @apply my-5 list-decimal pl-6 marker:text-slate-400;
+}
+.icerik li {
+  @apply my-1.5;
 }
 .icerik a {
-  @apply text-brand-accent underline underline-offset-2;
+  @apply font-medium text-brand-dark underline underline-offset-2 transition hover:text-brand;
+}
+.icerik strong {
+  @apply font-semibold text-ink;
+}
+.icerik blockquote {
+  @apply my-6 rounded-r-lg border-l-4 border-brand/60 bg-orange-50/60 py-3 pl-5 pr-4 text-slate-600;
 }
 .icerik table {
-  @apply my-6 w-full border-collapse text-sm;
+  @apply my-6 block w-full overflow-x-auto border-collapse text-sm;
 }
 .icerik th,
 .icerik td {
-  @apply border border-gray-200 px-3 py-2 text-left;
+  @apply border border-slate-200 px-3 py-2 text-left;
 }
 .icerik th {
-  @apply bg-gray-50 font-semibold;
+  @apply bg-slate-50 font-semibold text-ink;
+}
+.icerik tbody tr:nth-child(even) {
+  @apply bg-slate-50/50;
 }

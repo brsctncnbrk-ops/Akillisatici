@@ -1,29 +1,39 @@
 ---
 import { KATEGORILER } from '../lib/categories';
-const markaAdi = 'Satıcı Kutusu';
+import { MARKA_ADI } from '../data/site';
+import BrandMark from './BrandMark.astro';
 ---
 
-<header class="border-b border-gray-200 bg-white">
-  <div class="mx-auto flex max-w-5xl flex-wrap items-center justify-between gap-3 px-4 py-4">
-    <a href="/" class="text-xl font-bold text-brand">{markaAdi}</a>
-    <nav aria-label="Ana menü">
-      <ul class="flex flex-wrap items-center gap-4 text-sm">
+<header class="sticky top-0 z-40 border-b border-slate-200/70 bg-white/80 backdrop-blur-md">
+  <div class="mx-auto flex max-w-5xl items-center justify-between gap-4 px-4 py-3">
+    <a href="/" class="flex items-center gap-2 text-ink transition hover:opacity-80">
+      <BrandMark class="h-7 w-7 text-brand" />
+      <span class="font-display text-lg font-extrabold tracking-tight">{MARKA_ADI}</span>
+    </a>
+
+    <nav aria-label="Ana menü" class="flex items-center gap-1">
+      <ul class="hidden items-center gap-1 md:flex">
         {
           KATEGORILER.map((k) => (
             <li>
-              <a class="text-gray-600 hover:text-brand-accent" href={`/kategori/${k.slug}/`}>
+              <a
+                class="rounded-lg px-3 py-2 text-sm font-medium text-slate-600 transition hover:bg-slate-100 hover:text-ink"
+                href={`/kategori/${k.slug}/`}
+              >
                 {k.ad}
               </a>
             </li>
           ))
         }
-        <li>
-          <a class="text-gray-600 hover:text-brand-accent" href="/araclar/">AI Araçları</a>
-        </li>
-        <li>
-          <a class="text-gray-600 hover:text-brand-accent" href="/hakkinda/">Hakkında</a>
-        </li>
       </ul>
+      <a
+        class="hidden rounded-lg px-3 py-2 text-sm font-medium text-slate-600 transition hover:bg-slate-100 hover:text-ink sm:inline-block md:hidden lg:inline-block"
+        href="/hakkinda/">Hakkında</a
+      >
+      <a
+        class="rounded-lg bg-ink px-4 py-2 text-sm font-semibold text-white transition hover:bg-ink-soft"
+        href="/araclar/">AI Araçları</a
+      >
     </nav>
   </div>
 </header>

@@ -1,0 +1,22 @@
+---
+// Marka işareti: "kutu" (parcel) ikonu. currentColor kullanır, böylece text-* ile renklenir.
+interface Props {
+  class?: string;
+}
+const { class: cls = 'h-7 w-7' } = Astro.props;
+---
+
+<svg
+  class={cls}
+  viewBox="0 0 120 120"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="8"
+  stroke-linejoin="round"
+  stroke-linecap="round"
+  aria-hidden="true"
+>
+  <path d="M60 8 L106 34 V86 L60 112 L14 86 V34 Z"></path>
+  <path d="M14 34 L60 60 L106 34"></path>
+  <path d="M60 60 V112"></path>
+</svg>

@@ -5,65 +5,84 @@ import NewsletterSignup from '../components/NewsletterSignup.astro';
 import AdSlot from '../components/AdSlot.astro';
 import { KATEGORILER } from '../lib/categories';
 import { getYayindaPosts } from '../lib/content';
+import { MARKA_ADI } from '../data/site';
 
 const posts = await getYayindaPosts();
 const oneCikan = posts[0];
 const digerleri = posts.slice(1);
 
-const markaAdi = 'Satıcı Kutusu';
+const pazaryerleri = ['Shopify', 'Etsy', 'Amazon', 'Trendyol', 'Hepsiburada'];
 ---
 
 <BaseLayout
-  title={`${markaAdi} — Online satıcılar için yapay zeka araçları`}
+  title={`${MARKA_ADI} — Online satıcılar için yapay zeka araçları`}
   description="Shopify, Etsy, Amazon, Trendyol ve Hepsiburada satıcıları için yapay zeka araçlarının incelemeleri, karşılaştırmaları ve kullanım rehberleri."
 >
-  <section class="mb-8">
-    <h1 class="text-3xl font-bold text-brand">Online satıcılar için yapay zeka araçları</h1>
-    <p class="mt-2 max-w-2xl text-gray-600">
-      İşinizi kolaylaştıran AI araçlarının özgün incelemeleri, karşılaştırmaları ve pratik
-      rehberleri. Türkiye pazarına ve pazaryeri satıcılarına özel yorumlarla.
-    </p>
+  <!-- Hero -->
+  <section class="relative -mx-4 overflow-hidden px-4 pb-12 pt-10 sm:pt-14">
+    <div
+      class="pointer-events-none absolute inset-x-0 -top-24 -z-10 h-72 bg-gradient-to-b from-orange-100/70 to-transparent blur-2xl"
+    >
+    </div>
+    <div class="mx-auto max-w-3xl text-center">
+      <span
+        class="inline-flex items-center gap-1.5 rounded-full border border-brand/20 bg-brand/5 px-3 py-1 text-xs font-semibold text-brand-dark"
+      >
+        🇹🇷 Türkiye pazarına özel · bağımsız incelemeler
+      </span>
+      <h1 class="mt-5 font-display text-4xl font-extrabold tracking-tight text-ink sm:text-5xl">
+        Online satıcılar için <span class="text-brand">yapay zeka araçları</span>
+      </h1>
+      <p class="mx-auto mt-4 max-w-2xl text-lg leading-8 text-slate-600">
+        İşinizi kolaylaştıran AI araçlarının özgün incelemeleri, karşılaştırmaları ve pratik
+        rehberleri — pazaryeri satıcılarına özel yorumlarla.
+      </p>
+      <div class="mt-7 flex flex-wrap items-center justify-center gap-3">
+        <a href="/araclar/" class="btn-primary px-6 py-3 text-base">AI Araçlarını keşfet</a>
+        <a href="#yazilar" class="btn-outline px-6 py-3 text-base">Son yazılar</a>
+      </div>
+      <div class="mt-8 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-sm font-medium text-slate-400">
+        {pazaryerleri.map((p) => <span>{p}</span>)}
+      </div>
+    </div>
   </section>
 
   {
     oneCikan && (
-      <section class="mb-10">
-        <h2 class="mb-3 text-sm font-semibold uppercase tracking-wide text-gray-500">Öne çıkan</h2>
-        <PostCard post={oneCikan} />
+      <section class="mb-12">
+        <h2 class="mb-4 flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-slate-500">
+          <span class="h-1.5 w-1.5 rounded-full bg-brand" /> Öne çıkan
+        </h2>
+        <PostCard post={oneCikan} featured={true} />
       </section>
     )
   }
 
   <AdSlot slot="anasayfa" />
 
-  <section class="mb-10">
-    <h2 class="mb-3 text-sm font-semibold uppercase tracking-wide text-gray-500">En yeni yazılar</h2>
+  <section id="yazilar" class="mb-12 scroll-mt-20">
+    <h2 class="mb-4 flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-slate-500">
+      <span class="h-1.5 w-1.5 rounded-full bg-brand"></span> En yeni yazılar
+    </h2>
     {
       digerleri.length > 0 ? (
-        <div class="grid gap-4 sm:grid-cols-2">
+        <div class="grid gap-5 sm:grid-cols-2">
           {digerleri.map((post) => (
             <PostCard post={post} />
           ))}
         </div>
       ) : (
-        <p class="text-sm text-gray-500">Henüz başka yazı yok.</p>
+        <p class="text-sm text-slate-500">Henüz başka yazı yok.</p>
       )
     }
   </section>
 
-  <section class="mb-10">
-    <h2 class="mb-3 text-sm font-semibold uppercase tracking-wide text-gray-500">Kategoriler</h2>
+  <section class="mb-12">
+    <h2 class="mb-4 flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-slate-500">
+      <span class="h-1.5 w-1.5 rounded-full bg-brand"></span> Kategoriler
+    </h2>
     <div class="flex flex-wrap gap-2">
-      {
-        KATEGORILER.map((k) => (
-          <a
-            href={`/kategori/${k.slug}/`}
-            class="rounded-full border border-gray-200 px-3 py-1 text-sm text-gray-700 hover:border-brand-accent hover:text-brand-accent"
-          >
-            {k.ad}
-          </a>
-        ))
-      }
+      {KATEGORILER.map((k) => <a href={`/kategori/${k.slug}/`} class="chip">{k.ad}</a>)}
     </div>
   </section>
 
