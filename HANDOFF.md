@@ -6,6 +6,30 @@
 
 ---
 
+## Oturum: 2026-06-15 — SEO yapısal veri tamamlama + PR #6 elden geçirme
+
+### Yapıldı
+- **PR #6 incelendi → kapatma kararı (ADR-009).** İçeriği (GA4, marka rengi, yazar bio, iletişim) `main`'de zaten ve daha iyi (authors.ts tek kaynak). Base'i eski dal; merge regresyon yaratırdı. Kullanıcı onayıyla "kapat (merge etme)".
+- **BreadcrumbList JSON-LD (ADR-010):** Kategori sayfalarına eklendi (önce yalnızca görsel kırıntı vardı). Paylaşılan `src/lib/breadcrumb.ts` (`buildBreadcrumbLd`) yardımcısı; yazı detay sayfasındaki inline kırıntı buna taşındı (DRY). +3 birim testi.
+- Kalite kapısı yeşil: lint 0 · test 30/30 (+3) · build 20 sayfa. Built HTML'de BreadcrumbList hem kategori hem yazı sayfalarında doğrulandı.
+
+### Zaten yapılmış (bu oturumda dokunulmadı — denetlendi)
+- JSON-LD: `Article` (yazı), `Organization`+`WebSite` (BaseHead, site geneli), `ItemList` (/araclar/), `ProfilePage`/`Person` (hakkında).
+- og:image / twitter:image: statik `public/og-default.png` + sayfa bazlı `image` prop (dürüst fallback).
+- Affiliate: `tools/*.json` + `resolveToolLink` merkezî yapı; `affiliateUrl: null` → `officialUrl`'e `nofollow` fallback (sahte "İncele" yok).
+- Bülten: erişilebilir disabled "yakında" + KVKK notu. AdSense: `PUBLIC_ADS_ENABLED` flag arkasında.
+
+### Sırada (Sonraki adım)
+- Bülten sağlayıcısı seçilince (Brevo/Buttondown/Mailchimp) `NewsletterSignup` formunu bağla.
+- Gerçek affiliate URL'leri gelince ilgili `tools/*.json` `affiliateUrl` alanlarını doldur.
+- AdSense onayı + publisher ID gelince `BaseHead`'e script + `AdSlot`'a `ins` ekleyip `PUBLIC_ADS_ENABLED=true` ver.
+- (Opsiyonel SEO geliştirmesi) Yazı başına dinamik OG görseli (@vercel/og) — ek bağımlılık/serverless gerektirir; statik fallback şimdilik yeterli.
+
+### Açık Sorular / TBD
+- Bülten sağlayıcısı + API anahtarı · gerçek affiliate program URL'leri · AdSense publisher ID + onay durumu (tümü kullanıcı kararı: 2026-06-15 itibarıyla TBD bırakıldı, ADR-011).
+
+---
+
 ## Oturum: 2026-06-14 — Proje başlatma + Faz 1 iskelet
 
 ### Yapıldı

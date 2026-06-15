@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PostCard from '../../components/PostCard.astro';
 import { KATEGORILER, kategoriBySlug } from '../../lib/categories';
+import { buildBreadcrumbLd } from '../../lib/breadcrumb';
 import { getPostsByKategori } from '../../lib/content';
 
 export async function getStaticPaths() {
@@ -16,11 +17,20 @@ if (!kategori) {
 }
 
 const posts = await getPostsByKategori(kategori.ad);
+
+// JSON-LD: BreadcrumbList (görsel kırıntı ile birebir, tek kaynaktan).
+const site = Astro.site?.href.replace(/\/$/, '') ?? '';
+const breadcrumbLd = buildBreadcrumbLd(site, [
+  { name: 'Ana sayfa', path: '/' },
+  { name: kategori.ad, path: `/kategori/${kategori.slug}/` },
+]);
+const jsonLd = { '@context': 'https://schema.org', '@graph': [breadcrumbLd] };
 ---
 
 <BaseLayout
   title={`${kategori.ad} — AI araçları yazıları`}
   description={`${kategori.ad} kategorisinde online satıcılar için yapay zeka araçları incelemeleri ve rehberleri.`}
+  jsonLd={jsonLd}
 >
   <nav class="mb-4 flex items-center gap-1.5 text-xs text-slate-400" aria-label="Breadcrumb">
     <a class="transition hover:text-brand" href="/">Ana sayfa</a>
