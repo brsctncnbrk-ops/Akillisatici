@@ -6,6 +6,27 @@
 
 ---
 
+## Oturum: 2026-06-15 — Adım 6: Dağıtım (ilk ziyaretçiyi "tohumlama")
+
+### Yapıldı
+- **Kod — sosyal paylaşım butonları:** `src/components/ShareButtons.astro` (WhatsApp, Pinterest
+  görselli, X, Facebook, LinkedIn + "linki kopyala"). Yazı sayfasında içerik sonrası, yazar
+  kutusundan önce render olur (`src/pages/posts/[...slug].astro`). Statik; yalnızca kopyala için
+  küçük inline script. Her okuyucu potansiyel dağıtıcı → organik amplifikasyon.
+- **İçerik/rehber — dağıtım kiti:** `docs/DISTRIBUTION_KIT.md` — değer-önce kurallar, kanal
+  kılavuzu (Pinterest/FB/Reddit/LinkedIn/WhatsApp), her yazı için tekrar eden kontrol listesi,
+  kanal bazlı kopyala-yapıştır şablonlar ve yayındaki 6 ana yazı için hazır metinler (uydurma
+  rakam yok). Haftalık ritim eklendi.
+- `docs/TRAFFIC_PLAYBOOK.md` durum tablosu + §5 güncellendi (kit + butonlara referans).
+- Kalite kapısı yeşil: **build 33 · lint 0/0 · test 27/27.**
+
+### Sırada / Kullanıcı aksiyonu
+1. (Hâlâ açık, kritik) Google Search Console doğrula + sitemap gönder.
+2. `docs/DISTRIBUTION_KIT.md` ile Pinterest işletme hesabı + ilk pinler; 2-3 gruba değerle katıl.
+3. Dikey (1000×1500) Pinterest görseli üretimi ileride eklenebilir (OG şu an 1200×630).
+
+---
+
 ## Oturum: 2026-06-15 — Ücretsiz trafik büyütme (teknik SEO + içerik + rehber)
 
 ### Yapıldı

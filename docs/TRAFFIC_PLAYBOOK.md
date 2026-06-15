@@ -13,6 +13,7 @@
 | Sitemap, RSS, robots, JSON-LD (Article/Breadcrumb/Org/WebSite) | ✅ Kurulu | — |
 | FAQ (SSS) bölümü + FAQPage schema | ✅ Kurulu (yazıya `sss` ekleyince çalışır) | İçerik |
 | Yazı↔araç çapraz linkleme | ✅ Kurulu (`incelenenAraclar` üzerinden) | — |
+| Sosyal paylaşım butonları (yazı altı) | ✅ Kurulu (WhatsApp/Pinterest/X/FB/LinkedIn/kopyala) | — |
 | IndexNow (Bing/Yandex anında indeksleme) | ✅ Kurulu (push'ta otomatik) | — |
 | Google Search Console | ⏳ Doğrulama gerekli | **Sen** |
 | Bing Webmaster Tools | ⏳ Kurulum gerekli | **Sen** |
@@ -80,6 +81,10 @@ sonuçlarını ve AI cevap motorlarını (ChatGPT, Gemini, AI Overviews) hedefle
 ## 5. Dağıtım — ücretsiz ama manuel (ilk trafiği "tohumla")
 
 SEO meyvesini aylar içinde verir; dağıtım ilk ziyaretçiyi ve ilk backlink/sinyalleri getirir.
+
+> **Kopyala-yapıştır metinler:** Her yazı için hazır, değer-önce paylaşım metinleri ve
+> tekrar eden iş akışı → `docs/DISTRIBUTION_KIT.md`. Ayrıca her yazının altında artık
+> **paylaşım butonları** var (okuyucu da dağıtıma katılır).
 
 ### Pinterest (TR e-ticaret için en güçlü ücretsiz kanal)
 - İşletme hesabı aç, alan adını doğrula.
