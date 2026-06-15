@@ -1,0 +1,166 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PostCard from '../components/PostCard.astro';
+import { KATEGORILER } from '../lib/categories';
+import { getYayindaPosts } from '../lib/content';
+import { MARKA_ADI } from '../data/site';
+
+const posts = await getYayindaPosts();
+
+// Her kart için aranabilir metin (başlık + özet + kategori + anahtar kelime + etiket),
+// Türkçe küçük harfe çevrilir → istemci tarafı arama bunu kullanır.
+function aramaMetni(p: (typeof posts)[number]): string {
+  const parts = [
+    p.data.baslik,
+    p.data.ozet,
+    p.data.kategori,
+    p.data.anahtarKelime ?? '',
+    (p.data.etiketler ?? []).join(' '),
+  ];
+  return parts.join(' ').toLocaleLowerCase('tr');
+}
+---
+
+<BaseLayout
+  title={`Tüm Rehberler ve Yazılar — ${MARKA_ADI}`}
+  description="Online satıcılar için tüm yapay zeka rehberleri, incelemeleri ve karşılaştırmaları tek sayfada. Arayarak veya kategoriye göre filtreleyerek bul."
+>
+  <header class="mx-auto max-w-3xl text-center">
+    <h1 class="font-display text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
+      Tüm rehberler ve yazılar
+    </h1>
+    <p class="mt-3 text-lg leading-8 text-slate-600">
+      Aradığını yaz ya da kategoriye göre süz — {posts.length} yazı içinde anında bul.
+    </p>
+  </header>
+
+  <!-- Arama kutusu -->
+  <div class="mx-auto mt-8 max-w-2xl">
+    <label class="sr-only" for="yazi-ara">Yazılarda ara</label>
+    <div class="relative">
+      <svg
+        class="pointer-events-none absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-slate-400"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        aria-hidden="true"
+      >
+        <circle cx="11" cy="11" r="7"></circle>
+        <path stroke-linecap="round" d="m21 21-4.3-4.3"></path>
+      </svg>
+      <input
+        id="yazi-ara"
+        type="search"
+        autocomplete="off"
+        placeholder="Örn. Etsy, ürün açıklaması, görsel, chatbot…"
+        class="w-full rounded-2xl border border-slate-200 bg-white py-3.5 pl-12 pr-4 text-base text-ink shadow-soft outline-none transition placeholder:text-slate-400 focus:border-brand/50 focus:ring-2 focus:ring-brand/20"
+      />
+    </div>
+
+    <!-- Kategori çipleri -->
+    <div class="mt-4 flex flex-wrap justify-center gap-2" role="group" aria-label="Kategoriye göre süz">
+      <button
+        type="button"
+        data-cat-filter="*"
+        class="cat-chip is-active rounded-full border border-slate-200 px-3.5 py-1.5 text-sm font-medium text-slate-600 transition"
+      >
+        Tümü
+      </button>
+      {
+        KATEGORILER.map((k) => (
+          <button
+            type="button"
+            data-cat-filter={k.ad}
+            class="cat-chip rounded-full border border-slate-200 px-3.5 py-1.5 text-sm font-medium text-slate-600 transition"
+          >
+            {k.ad}
+          </button>
+        ))
+      }
+    </div>
+  </div>
+
+  <!-- Sonuç sayısı -->
+  <p id="sonuc-sayisi" class="mt-8 text-sm text-slate-500" aria-live="polite"></p>
+
+  <!-- Yazı kartları -->
+  <div id="yazi-listesi" class="mt-3 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+    {
+      posts.map((post) => (
+        <div data-card data-search={aramaMetni(post)} data-cat={post.data.kategori}>
+          <PostCard post={post} />
+        </div>
+      ))
+    }
+  </div>
+
+  <!-- Sonuç yok -->
+  <p id="bos-durum" hidden class="mt-10 text-center text-slate-500">
+    Aramanla eşleşen yazı bulunamadı. Farklı bir kelime dene ya da
+    <button type="button" id="aramayi-temizle" class="font-semibold text-brand-dark underline">
+      filtreyi temizle</button
+    >.
+  </p>
+</BaseLayout>
+
+<style>
+  .cat-chip.is-active {
+    background-color: theme('colors.ink.DEFAULT');
+    border-color: theme('colors.ink.DEFAULT');
+    color: #fff;
+  }
+</style>
+
+<script>
+  // İstemci tarafı anında arama + kategori filtresi (ek bağımlılık yok, statik çalışır).
+  const input = document.getElementById('yazi-ara') as HTMLInputElement | null;
+  const liste = document.getElementById('yazi-listesi');
+  const sayac = document.getElementById('sonuc-sayisi');
+  const bos = document.getElementById('bos-durum');
+  const temizle = document.getElementById('aramayi-temizle');
+  const chips = Array.from(document.querySelectorAll<HTMLButtonElement>('[data-cat-filter]'));
+  const kartlar = Array.from(document.querySelectorAll<HTMLElement>('[data-card]'));
+
+  let aktifKategori = '*';
+
+  const norm = (s: string) => s.toLocaleLowerCase('tr').trim();
+
+  function uygula() {
+    const sorgu = norm(input?.value ?? '');
+    let gorunen = 0;
+
+    kartlar.forEach((kart) => {
+      const metin = kart.dataset.search ?? '';
+      const kat = kart.dataset.cat ?? '';
+      const kategoriUydu = aktifKategori === '*' || kat === aktifKategori;
+      const sorguUydu = sorgu === '' || metin.includes(sorgu);
+      const goster = kategoriUydu && sorguUydu;
+      kart.hidden = !goster;
+      if (goster) gorunen++;
+    });
+
+    if (sayac) sayac.textContent = `${gorunen} yazı gösteriliyor`;
+    if (bos) bos.hidden = gorunen !== 0;
+    if (liste) liste.hidden = gorunen === 0;
+  }
+
+  input?.addEventListener('input', uygula);
+
+  chips.forEach((chip) => {
+    chip.addEventListener('click', () => {
+      aktifKategori = chip.dataset.catFilter ?? '*';
+      chips.forEach((c) => c.classList.toggle('is-active', c === chip));
+      uygula();
+    });
+  });
+
+  temizle?.addEventListener('click', () => {
+    if (input) input.value = '';
+    aktifKategori = '*';
+    chips.forEach((c) => c.classList.toggle('is-active', c.dataset.catFilter === '*'));
+    uygula();
+  });
+
+  uygula();
+</script>

@@ -200,11 +200,19 @@ const kategoriDetay: Record<string, { emoji: string; aciklama: string }> = {
   <AdSlot slot="anasayfa" />
 
   <section id="yazilar" class="mb-12 scroll-mt-20">
-    <h2
-      class="mb-4 flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-slate-500"
-    >
-      <span class="h-1.5 w-1.5 rounded-full bg-brand"></span> En yeni yazılar
-    </h2>
+    <div class="mb-4 flex items-center justify-between gap-3">
+      <h2
+        class="flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-slate-500"
+      >
+        <span class="h-1.5 w-1.5 rounded-full bg-brand"></span> En yeni yazılar
+      </h2>
+      <a
+        href="/rehberler/"
+        class="inline-flex items-center gap-1 text-sm font-semibold text-brand-dark transition hover:gap-2"
+      >
+        Tüm yazılar <span aria-hidden="true">→</span>
+      </a>
+    </div>
     {
       digerleri.length > 0 ? (
         <div class="grid gap-5 sm:grid-cols-2">
