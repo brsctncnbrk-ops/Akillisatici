@@ -1,7 +1,24 @@
 ---
-// Bülten kayıt bileşeni.
-// E-posta sağlayıcısı entegrasyonu henüz aktif olmadığından form net bir "yakında"
-// durumundadır: input ve buton devre dışı, gönderim yapmaz.
+// Bülten kayıt bileşeni — Kit (ConvertKit) entegrasyonu.
+//
+// Statik site olduğumuz için sunucu/serverless fonksiyon yoktur: form doğrudan
+// Kit'in genel embed "subscriptions" uç noktasına POST eder. Bu uç nokta gizli
+// DEĞİLDİR (form ID herkese açık), bu yüzden PUBLIC_* env değişkeniyle verilir;
+// API anahtarı veya secret commit'lenmez.
+//
+// Yapılandırma (öncelik sırasıyla):
+//   1) PUBLIC_KIT_FORM_ACTION — Kit'in verdiği tam action URL'i (en güvenli).
+//   2) PUBLIC_KIT_FORM_ID      — yalnızca form ID; action otomatik kurulur.
+// İkisi de yoksa form devre dışı "yakında" durumunda kalır (build kırılmaz).
+//
+// KVKK/GDPR: Kit form ayarlarından "çift opt-in" (double opt-in) açık tutulmalıdır;
+// böylece abone, e-postasındaki onay bağlantısına tıklayana kadar listeye eklenmez.
+
+const formId = import.meta.env.PUBLIC_KIT_FORM_ID;
+const formAction =
+  import.meta.env.PUBLIC_KIT_FORM_ACTION ||
+  (formId ? `https://app.kit.com/forms/${formId}/subscriptions` : undefined);
+const enabled = Boolean(formAction);
 ---
 
 <section
@@ -11,26 +28,70 @@
   <p class="mx-auto mt-2 max-w-md text-sm leading-6 text-slate-300">
     Online satıcılar için yeni AI araçları ve rehberleri doğrudan e-postana gelsin.
   </p>
-  <form class="mx-auto mt-6 flex max-w-md flex-col gap-2 sm:flex-row" aria-disabled="true">
-    <label class="sr-only" for="newsletter-email">E-posta adresi</label>
-    <input
-      id="newsletter-email"
-      type="email"
-      name="email"
-      disabled
-      placeholder="ornek@eposta.com"
-      class="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder:text-slate-500 disabled:cursor-not-allowed"
-    />
-    <button
-      type="submit"
-      disabled
-      class="shrink-0 cursor-not-allowed rounded-xl bg-brand px-5 py-3 text-sm font-semibold text-white opacity-70"
-    >
-      Kayıt ol (yakında)
-    </button>
-  </form>
-  <p class="mx-auto mt-3 max-w-md text-xs text-slate-400">
-    Bülten kaydı çok yakında açılacak. Kayıt açıldığında kişisel verileriniz KVKK/GDPR uyumlu
-    işlenecektir.
-  </p>
+
+  {
+    enabled ? (
+      <>
+        <form
+          class="mx-auto mt-6 flex max-w-md flex-col gap-2 sm:flex-row"
+          action={formAction}
+          method="post"
+        >
+          <label class="sr-only" for="newsletter-email">
+            E-posta adresi
+          </label>
+          <input
+            id="newsletter-email"
+            type="email"
+            name="email_address"
+            required
+            autocomplete="email"
+            placeholder="ornek@eposta.com"
+            class="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder:text-slate-500"
+          />
+          <button
+            type="submit"
+            class="shrink-0 rounded-xl bg-brand px-5 py-3 text-sm font-semibold text-white transition hover:opacity-90"
+          >
+            Kayıt ol
+          </button>
+        </form>
+        <p class="mx-auto mt-3 max-w-md text-xs text-slate-400">
+          Kayıt olarak e-posta adresinizin bülten amacıyla işlenmesini kabul edersiniz. İstediğiniz
+          zaman tek tıkla abonelikten çıkabilirsiniz. Ayrıntılar için{' '}
+          <a class="underline hover:text-slate-200" href="/gizlilik">
+            gizlilik politikamıza
+          </a>{' '}
+          bakın.
+        </p>
+      </>
+    ) : (
+      <>
+        <form class="mx-auto mt-6 flex max-w-md flex-col gap-2 sm:flex-row" aria-disabled="true">
+          <label class="sr-only" for="newsletter-email">
+            E-posta adresi
+          </label>
+          <input
+            id="newsletter-email"
+            type="email"
+            name="email"
+            disabled
+            placeholder="ornek@eposta.com"
+            class="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder:text-slate-500 disabled:cursor-not-allowed"
+          />
+          <button
+            type="submit"
+            disabled
+            class="shrink-0 cursor-not-allowed rounded-xl bg-brand px-5 py-3 text-sm font-semibold text-white opacity-70"
+          >
+            Kayıt ol (yakında)
+          </button>
+        </form>
+        <p class="mx-auto mt-3 max-w-md text-xs text-slate-400">
+          Bülten kaydı çok yakında açılacak. Kayıt açıldığında kişisel verileriniz KVKK/GDPR uyumlu
+          işlenecektir.
+        </p>
+      </>
+    )
+  }
 </section>

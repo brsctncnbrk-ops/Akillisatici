@@ -40,5 +40,23 @@
 - Marka rengi (Tailwind teması şu an nötr)
 - Gerçek yazar kimliği + biyografi (E-E-A-T)
 - Araç fiyatları & affiliate komisyon oranları (uydurulmadı, TBD)
-- Bülten sağlayıcısı + Analytics sağlayıcısı
+- ~~Bülten sağlayıcısı~~ → **Çözüldü (2026-06-15):** Kit (ConvertKit) ücretsiz; sunucusuz embed POST (ADR-009). Analytics sağlayıcısı hâlâ TBD.
 - AdSense yayıncı kimliği (script onay sonrası kullanıcı tarafından aktive edilecek)
+
+---
+
+## Oturum: 2026-06-15 — Bülten sağlayıcısı (Kit / ücretsiz)
+
+### Yapıldı
+- Bülten için **Kit (ConvertKit)** ücretsiz katmanı seçildi (ADR-009; kullanıcı "tamamen ücretsiz" istedi).
+- `src/components/NewsletterSignup.astro` yeniden yazıldı: yapılandırılmışsa form doğrudan Kit'in
+  genel embed uç noktasına (`https://app.kit.com/forms/<ID>/subscriptions`, alan `email_address`) POST eder;
+  değişken yoksa eski "yakında" devre dışı durumu render edilir. Üçüncü taraf JS yok, secret yok.
+- `.env.example`: eski `NEWSLETTER_*` yerine `PUBLIC_KIT_FORM_ID` / `PUBLIC_KIT_FORM_ACTION` (PUBLIC, secret değil).
+- `docs/DEPLOYMENT.md`: Kit kurulum + Vercel env adımları. `docs/DECISIONS.md`: ADR-009.
+- Kalite kapısı yeşil: lint 0 hata · test 27/27 · build 20 sayfa. Aktif yol da doğrulandı (form ID'li build çıktısı).
+
+### Kullanıcı aksiyonu gerekli
+1. https://kit.com → ücretsiz hesap → form oluştur, **double opt-in açık** (KVKK/GDPR).
+2. Form ID'sini Vercel → Settings → Environment Variables → `PUBLIC_KIT_FORM_ID` olarak ekle → redeploy.
+   (Boş bırakılırsa form "yakında" görünmeye devam eder; build kırılmaz.)

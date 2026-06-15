@@ -1,6 +1,6 @@
 # DECISIONS — Karar Günlüğü (ADR)
 
-> Son güncelleme: 2026-06-14
+> Son güncelleme: 2026-06-15
 > Her büyük karar: tarih, gerekçe, alternatifler, sonuç.
 
 ## ADR-001 — Framework: Astro
@@ -55,3 +55,10 @@
 - **Gerekçe:** Saf skorlama/ayrıştırma birim testlenebilir ve secret gerektirmez; LLM yalnızca metin üretimi için. PR akışı "otomatik yayın YASAK" kuralını (CLAUDE.md #3) yapısal olarak garanti eder — site yalnızca `durumu: yayinda` build eder. Model varsayılanı `claude-opus-4-8` (`ANTHROPIC_MODEL` ile override).
 - **Alternatifler:** Managed Agents (fazla ağır, kalıcı altyapı gerektirir); doğrudan `src/content`'a yazma (yayın kontrolünü kırar — reddedildi).
 - **Sonuç:** `scripts/lib/*` + iki giriş noktası + `.github/workflows/trend-discovery.yml`. Skorlama/frontmatter/RSS-parse için 19 birim testi. `ANTHROPIC_API_KEY` GitHub secret olarak verilmeli.
+
+## ADR-009 — Bülten sağlayıcısı: Kit (ConvertKit), sunucusuz embed POST
+- **Tarih:** 2026-06-15
+- **Karar:** Bülten için **Kit (ConvertKit)** ücretsiz katmanı kullanılacak. `NewsletterSignup.astro` formu, statik site olduğu için doğrudan Kit'in genel embed uç noktasına (`https://app.kit.com/forms/<ID>/subscriptions`, alan adı `email_address`) POST eder. Uç nokta `PUBLIC_KIT_FORM_ID` (veya tam `PUBLIC_KIT_FORM_ACTION`) ile verilir; değişken boşsa form "yakında" devre dışı durumuna düşer.
+- **Gerekçe:** Kullanıcı tamamen ücretsiz çözüm istedi. Kit ücretsiz katmanı 10.000 aboneye kadar ve sınırsız gönderim sunar — en cömert seçenek. Site statik (Vercel, sunucu fonksiyonu yok) olduğundan serverless proxy gerektirmeyen native embed POST en az karmaşık ve en sağlam yol; üçüncü taraf JS yüklenmez (Lighthouse/gizlilik korunur). Form ID herkese açık olduğundan `PUBLIC_*` env güvenli, **API anahtarı/secret commit'lenmez** (CLAUDE.md #5). KVKK/GDPR için Kit "çift opt-in" açık tutulur.
+- **Alternatifler:** MailerLite (1.000 abone ücretsiz), Brevo (300 e-posta/gün), Buttondown (100 abone) — hepsi değerlendirildi; Kit en yüksek ücretsiz abone limiti nedeniyle seçildi. Serverless fonksiyon + gizli API (gereksiz altyapı/secret — reddedildi); üçüncü taraf JS embed (performans/gizlilik maliyeti — reddedildi).
+- **Sonuç:** `NewsletterSignup.astro` koşullu aktif/yakında render eder. `.env.example` + `DEPLOYMENT.md` güncellendi. Kalite kapısı yeşil: lint 0 · test 27/27 · build 20 sayfa. Kullanıcı aksiyonu: Kit hesabı + form → Vercel'e `PUBLIC_KIT_FORM_ID` ekle.
