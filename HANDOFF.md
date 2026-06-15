@@ -24,7 +24,12 @@
   1000×1500 PNG (marka + kategori + başlık + özet + CTA; içerik gerçek frontmatter'dan).
   `ShareButtons` Pinterest butonu artık dikey `/pin/<slug>.png` görselini kullanır (yatay OG
   diğer kanallarda kalır). Kit + playbook bu görsele yönlendirildi.
-- Kalite kapısı yeşil: **build 33 (+22 pin görseli) · lint 0/0 · test 27/27.** main'e merge + canlı.
+- **Keşfedilebilirlik (canlı):** `src/pages/rehberler.astro` → tüm yazıları tek sayfada listeleyen,
+  **anında istemci-tarafı aramalı** (başlık+özet+kategori+anahtar kelime+etiket) + kategori çipli
+  "Rehberler" sayfası (ek bağımlılık yok). Header'a (masaüstü + mobil) "Rehberler" linki, ana sayfa
+  "En yeni yazılar" başlığına "Tüm yazılar →" linki eklendi. (Kullanıcı geri bildirimi: yazıları
+  bulmak zordu → çözüldü.)
+- Kalite kapısı yeşil: **build 34 (+22 pin görseli +Rehberler) · lint 0/0 · test 27/27.** main'e merge + canlı.
 
 ### Sırada / Kullanıcı aksiyonu
 1. Pinterest: panoları aç + ilk pinler (`/pin/<slug>.png` + kit §4 metinleri). En kolayı yazı altı buton.
