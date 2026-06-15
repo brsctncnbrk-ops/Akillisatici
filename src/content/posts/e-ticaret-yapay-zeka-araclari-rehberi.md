@@ -31,7 +31,7 @@ sss:
       de arama motorlarında "ince içerik" olarak değerlendirilip görünürlüğü
       zedeleyebilir. AI'ı taslak üretici olarak görün; yayın kararı ve özgün değer
       her zaman insandan gelmelidir.
-durumu: 'taslak'
+durumu: 'yayinda'
 ---
 
 Online satış yapan bir işletmenin günü, birbirini tekrar eden onlarca küçük işe bölünür: ürün açıklaması yazmak, görsel hazırlamak, müşteri sorularını yanıtlamak, reklam metni denemek, stok takibi yapmak. Yapay zeka bu işlerin hiçbirini sizin yerinize "yönetmez" — ama her birini **belirgin biçimde hızlandırabilir.**
