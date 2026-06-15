@@ -58,6 +58,12 @@ const articleLd = {
     '@type': 'Organization',
     name: MARKA_ADI,
     url: site || undefined,
+    logo: {
+      '@type': 'ImageObject',
+      url: `${site}${VARSAYILAN_OG_GORSEL}`,
+      width: 1200,
+      height: 630,
+    },
   },
   keywords: data.anahtarKelime,
 };
@@ -87,7 +93,18 @@ const jsonLd = { '@context': 'https://schema.org', '@graph': [articleLd, breadcr
   title={data.seoBaslik ?? data.baslik}
   description={data.seoAciklama ?? data.ozet}
   image={data.kapakGorsel}
+  imageAlt={data.baslik}
   article={true}
+  articleMeta={{
+    publishedTime: data.tarih.toISOString(),
+    modifiedTime: (data.guncellenme ?? data.tarih).toISOString(),
+    author: yazar.name,
+    section: data.kategori,
+    tags: data.anahtarKelime
+      ?.split(',')
+      .map((k) => k.trim())
+      .filter(Boolean),
+  }}
   jsonLd={jsonLd}
 >
   <article class="mx-auto max-w-3xl">
