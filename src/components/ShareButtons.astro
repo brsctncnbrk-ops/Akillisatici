@@ -6,9 +6,12 @@ interface Props {
   url: string; // kanonik yazı URL'i (tam, https ile)
   title: string; // paylaşım metninde kullanılacak başlık
   image?: string; // Pinterest pini için görsel (tam URL); yoksa Pinterest gizlenir
+  pinImage?: string; // Pinterest için tercih edilen dikey görsel (tam URL); verilmezse `image`
 }
 
-const { url, title, image } = Astro.props;
+const { url, title, image, pinImage } = Astro.props;
+// Pinterest dikey (2:3) görseli tercih eder; varsa onu, yoksa yatay OG görselini kullan.
+const pinMedia = pinImage ?? image;
 
 const u = encodeURIComponent(url);
 const t = encodeURIComponent(title);
@@ -52,10 +55,10 @@ const links = [
   <span class="mr-1 text-sm font-semibold text-slate-700">Paylaş:</span>
 
   {
-    image && (
+    pinMedia && (
       <a
         class="inline-flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 text-slate-600 transition hover:bg-[#E60023] hover:text-white hover:border-[#E60023]"
-        href={`https://pinterest.com/pin/create/button/?url=${u}&media=${encodeURIComponent(image)}&description=${t}`}
+        href={`https://pinterest.com/pin/create/button/?url=${u}&media=${encodeURIComponent(pinMedia)}&description=${t}`}
         target="_blank"
         rel="noopener nofollow"
         aria-label="Pinterest'te paylaş"
