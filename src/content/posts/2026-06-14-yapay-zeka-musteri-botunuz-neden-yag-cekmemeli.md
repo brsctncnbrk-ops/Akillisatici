@@ -74,6 +74,3 @@ Apple'ın Siri kararı aslında tüm yapay zeka kullanıcıları için bir hatı
 
 Kısacası: Botunuzu dürüst, net ve gerektiğinde "bilmiyorum" diyebilen bir yardımcı olarak kurgulayın. Müşteri memnuniyetini artıran şey, dalkavukluk değil; güvenilir cevaptır.
 
----
-
-*Bu taslak trend keşif ajanı tarafından üretildi (esin kaynağı: https://www.theverge.com/rss/ai-artificial-intelligence/index.xml — https://www.theverge.com/tech/948890/siri-wont-be-your-ai-girlfriend). Yayımlamadan önce bir editör tarafından gözden geçirilmeli; fiyat/komisyon gibi doğrulanmamış veriler TBD bırakılmalıdır.*
