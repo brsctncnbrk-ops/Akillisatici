@@ -6,6 +6,29 @@
 
 ---
 
+## Oturum: 2026-06-15 — Ücretsiz trafik büyütme (teknik SEO + içerik + rehber)
+
+### Yapıldı
+- **Teknik SEO/CTR (kod):**
+  - Yazılara opsiyonel `sss` alanı → görünür FAQ bölümü + FAQPage JSON-LD (long-tail / sesli arama / AI cevap motoru).
+  - IndexNow entegrasyonu: `public/<key>.txt` + `scripts/ping-indexnow.ts` + `.github/workflows/indexnow.yml` (main push'ta otomatik, secret gerektirmez).
+  - Yazı sayfasında "incelenen araçlar" kutusu (`incelenenAraclar` → çapraz linkleme + affiliate görünürlüğü).
+  - BaseHead'e opsiyonel `google-site-verification` meta (`GOOGLE_SITE_VERIFICATION`, boşken render olmaz).
+- **İçerik:**
+  - Pillar/hub taslağı `e-ticaret-yapay-zeka-araclari-rehberi.md` (`durumu: taslak`, onay bekliyor) — geniş anahtar kelime + tüm siteye iç link.
+  - Etsy / Shopify görsel / pazaryeri destek yazılarına SSS eklendi.
+- **Rehber:** `docs/TRAFFIC_PLAYBOOK.md` — ücretsiz trafik oyun kitabı (GSC, Bing, IndexNow, içerik, dağıtım + öncelikli aksiyon listesi).
+- Kalite kapısı yeşil: build 32 sayfa · lint 0/0 · test 27/27.
+
+### Sırada / Kullanıcı aksiyonu (detay: `docs/TRAFFIC_PLAYBOOK.md`)
+1. Google Search Console doğrula + sitemap gönder (en kritik).
+2. Bing Webmaster'a GSC'den içe aktar.
+3. `ANTHROPIC_API_KEY` secret'ı ekle (trend ajanı haftalık cron'da, taslak üretimi için).
+4. Pillar taslağını incele → `durumu: yayinda` yap.
+5. Pinterest + Facebook/Reddit grupları ile dağıtım.
+
+---
+
 ## Oturum: 2026-06-14 — Proje başlatma + Faz 1 iskelet
 
 ### Yapıldı
