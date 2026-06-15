@@ -49,6 +49,17 @@
 - **Alternatifler:** CLI ile token bazlı deploy (ağ politikası nedeniyle bu ortamda çalışmıyor); egress allowlist'e Vercel host'ları ekleyip CLI (ortam yapılandırması değişikliği gerektirir).
 - **Sonuç:** Adımlar `DEPLOYMENT.md`'de. Production branch ve domain bağlama notları eklendi.
 
+## ADR-009 — Telegram inline-button onay akışı (Faz 2 iyileştirme)
+- **Tarih:** 2026-06-15
+- **Karar:** PR tabanlı insan onayı, Telegram inline-button onay akışıyla değiştirildi.
+- **Gerekçe:** GitHub PR akışı iki adım gerektiriyordu (PR merge + dosya taşıma). Telegram botu tek ekranda ✅/❌ ile bitirir; dosya taşıma ve durum değişikliği Vercel serverless webhook (`api/telegram-webhook.ts`) tarafından otomatik yapılır.
+- **Akış:** Action çalışır → `drafts/`'a commit → Telegram mesajı → buton → Vercel webhook → GitHub API (GET drafts/x.md → PUT src/content/posts/x.md → DELETE drafts/x.md) → Vercel otomatik deploy.
+- **Yeni dosyalar:** `api/telegram-webhook.ts` (Vercel), `scripts/notify-telegram.ts`.
+- **Gerekli secret'lar:** GitHub Actions: `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID`. Vercel env: + `TELEGRAM_WEBHOOK_SECRET`, `GITHUB_PAT`.
+- **Güvenlik:** Webhook imzası (`x-telegram-bot-api-secret-token` header) + `from.id` → `TELEGRAM_CHAT_ID` doğrulaması.
+- **Alternatifler:** Yalnızca bildirim (PR akışı korunur — yetersiz); tam editör botu (overkill).
+- **Sonuç:** Uygulandı. ADR-008'deki `peter-evans/create-pull-request` adımı kaldırıldı.
+
 ## ADR-008 — Faz 2: Trend keşif ajanı mimarisi
 - **Tarih:** 2026-06-14
 - **Karar:** TypeScript + `tsx` ile çalışan iki aşamalı hat: (1) RSS keşfi + saf skorlama (LLM yok), (2) Claude API ile taslak üretimi. Çıktı yalnızca `drafts/` altına `durumu: taslak`. GitHub Actions cron + `peter-evans/create-pull-request` ile PR tabanlı insan onayı.

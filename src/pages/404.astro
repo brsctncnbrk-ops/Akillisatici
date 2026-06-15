@@ -1,0 +1,24 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { KATEGORILER } from '../lib/categories';
+---
+
+<BaseLayout
+  title="Sayfa bulunamadı (404)"
+  description="Aradığınız sayfa bulunamadı. Ana sayfaya dönün veya kategorilere göz atın."
+>
+  <section class="mx-auto max-w-xl py-16 text-center">
+    <p class="font-display text-7xl font-extrabold text-brand">404</p>
+    <h1 class="mt-4 font-display text-2xl font-bold text-ink">Sayfa bulunamadı</h1>
+    <p class="mx-auto mt-3 max-w-md text-slate-600">
+      Aradığınız sayfa taşınmış veya hiç var olmamış olabilir. Aşağıdan devam edebilirsiniz.
+    </p>
+    <div class="mt-7 flex flex-wrap justify-center gap-3">
+      <a href="/" class="btn-primary px-6 py-3 text-base">Ana sayfa</a>
+      <a href="/araclar/" class="btn-outline px-6 py-3 text-base">AI Araçları</a>
+    </div>
+    <div class="mt-10 flex flex-wrap justify-center gap-2">
+      {KATEGORILER.map((k) => <a href={`/kategori/${k.slug}/`} class="chip">{k.ad}</a>)}
+    </div>
+  </section>
+</BaseLayout>

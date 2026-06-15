@@ -1,10 +1,10 @@
 {
   "ad": "Tidio",
   "kategori": "Müşteri desteği",
-  "fiyat": "Ücretsiz plan var; Starter $29/ay",
+  "fiyat": "Ücretsiz plan var; Starter $24,17/ay",
   "artilar": ["Kendi sitede hızlı kurulan chatbot", "Hazır yanıt akışları", "Ücretsiz başlanabilir"],
   "eksiler": ["Pazaryeri panellerine doğrudan bağlanmaz", "Türkçe dil desteği sınırlı"],
-  "officialUrl": "https://www.tidio.com",
+  "officialUrl": "https://www.tidio.com/",
   "affiliateUrl": null,
   "screenshot": null,
   "aciklama": "Kendi web siteniz için AI destekli canlı sohbet ve müşteri desteği aracı."

@@ -1,10 +1,10 @@
 {
   "ad": "Jasper",
   "kategori": "İçerik üretimi",
-  "fiyat": "$39/ay'dan (yıllık)",
+  "fiyat": "$59/ay; 7 gün ücretsiz deneme",
   "artilar": ["Güçlü marka sesi tanımlama", "Uzun içerikte tutarlılık", "Workflow ile toplu üretim"],
   "eksiler": ["Öğrenme eğrisi var", "Ücretli plan gerekli"],
-  "officialUrl": "https://www.jasper.ai",
+  "officialUrl": "https://www.jasper.ai/",
   "affiliateUrl": null,
   "screenshot": null,
   "aciklama": "E-ticaret ürün açıklamaları ve blog içeriği için yapay zeka yazım asistanı."

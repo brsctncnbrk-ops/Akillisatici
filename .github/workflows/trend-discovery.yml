@@ -1,7 +1,8 @@
 name: Trend Keşif Ajanı (Faz 2)
 
 # Zamanlanmış + elle tetiklenebilir. Otomatik YAYIN YAPMAZ: yalnızca taslak
-# üretip bir Pull Request açar. Birleştirme ve yayın kararı insandadır.
+# üretip drafts/'a commit eder ve Telegram bildirimi gönderir.
+# Onay: Telegram mesajındaki ✅ Yayınla butonuna basılınca Vercel webhook devralır.
 on:
   schedule:
     # Her Pazartesi 06:00 UTC
@@ -15,7 +16,6 @@ on:
 
 permissions:
   contents: write
-  pull-requests: write
 
 jobs:
   taslak-uret:
@@ -34,23 +34,39 @@ jobs:
       - name: Bağımlılıkları yükle
         run: npm ci
 
+      - name: Git kullanıcısını yapılandır
+        run: |
+          git config user.name "Satıcı Kutusu Bot"
+          git config user.email "bot@saticikutusu.com"
+
       - name: Taslak üret (Claude API)
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           DRAFT_COUNT: ${{ github.event.inputs.draft_count || '2' }}
         run: npm run agent:drafts
 
-      - name: Taslakları PR olarak aç
-        uses: peter-evans/create-pull-request@v6
-        with:
-          branch: trend-agent/drafts
-          title: 'İçerik: yeni taslaklar (trend ajanı)'
-          commit-message: 'chore(agent): yeni trend taslakları'
-          body: |
-            Trend keşif ajanı tarafından üretilen yeni yazı taslakları (`durumu: taslak`).
+      - name: Yeni taslakları belirle ve commit et
+        id: commit_drafts
+        run: |
+          git add drafts/
+          NEW=$(git diff --staged --name-only -- 'drafts/*.md' | grep -v 'README.md' || true)
+          if [ -z "$NEW" ]; then
+            echo "Yeni taslak yok — commit atlandı."
+            echo "has_drafts=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "Yeni taslaklar:"
+            echo "$NEW"
+            git commit -m "chore(agent): yeni trend taslakları [skip vercel]"
+            git push origin main
+            echo "has_drafts=true" >> "$GITHUB_OUTPUT"
+            # Boşlukla ayrılmış liste (notify-telegram.ts'e argüman olarak geçirilir)
+            FILES=$(echo "$NEW" | tr '\n' ' ' | sed 's/ $//')
+            echo "draft_files=$FILES" >> "$GITHUB_OUTPUT"
+          fi
 
-            **Yayın değildir.** İnceleyip düzenleyin, doğrulanmamış verileri (fiyat/komisyon = TBD)
-            teyit edin, ardından dosyayı `src/content/posts/`'a taşıyıp `durumu: yayinda` yapın.
-          add-paths: |
-            drafts/**
-          delete-branch: true
+      - name: Telegram bildirimi gönder
+        if: steps.commit_drafts.outputs.has_drafts == 'true'
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: npx tsx scripts/notify-telegram.ts ${{ steps.commit_drafts.outputs.draft_files }}
