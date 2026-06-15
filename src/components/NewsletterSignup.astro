@@ -2,9 +2,11 @@
 // Bülten kayıt bileşeni — çift onaylı (double opt-in).
 // E-posta, Google Apps Script web app uç noktasına gönderilir; oradan kullanıcıya
 // bir "doğrulama" maili çıkar ve adres ancak linke tıklanınca listeye "onaylandı" yazılır.
-// Uç nokta (PUBLIC_NEWSLETTER_ENDPOINT) tanımlı değilse form "yakında" durumunda pasif
-// kalır; böylece anahtar girilmeden üretim ortamı bozulmaz.
-const endpoint = import.meta.env.PUBLIC_NEWSLETTER_ENDPOINT;
+// Uç nokta önceliği: ortam değişkeni (PUBLIC_NEWSLETTER_ENDPOINT) > koda gömülü varsayılan.
+// URL gizli değildir (istemci tarafına render edilir), bu yüzden varsayılan olarak gömülebilir.
+const VARSAYILAN_ENDPOINT =
+  'https://script.google.com/macros/s/AKfycbwAfRp5xNv3_DMKvImyLx1KrtmMBEyIxWPyiFNh0fG1-KL2EyjvmY9KsHkHvm0nZJTE/exec';
+const endpoint = import.meta.env.PUBLIC_NEWSLETTER_ENDPOINT || VARSAYILAN_ENDPOINT;
 const aktif = Boolean(endpoint);
 ---
 
