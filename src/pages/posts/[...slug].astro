@@ -3,6 +3,7 @@ import { type CollectionEntry, render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import AdSlot from '../../components/AdSlot.astro';
 import PostCard from '../../components/PostCard.astro';
+import PostCover from '../../components/PostCover.astro';
 import { slugByKategori } from '../../lib/categories';
 import { getYayindaPosts } from '../../lib/content';
 import { getAuthorByName } from '../../data/authors';
@@ -39,12 +40,15 @@ const ilgili = tumPosts
 const site = Astro.site?.href.replace(/\/$/, '') ?? '';
 const canonical = `${site}/posts/${post.id}/`;
 
+// Kapak/OG görseli: frontmatter'da elle verilmişse o, yoksa otomatik üretilen kart.
+const kapakUrl = data.kapakGorsel ?? `/og/${post.id}.png`;
+
 // JSON-LD: Article + BreadcrumbList (yazar Person'ı authors tek kaynağıyla birebir tutarlı).
 const articleLd = {
   '@type': 'Article',
   headline: data.baslik,
   description: data.seoAciklama ?? data.ozet,
-  image: `${site}${data.kapakGorsel ?? VARSAYILAN_OG_GORSEL}`,
+  image: `${site}${kapakUrl}`,
   datePublished: data.tarih.toISOString(),
   dateModified: (data.guncellenme ?? data.tarih).toISOString(),
   mainEntityOfPage: { '@type': 'WebPage', '@id': canonical },
@@ -58,6 +62,12 @@ const articleLd = {
     '@type': 'Organization',
     name: MARKA_ADI,
     url: site || undefined,
+    logo: {
+      '@type': 'ImageObject',
+      url: `${site}${VARSAYILAN_OG_GORSEL}`,
+      width: 1200,
+      height: 630,
+    },
   },
   keywords: data.anahtarKelime,
 };
@@ -86,8 +96,19 @@ const jsonLd = { '@context': 'https://schema.org', '@graph': [articleLd, breadcr
 <BaseLayout
   title={data.seoBaslik ?? data.baslik}
   description={data.seoAciklama ?? data.ozet}
-  image={data.kapakGorsel}
+  image={kapakUrl}
+  imageAlt={data.baslik}
   article={true}
+  articleMeta={{
+    publishedTime: data.tarih.toISOString(),
+    modifiedTime: (data.guncellenme ?? data.tarih).toISOString(),
+    author: yazar.name,
+    section: data.kategori,
+    tags: data.anahtarKelime
+      ?.split(',')
+      .map((k) => k.trim())
+      .filter(Boolean),
+  }}
   jsonLd={jsonLd}
 >
   <article class="mx-auto max-w-3xl">
@@ -105,6 +126,8 @@ const jsonLd = { '@context': 'https://schema.org', '@graph': [articleLd, breadcr
         )
       }
     </nav>
+
+    <PostCover kategori={data.kategori} class="mb-8 aspect-[16/6] rounded-2xl" />
 
     <header class="mb-8">
       {
