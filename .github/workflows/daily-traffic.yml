@@ -4,8 +4,10 @@ name: Günlük Trafik Raporu
 # Sadece okuma yapar; siteye/depoya yazmaz. Elle de tetiklenebilir.
 on:
   schedule:
-    # Her gün 04:00 UTC = 07:00 Türkiye saati (dün verisi tamamlanmış olur)
-    - cron: '0 4 * * *'
+    # Her gün ~04:19 UTC = ~07:19 Türkiye saati (dün verisi tamamlanmış olur).
+    # NOT: Saat başı cron'lar (0 4) GitHub'ın yoğun yük anına denk geldiği için
+    # sık sık gecikir ya da tamamen atlanır; saat başından kaçınmak güvenilirliği artırır.
+    - cron: '19 4 * * *'
   workflow_dispatch:
 
 permissions:
