@@ -36,6 +36,9 @@
   `/clear`/logout sırasında commit edilmemiş değişiklik varsa otomatik "wip" güvenlik commit'i
   atar (push yok, özet yazmaz; yalnızca veri kaybını önler). Yeni `.claude/` olduğundan ilk sefer
   `/hooks` açıp yeniden yüklemek/yeniden başlatmak gerekebilir.
+- **SessionStart hook (web):** `.claude/hooks/session-start.sh` → uzak oturum başında `npm install`
+  (yalnızca `CLAUDE_CODE_REMOTE=true`). Böylece build/lint/test ilk komutta çalışır ("astro: not
+  found" sorununu çözer). Senkron çalışır; main'de olduğu için sonraki tüm web oturumları kullanır.
 
 ### Sırada / Kullanıcı aksiyonu
 1. Pinterest: panoları aç + ilk pinler (`/pin/<slug>.png` + kit §4 metinleri). En kolayı yazı altı buton.
