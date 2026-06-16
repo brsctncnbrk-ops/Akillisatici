@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "hooks": {
+    "SessionEnd": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash scripts/handoff-guard.sh",
+            "timeout": 30,
+            "statusMessage": "Oturum kapanışı güvenlik kontrolü…"
+          }
+        ]
+      }
+    ]
+  }
+}
