@@ -6,6 +6,30 @@
 
 ---
 
+## Oturum: 2026-06-16 — Faz 4 (Dönüşüm: lead magnet + ESP planı)
+
+### Yapıldı
+- **Lead magnet (E11):** Gerçek, yazdırılabilir "AI Araç Seçim Kontrol Listesi" (6 adımlık karar
+  çerçevesi — uydurma veri yok) → `src/pages/kaynaklar/ai-arac-secim-kontrol-listesi.astro`
+  (yazdır/PDF düğmesi, interaktif checkbox'lar). `/kaynaklar` ücretsiz kaynaklar hub'ı (genişletilebilir).
+- **NewsletterSignup lead-magnet modu:** opsiyonel props (`baslik`, `aciklama`, `cta`, `leadMagnetUrl`,
+  `leadMagnetLabel`, `source`). `leadMagnetUrl` verilince "Ücretsiz kaynak" rozeti + kayıt başarısında
+  anında erişim düğmesi. `source` artık forma data-attribute olarak geçiyor (analitik ayrımı). Props
+  verilmezse mevcut genel bülten davranışı korunur (geriye uyumlu).
+- **Navigasyon:** Header (masaüstü + mobil) ve Footer'a "Kaynaklar" linki.
+- **ESP planı (E13):** `docs/ESP_PLAN.md` — neden geçiş, seçenek tablosu (öneri **Brevo**), welcome
+  serisi taslağı (4 e-posta), teknik entegrasyon adımları (Tercih A: Brevo formu / B: serverless
+  route + `BREVO_API_KEY`), İYS notu. Kod hazır: `NewsletterSignup` uç noktayı `PUBLIC_NEWSLETTER_ENDPOINT`'ten okur.
+- Kalite kapısı yeşil: **build 54 (+2) · lint 0/0 · test 27/27.** Render doğrulandı.
+
+### Sırada / Kullanıcı aksiyonu
+1. **ESP kararı (`docs/ESP_PLAN.md` §5):** ESP seçimi (Brevo öneri), gönderen alan adı, entegrasyon
+   tercihi → karar verilince entegrasyon + welcome serisi uygulanır.
+2. **Faz 5** (son): E-E-A-T ince ayar — yazar foto/sosyal alanları, "yazar kadromuz" → tekil dil,
+   yazar arşiv sayfası, dateModified stratejisi (`docs/AUDIT_PLAN.md` §Faz 5).
+
+---
+
 ## Oturum: 2026-06-16 — Faz 3 (İçerik kanıtı: tablolar + ekran görüntüsü akışı + iç linkleme)
 
 ### Yapıldı
