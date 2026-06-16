@@ -66,15 +66,27 @@
     }
   }
 
+  // Sabit (fixed) bant, sayfanın son içeriğini örtmesin diye gövdeye bant yüksekliği kadar
+  // alt boşluk ekle; böylece içerik bandın üstüne kaydırılabilir. Bant gizlenince boşluk kalkar.
+  function altBoslukAyarla(goster: boolean): void {
+    document.body.style.paddingBottom = goster && bant ? `${bant.offsetHeight}px` : '';
+  }
+
   // Tercih yoksa bandı göster (varsayılan gizli → flash olmaz).
   if (bant && !tercihOku()) {
     bant.hidden = false;
+    altBoslukAyarla(true);
+    // Ekran döndürme/yeniden boyutlandırmada boşluğu güncelle.
+    window.addEventListener('resize', () => {
+      if (!bant.hidden) altBoslukAyarla(true);
+    });
   }
 
   bant?.querySelectorAll<HTMLButtonElement>('[data-cerez-karar]').forEach((btn) => {
     btn.addEventListener('click', () => {
       tercihYaz(btn.dataset.cerezKarar === 'kabul' ? 'kabul' : 'red');
       if (bant) bant.hidden = true;
+      altBoslukAyarla(false);
     });
   });
 </script>
