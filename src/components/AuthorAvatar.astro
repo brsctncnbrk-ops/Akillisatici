@@ -1,0 +1,32 @@
+---
+// Yazar avatarı: gerçek foto tanımlıysa görseli, değilse baş harf rozetini gösterir.
+// Tek kaynak → post yazar kutusu, Hakkında ve yazar arşiv sayfası tutarlı kalır.
+interface Props {
+  name: string;
+  foto?: string;
+  /** Tailwind boyut sınıfları (ör. "h-12 w-12"). */
+  boyut?: string;
+  /** Baş harf rozeti için metin boyutu sınıfı. */
+  metin?: string;
+}
+
+const { name, foto, boyut = 'h-12 w-12', metin = 'text-lg' } = Astro.props;
+---
+
+{
+  foto ? (
+    <img
+      src={foto}
+      alt={`${name} profil fotoğrafı`}
+      loading="lazy"
+      class={`${boyut} shrink-0 rounded-full object-cover`}
+    />
+  ) : (
+    <div
+      class={`${boyut} flex shrink-0 items-center justify-center rounded-full bg-brand/10 font-display ${metin} font-bold text-brand-dark`}
+      aria-hidden="true"
+    >
+      {name.charAt(0)}
+    </div>
+  )
+}

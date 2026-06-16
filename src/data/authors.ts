@@ -15,8 +15,12 @@ export interface Author {
   tamBio: string[];
   /** İletişim e-postası. */
   email: string;
-  /** Yazarın "Hakkında" sayfasındaki bölümüne giden yol. */
+  /** Yazarın profil/arşiv sayfasına giden yol. */
   hakkindaYolu: string;
+  /** Yazar fotoğrafı yolu (public altında, ör. /authors/baris-cetin.jpg). Boşsa baş harf avatarı kullanılır. */
+  foto?: string;
+  /** Yazarın doğrulanabilir sosyal/profesyonel profilleri (E-E-A-T sameAs). Boşsa render edilmez. */
+  sosyal?: { ad: string; url: string }[];
 }
 
 export const YAZARLAR: Record<string, Author> = {
@@ -32,7 +36,10 @@ export const YAZARLAR: Record<string, Author> = {
       "Satıcı Kutusu’nu, Türkiye’deki online satıcıların yapay zeka araçlarına güvenilir, bağımsız ve Türkiye pazarına özel bir kaynaktan ulaşabilmesi için kurdu. Sitedeki hiçbir bilgi doğrulanmadan yayımlanmaz; araç incelemeleri bizzat test ve karşılaştırmaya dayalıdır.",
     ],
     email: 'info@saticikutusu.com',
-    hakkindaYolu: '/hakkinda/',
+    hakkindaYolu: '/yazar/baris-cetin/',
+    // Gerçek foto/sosyal eklenince doldurulur; boşken baş harf avatarı + foto/sosyal bölümü gizli.
+    foto: '',
+    sosyal: [],
   },
 };
 

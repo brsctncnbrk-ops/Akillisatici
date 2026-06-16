@@ -55,6 +55,14 @@ Yazılar `.md` olduğundan görseller standart Markdown ile eklenir:
 - Yeni yazı eklerken: ilgili 1–2 kardeş yazıya gövde içinde bağlam linki ver; araç adı geçtiğinde
   `/araclar/<slug>/` detay sayfasına link ver.
 
+## 4b. Güncelleme tarihi (dateModified) stratejisi
+
+- Yeni yazıda `guncellenme` alanı **boş bırakılır** → byline'da "Güncellendi" görünmez ve
+  `dateModified` yayın tarihine eşit kalır. Toplu sahte güncelleme tarihi GİRİLMEZ.
+- Bir yazıyı **gerçekten** elden geçirdiğinde (fiyat teyidi, yeni araç, düzeltme) `guncellenme`
+  alanını o günün tarihine ayarla → byline'da "Güncellendi" + JSON-LD `dateModified` otomatik güncellenir.
+- Böylece "güncellendi" sinyali dürüst kalır; arama motorlarına gerçek tazelik bilgisi verilir.
+
 ## 5. Kontrol listesi (her inceleme yayını öncesi)
 
 - [ ] Tabloda `—` yok; `Test edilmedi` / `Doğrulanmadı` etiketleri ve "Tablo notu" var.

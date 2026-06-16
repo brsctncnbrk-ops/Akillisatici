@@ -6,6 +6,30 @@
 
 ---
 
+## Oturum: 2026-06-16 — Faz 5 (E-E-A-T ince ayar) — DENETİM PLANI TAMAMLANDI
+
+### Yapıldı
+- **Yazar şeması:** `Author`'a opsiyonel `foto` + `sosyal[]` eklendi (boşken baş harf avatarı; uydurma yok).
+- **`AuthorAvatar.astro`:** foto varsa görsel, yoksa baş harf — tek kaynak (post kutusu, Hakkında, yazar sayfası).
+- **Yazar arşiv sayfası `/yazar/[id]`:** biyografi, sosyal (varsa), imzalı yazılar (22), Person/ProfilePage
+  + `sameAs` JSON-LD. `hakkindaYolu` artık `/yazar/baris-cetin/`.
+- **Linkleme:** post byline adı + Hakkında "tüm yazılar →" yazar sayfasına gider. "yazar kadromuz" → tekil dil.
+- **dateModified stratejisi:** `docs/CONTENT_EVIDENCE.md §4b` — sahte güncelleme tarihi yok; yalnızca
+  gerçek revizyonda `guncellenme` ayarlanır (byline "Güncellendi" + JSON-LD dateModified otomatik).
+- Kalite kapısı yeşil: **build 55 (+1) · lint 0/0 · test 27/27.** Render doğrulandı (yazar sayfası, byline, schema).
+- **ESP kararı:** kullanıcı **şimdilik Google Sheets**'i seçti; welcome serisi/ESP ileriye bırakıldı (`docs/ESP_PLAN.md`).
+
+### Denetim planı durumu — TAMAMLANDI ✓ (`docs/AUDIT_PLAN.md`)
+5 fazın tamamı uygulandı. Kalan her şey kullanıcı verisine bağlı (uydurulamaz): işletme kimliği/sosyal/İYS,
+araç puanları, ekran görüntüleri, yazar foto/sosyal. Altyapı hazır → veri girilince otomatik devreye girer.
+
+### Sırada / Kullanıcı aksiyonu
+1. (Opsiyonel) Yazar fotoğrafı `public/authors/baris-cetin.jpg` + `authors.ts` `foto`; sosyal profiller `sosyal[]`.
+2. (Opsiyonel) Gerçek araç puanları, ekran görüntüleri, işletme kimliği — ilgili dosyalara girilince otomatik görünür.
+3. Branş `claude/review-site-audit-plan-wp26jp` → main'e merge (kullanıcı onayı/PR ile).
+
+---
+
 ## Oturum: 2026-06-16 — Faz 4 (Dönüşüm: lead magnet + ESP planı)
 
 ### Yapıldı

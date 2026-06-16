@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import AuthorAvatar from '../components/AuthorAvatar.astro';
 import { MARKA_ADI } from '../data/site';
 import { VARSAYILAN_YAZAR } from '../data/authors';
 
@@ -25,7 +26,7 @@ const jsonLd = {
 
 <BaseLayout
   title={`Hakkında — ${markaAdi}`}
-  description="Online satıcılar için yapay zeka araçları yayınımız hakkında ve yazar kadromuz."
+  description="Online satıcılar için yapay zeka araçları yayınımız ve yazarı hakkında."
   jsonLd={jsonLd}
 >
   <h1 class="font-display text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">Hakkında</h1>
@@ -47,18 +48,16 @@ const jsonLd = {
 
     <h2>Yazar</h2>
     <div class="mt-2 flex items-center gap-3 not-prose">
-      <div
-        class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-brand/10 font-display text-lg font-bold text-brand-dark"
-        aria-hidden="true"
-      >
-        {yazar.name.charAt(0)}
-      </div>
+      <AuthorAvatar name={yazar.name} foto={yazar.foto} />
       <div>
         <h3 class="text-xl font-semibold text-ink">{yazar.name}</h3>
         <p class="text-sm text-slate-500">{yazar.rol}</p>
       </div>
     </div>
     {yazar.tamBio.map((p) => <p>{p}</p>)}
+    <p>
+      <a href={yazar.hakkindaYolu}>{yazar.name} imzalı tüm yazılar →</a>
+    </p>
 
     <h2>İletişim</h2>
     <p>
