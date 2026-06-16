@@ -11,17 +11,17 @@ export interface KapakRenk {
   to: string;
 }
 
-// Kategoriye göre palet; ink (#0f172a) zemine doğru koyulaşan degrade + vurgu.
+// Kategoriye göre palet; canlı renk → koyu ton (siyaha gitmiyor → thumbnail'de ayırt edilebilir).
 const RENKLER: Record<string, KapakRenk> = {
-  'İçerik üretimi': { accent: '#60a5fa', from: '#1e3a8a', to: '#0f172a' },
-  'Ürün görseli': { accent: '#c084fc', from: '#5b21b6', to: '#0f172a' },
-  'Müşteri desteği': { accent: '#34d399', from: '#065f46', to: '#0f172a' },
-  'SEO & reklam': { accent: '#fb923c', from: '#9a3412', to: '#0f172a' },
-  'Stok & operasyon': { accent: '#22d3ee', from: '#155e75', to: '#0f172a' },
+  'İçerik üretimi': { accent: '#93c5fd', from: '#1d4ed8', to: '#1e3a8a' },
+  'Ürün görseli': { accent: '#c4b5fd', from: '#6d28d9', to: '#3b0764' },
+  'Müşteri desteği': { accent: '#6ee7b7', from: '#059669', to: '#064e3b' },
+  'SEO & reklam': { accent: '#fdba74', from: '#ea580c', to: '#7c2d12' },
+  'Stok & operasyon': { accent: '#67e8f9', from: '#0891b2', to: '#164e63' },
 };
 
-// Kategori eşleşmezse marka turuncusuyla nötr degrade.
-const VARSAYILAN: KapakRenk = { accent: '#fb923c', from: '#1e293b', to: '#0f172a' };
+// Kategori eşleşmezse marka turuncusuyla canlı degrade.
+const VARSAYILAN: KapakRenk = { accent: '#fdba74', from: '#ea580c', to: '#7c2d12' };
 
 export function kapakRenk(kategori: string): KapakRenk {
   return RENKLER[kategori] ?? VARSAYILAN;
