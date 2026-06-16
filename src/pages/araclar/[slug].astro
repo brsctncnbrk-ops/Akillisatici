@@ -1,0 +1,334 @@
+---
+import { type CollectionEntry } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ToolLink from '../../components/ToolLink.astro';
+import PostCard from '../../components/PostCard.astro';
+import AffiliateDisclosure from '../../components/AffiliateDisclosure.astro';
+import { getTools, getYayindaPosts } from '../../lib/content';
+import { MARKA_ADI, VARSAYILAN_OG_GORSEL } from '../../data/site';
+
+export async function getStaticPaths() {
+  const tools = await getTools();
+  return tools.map((tool) => ({ params: { slug: tool.id }, props: { tool } }));
+}
+
+interface Props {
+  tool: CollectionEntry<'tools'>;
+}
+
+const { tool } = Astro.props;
+const d = tool.data;
+
+// Bu aracı inceleyen yayında yazılar (çapraz linkleme).
+const tumPosts = await getYayindaPosts();
+const ilgiliYazilar = tumPosts.filter((p) => p.data.incelenenAraclar.includes(tool.id));
+
+// Alternatif araçlar: önce frontmatter'da elle verilenler; verilmemişse aynı kategoriden
+// diğer araçlara düş (uydurma değil, yalnızca site yapısı). Kendisi hariç, en fazla 3.
+const tumTools = await getTools();
+const elleAlternatifler = d.alternatifler
+  .map((id) => tumTools.find((t) => t.id === id))
+  .filter((t): t is (typeof tumTools)[number] => Boolean(t) && t!.id !== tool.id);
+const alternatifler = (
+  elleAlternatifler.length > 0
+    ? elleAlternatifler
+    : tumTools.filter((t) => t.id !== tool.id && t.data.kategori === d.kategori)
+).slice(0, 3);
+
+const site = Astro.site?.href.replace(/\/$/, '') ?? '';
+const canonical = `${site}/araclar/${tool.id}/`;
+
+// Yıldız gösterimi için tam/yarım/boş dağılımı (puan 0–5).
+const puan = d.puan;
+const tamYildiz = puan != null ? Math.floor(puan) : 0;
+const yarimYildiz = puan != null && puan - tamYildiz >= 0.5;
+
+// --- JSON-LD: Product (+ varsa editöryel Review) + Breadcrumb (+ varsa FAQPage) ---
+const productLd: Record<string, unknown> = {
+  '@type': 'Product',
+  name: d.ad,
+  category: d.kategori,
+  ...(d.aciklama ? { description: d.aciklama } : {}),
+  ...(d.officialUrl ? { url: d.officialUrl } : {}),
+};
+
+// Puan yalnızca gerçek editöryel değerlendirme varken eklenir (uydurma yok).
+if (puan != null) {
+  productLd.review = {
+    '@type': 'Review',
+    reviewRating: { '@type': 'Rating', ratingValue: puan, bestRating: 5, worstRating: 0 },
+    author: { '@type': 'Organization', name: MARKA_ADI, url: site || undefined },
+    ...(d.degerlendirme ? { reviewBody: d.degerlendirme } : {}),
+  };
+}
+
+const breadcrumbLd = {
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Ana sayfa', item: `${site}/` },
+    { '@type': 'ListItem', position: 2, name: 'AI Araçları', item: `${site}/araclar/` },
+    { '@type': 'ListItem', position: 3, name: d.ad, item: canonical },
+  ],
+};
+
+const faqLd =
+  d.sss.length > 0
+    ? {
+        '@type': 'FAQPage',
+        mainEntity: d.sss.map((s) => ({
+          '@type': 'Question',
+          name: s.soru,
+          acceptedAnswer: { '@type': 'Answer', text: s.cevap },
+        })),
+      }
+    : null;
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [productLd, breadcrumbLd, ...(faqLd ? [faqLd] : [])],
+};
+
+const ogImage = d.ogImage ?? VARSAYILAN_OG_GORSEL;
+---
+
+<BaseLayout
+  title={`${d.ad} İncelemesi — Online satıcılar için · ${MARKA_ADI}`}
+  description={d.aciklama ??
+    `${d.ad}: artıları, eksileri, fiyatı ve kimler için uygun olduğu. Online satıcılar için bağımsız değerlendirme.`}
+  image={ogImage}
+  imageAlt={d.ad}
+  jsonLd={jsonLd}
+>
+  <article class="mx-auto max-w-3xl">
+    <nav class="mb-4 flex items-center gap-1.5 text-xs text-slate-400" aria-label="Breadcrumb">
+      <a class="transition hover:text-brand" href="/">Ana sayfa</a>
+      <span aria-hidden="true">/</span>
+      <a class="transition hover:text-brand" href="/araclar/">AI Araçları</a>
+      <span aria-hidden="true">/</span>
+      <span class="text-slate-500">{d.ad}</span>
+    </nav>
+
+    <header class="mb-8">
+      <div class="flex flex-wrap items-center gap-2">
+        <span
+          class="inline-flex rounded-full bg-brand/10 px-3 py-1 text-xs font-semibold text-brand-dark"
+        >
+          {d.kategori}
+        </span>
+        {
+          d.fiyat && (
+            <span class="inline-flex rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700">
+              {d.fiyat}
+            </span>
+          )
+        }
+      </div>
+      <h1
+        class="mt-3 font-display text-3xl font-extrabold leading-tight tracking-tight text-ink sm:text-4xl"
+      >
+        {d.ad} incelemesi
+      </h1>
+      {d.aciklama && <p class="mt-4 text-lg leading-8 text-slate-600">{d.aciklama}</p>}
+
+      {
+        puan != null && (
+          <div class="mt-5 flex items-center gap-3">
+            <div class="flex text-xl text-amber-400" role="img" aria-label={`5 üzerinden ${puan}`}>
+              {Array.from({ length: 5 }).map((_, i) => (
+                <span aria-hidden="true">
+                  {i < tamYildiz ? '★' : i === tamYildiz && yarimYildiz ? '⯨' : '☆'}
+                </span>
+              ))}
+            </div>
+            <span class="text-sm font-semibold text-ink">{puan.toFixed(1)} / 5</span>
+            <a class="text-xs text-slate-500 underline hover:text-brand" href="/metodoloji/">
+              nasıl puanlıyoruz?
+            </a>
+          </div>
+        )
+      }
+      {
+        d.sonGuncelleme && (
+          <p class="mt-2 text-xs text-slate-400">
+            İnceleme güncellendi: {d.sonGuncelleme.toLocaleDateString('tr-TR')}
+          </p>
+        )
+      }
+    </header>
+
+    <!-- Birincil CTA -->
+    <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+      <ToolLink
+        officialUrl={d.officialUrl}
+        affiliateUrl={d.affiliateUrl}
+        label={`${d.ad} sitesine git`}
+      />
+      {d.affiliateUrl && <AffiliateDisclosure />}
+    </div>
+
+    {
+      d.degerlendirme && (
+        <div class="icerik mt-8">
+          <h2>Değerlendirmemiz</h2>
+          <p>{d.degerlendirme}</p>
+        </div>
+      )
+    }
+
+    <!-- Artılar / Eksiler -->
+    {
+      (d.artilar.length > 0 || d.eksiler.length > 0) && (
+        <div class="mt-8 grid gap-4 sm:grid-cols-2">
+          {d.artilar.length > 0 && (
+            <div class="rounded-2xl border border-emerald-100 bg-emerald-50/50 p-5">
+              <h2 class="text-sm font-semibold text-emerald-700">✓ Artılar</h2>
+              <ul class="mt-2 space-y-1.5 text-sm text-slate-700">
+                {d.artilar.map((a) => (
+                  <li class="flex gap-2">
+                    <span class="text-emerald-500" aria-hidden="true">
+                      •
+                    </span>
+                    {a}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+          {d.eksiler.length > 0 && (
+            <div class="rounded-2xl border border-rose-100 bg-rose-50/50 p-5">
+              <h2 class="text-sm font-semibold text-rose-600">✕ Eksiler</h2>
+              <ul class="mt-2 space-y-1.5 text-sm text-slate-700">
+                {d.eksiler.map((e) => (
+                  <li class="flex gap-2">
+                    <span class="text-rose-400" aria-hidden="true">
+                      •
+                    </span>
+                    {e}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </div>
+      )
+    }
+
+    <!-- Kriter bazlı puanlar -->
+    {
+      d.puanlamaKriterleri.length > 0 && (
+        <div class="mt-8">
+          <h2 class="font-display text-xl font-bold tracking-tight text-ink">Kriter puanları</h2>
+          <div class="mt-3 space-y-3">
+            {d.puanlamaKriterleri.map((k) => (
+              <div>
+                <div class="flex items-center justify-between text-sm">
+                  <span class="font-medium text-slate-700">{k.ad}</span>
+                  <span class="font-semibold text-ink">{k.puan.toFixed(1)}</span>
+                </div>
+                <div class="mt-1 h-2 overflow-hidden rounded-full bg-slate-100">
+                  <div class="h-full rounded-full bg-brand" style={`width:${(k.puan / 5) * 100}%`} />
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )
+    }
+
+    <!-- Kimler için -->
+    {
+      d.kimlerIcin && (
+        <div class="icerik mt-8">
+          <h2>Kimler için uygun?</h2>
+          <p>{d.kimlerIcin}</p>
+        </div>
+      )
+    }
+
+    <!-- SSS -->
+    {
+      d.sss.length > 0 && (
+        <section class="mt-10" aria-labelledby="arac-sss">
+          <h2 id="arac-sss" class="font-display text-xl font-bold tracking-tight text-ink">
+            Sık sorulan sorular
+          </h2>
+          <div class="mt-3 divide-y divide-slate-200 rounded-2xl border border-slate-200">
+            {d.sss.map((s) => (
+              <details class="group p-5 [&_summary::-webkit-details-marker]:hidden">
+                <summary class="flex cursor-pointer items-center justify-between gap-3 font-semibold text-ink">
+                  {s.soru}
+                  <span class="shrink-0 text-brand transition group-open:rotate-45" aria-hidden="true">
+                    +
+                  </span>
+                </summary>
+                <p class="mt-3 text-sm leading-7 text-slate-600">{s.cevap}</p>
+              </details>
+            ))}
+          </div>
+        </section>
+      )
+    }
+
+    <!-- İkincil CTA -->
+    <div class="mt-10 rounded-2xl border border-slate-200 bg-slate-50 p-5">
+      <p class="mb-3 text-sm text-slate-600">{d.ad}’i denemeye hazır mısınız?</p>
+      <ToolLink
+        officialUrl={d.officialUrl}
+        affiliateUrl={d.affiliateUrl}
+        label={`${d.ad} sitesine git`}
+      />
+    </div>
+  </article>
+
+  <!-- Alternatifler -->
+  {
+    alternatifler.length > 0 && (
+      <section class="mx-auto mt-14 max-w-3xl">
+        <h2 class="mb-4 flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-slate-500">
+          <span class="h-1.5 w-1.5 rounded-full bg-brand" /> {d.ad} alternatifleri
+        </h2>
+        <div class="grid gap-4 sm:grid-cols-2">
+          {alternatifler.map((t) => (
+            <a
+              href={`/araclar/${t.id}/`}
+              class="card flex flex-col justify-between p-5 transition hover:border-brand/40"
+            >
+              <div>
+                <div class="flex items-start justify-between gap-3">
+                  <h3 class="text-lg font-bold tracking-tight text-ink">{t.data.ad}</h3>
+                  {t.data.fiyat && (
+                    <span class="shrink-0 rounded-full bg-slate-100 px-2.5 py-1 text-xs font-semibold text-slate-700">
+                      {t.data.fiyat}
+                    </span>
+                  )}
+                </div>
+                {t.data.aciklama && (
+                  <p class="mt-2 text-sm leading-6 text-slate-600">{t.data.aciklama}</p>
+                )}
+              </div>
+              <span class="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-brand-dark">
+                İncele <span aria-hidden="true">→</span>
+              </span>
+            </a>
+          ))}
+        </div>
+      </section>
+    )
+  }
+
+  <!-- Bu aracı inceleyen yazılar -->
+  {
+    ilgiliYazilar.length > 0 && (
+      <section class="mx-auto mt-14 max-w-3xl">
+        <h2 class="mb-4 flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-slate-500">
+          <span class="h-1.5 w-1.5 rounded-full bg-brand" /> {d.ad} hakkında yazılarımız
+        </h2>
+        <div class="grid gap-5 sm:grid-cols-2">
+          {ilgiliYazilar.slice(0, 4).map((p) => (
+            <PostCard post={p} />
+          ))}
+        </div>
+      </section>
+    )
+  }
+</BaseLayout>

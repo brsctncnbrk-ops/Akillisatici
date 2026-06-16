@@ -5,7 +5,6 @@ import AdSlot from '../../components/AdSlot.astro';
 import PostCard from '../../components/PostCard.astro';
 import PostCover from '../../components/PostCover.astro';
 import ShareButtons from '../../components/ShareButtons.astro';
-import ToolLink from '../../components/ToolLink.astro';
 import { slugByKategori } from '../../lib/categories';
 import { getYayindaPosts, getTools } from '../../lib/content';
 import { getAuthorByName } from '../../data/authors';
@@ -269,11 +268,10 @@ const jsonLd = {
                 )}
               </div>
               <div class="mt-4 border-t border-slate-100 pt-3">
-                <ToolLink
-                  officialUrl={tool.data.officialUrl}
-                  affiliateUrl={tool.data.affiliateUrl}
-                  label={`${tool.data.ad}’i incele`}
-                />
+                <a href={`/araclar/${tool.id}/`} class="btn-primary w-full">
+                  {tool.data.ad}’i incele
+                  <span aria-hidden="true">→</span>
+                </a>
               </div>
             </article>
           ))}

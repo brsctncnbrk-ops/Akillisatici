@@ -6,6 +6,35 @@
 
 ---
 
+## Oturum: 2026-06-16 — Faz 2 (Araç detay sayfaları + Review schema + dizin arama/sıralama)
+
+### Yapıldı
+- **Şema (`content.config.ts` tools):** opsiyonel alanlar eklendi — `puan` (0–5, null), `puanlamaKriterleri[]`,
+  `degerlendirme`, `kimlerIcin`, `alternatifler[]` (tool id), `sss[]`, `sonGuncelleme`. Hepsi boşken
+  render EDİLMEZ; mevcut 15 araç sorunsuz build olur. **Puan uydurulmaz** (CLAUDE.md #6).
+- **Araç detay sayfası `src/pages/araclar/[slug].astro`:** breadcrumb, kategori/fiyat, varsa yıldız
+  puan + "nasıl puanlıyoruz" (→ /metodoloji), değerlendirme, artı/eksi kutuları, kriter çubukları,
+  "kimler için", araca özel SSS, alternatifler, "bu aracı inceleyen yazılar", çift CTA + affiliate ifşa.
+  - JSON-LD: **Product** (+ puan varsa editöryel **Review**) + **BreadcrumbList** (+ SSS varsa FAQPage).
+  - Alternatifler: elle verilmezse aynı kategoriden otomatik 3 araç (iç linkleme; uydurma değil).
+- **İç yönlendirme:** `ToolCard`, araçlar dizini ve yazı içi "incelenen araçlar" kutuları artık dış
+  affiliate yerine **iç detay sayfasına** gider. Affiliate linkleri detay sayfasında toplandı.
+  (`ToolLink` importu yazı sayfasından kaldırıldı; lib hâlâ detay sayfasında kullanılıyor.)
+- **Dizin (`araclar.astro`):** istemci tarafı **arama** + **sıralama** (önerilen / ad A-Z / puan
+  yüksek-düşük) + sonuç sayacı + boş durum. Kategori filtresi korundu. ItemList Product url'leri iç
+  detay sayfasına işaret ediyor.
+- ToolCard: başlık + "incele" düğmesi detaya gider; varsa yıldız puan rozeti.
+- Kalite kapısı yeşil: **build 52 (+15 araç detay) · lint 0/0 · test 27/27.**
+
+### Sırada / Kullanıcı aksiyonu
+1. **Gerçek puan/değerlendirme:** araç JSON'larına (`src/content/tools/*.json`) test sonucuna dayalı
+   `puan`, `degerlendirme`, `kimlerIcin`, `sss`, `alternatifler` eklenince yıldız + Review snippet
+   otomatik çıkar. Uydurma yasak — gerçek testten gelmeli.
+2. **Faz 3** (onay bekliyor): içerik kanıtı — tablo "—" boşlukları, ekran görüntüsü (`screenshot`)
+   render akışı, pillar/cluster iç linkleme (`docs/AUDIT_PLAN.md` §Faz 3).
+
+---
+
 ## Oturum: 2026-06-16 — Site denetimi planı + Faz 1 (Güven & yasal)
 
 ### Yapıldı

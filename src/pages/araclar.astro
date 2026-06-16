@@ -5,8 +5,16 @@ import { KATEGORILER } from '../lib/categories';
 import { getTools } from '../lib/content';
 
 const tools = await getTools();
+const site = Astro.site?.href.replace(/\/$/, '') ?? '';
 
-// ItemList şeması; her araç için Product (fiyat serbest metin/null olduğundan offer EKLENMEZ).
+// Her kart için aranabilir metin (ad + kategori + açıklama + artılar), Türkçe küçük harf.
+function aramaMetni(t: (typeof tools)[number]): string {
+  return [t.data.ad, t.data.kategori, t.data.aciklama ?? '', t.data.artilar.join(' ')]
+    .join(' ')
+    .toLocaleLowerCase('tr');
+}
+
+// ItemList şeması; her araç için Product. URL artık site içi detay sayfasına işaret eder.
 const itemListLd = {
   '@context': 'https://schema.org',
   '@type': 'ItemList',
@@ -19,7 +27,7 @@ const itemListLd = {
       name: tool.data.ad,
       category: tool.data.kategori,
       ...(tool.data.aciklama ? { description: tool.data.aciklama } : {}),
-      ...(tool.data.officialUrl ? { url: tool.data.officialUrl } : {}),
+      url: `${site}/araclar/${tool.id}/`,
     },
   })),
 };
@@ -27,7 +35,7 @@ const itemListLd = {
 
 <BaseLayout
   title="AI Araçları Dizini — Online satıcılar için"
-  description="Online satıcılar için yapay zeka araçlarının filtrelenebilir dizini: kategori, fiyat, artılar ve eksiler."
+  description="Online satıcılar için yapay zeka araçlarının aranabilir dizini: kategori, fiyat, artılar ve eksiler. Ada veya puana göre sırala."
   jsonLd={itemListLd}
 >
   <header class="mb-8 max-w-2xl">
@@ -35,44 +43,151 @@ const itemListLd = {
       AI Araçları Dizini
     </h1>
     <p class="mt-3 text-lg leading-8 text-slate-600">
-      Online satıcılar için yapay zeka araçları. Kategoriye göre filtreleyin; her araç için
-      artılar, eksiler ve fiyat bir bakışta.
+      Online satıcılar için yapay zeka araçları. Arayın, kategoriye göre süzün veya sıralayın; her
+      araç için artılar, eksiler ve fiyat bir bakışta.
     </p>
   </header>
 
+  <!-- Arama + sıralama -->
+  <div class="mb-5 flex flex-col gap-3 sm:flex-row">
+    <div class="relative flex-1">
+      <label class="sr-only" for="arac-ara">Araçlarda ara</label>
+      <svg
+        class="pointer-events-none absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-slate-400"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        aria-hidden="true"
+      >
+        <circle cx="11" cy="11" r="7"></circle>
+        <path stroke-linecap="round" d="m21 21-4.3-4.3"></path>
+      </svg>
+      <input
+        id="arac-ara"
+        type="search"
+        autocomplete="off"
+        placeholder="Örn. görsel, açıklama, chatbot, SEO…"
+        class="w-full rounded-2xl border border-slate-200 bg-white py-3 pl-12 pr-4 text-base text-ink shadow-soft outline-none transition placeholder:text-slate-400 focus:border-brand/50 focus:ring-2 focus:ring-brand/20"
+      />
+    </div>
+    <div>
+      <label class="sr-only" for="arac-sirala">Sırala</label>
+      <select
+        id="arac-sirala"
+        class="h-full w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-base text-ink shadow-soft outline-none transition focus:border-brand/50 focus:ring-2 focus:ring-brand/20 sm:w-auto"
+      >
+        <option value="varsayilan">Önerilen sıralama</option>
+        <option value="ad">İsim (A → Z)</option>
+        <option value="puan">Puan (yüksek → düşük)</option>
+      </select>
+    </div>
+  </div>
+
   <!-- Kategori filtresi (ilerlemeli geliştirme: JS olmadan tümü görünür) -->
-  <div class="mb-8 flex flex-wrap gap-2" data-filtre-grup>
+  <div class="mb-6 flex flex-wrap gap-2" data-filtre-grup>
     <button class="chip chip-active" data-filtre="all">Tümü</button>
     {KATEGORILER.map((k) => <button class="chip" data-filtre={k.ad}>{k.ad}</button>)}
   </div>
 
+  <p id="arac-sonuc" class="mb-3 text-sm text-slate-500" aria-live="polite"></p>
+
   <div class="grid gap-5 sm:grid-cols-2" data-arac-liste>
     {
       tools.length > 0 ? (
-        tools.map((tool) => <ToolCard tool={tool} />)
+        tools.map((tool) => (
+          <div
+            data-card
+            data-kategori={tool.data.kategori}
+            data-search={aramaMetni(tool)}
+            data-ad={tool.data.ad.toLocaleLowerCase('tr')}
+            data-puan={tool.data.puan ?? ''}
+          >
+            <ToolCard tool={tool} />
+          </div>
+        ))
       ) : (
         <p class="text-sm text-slate-500">Henüz araç eklenmedi.</p>
       )
     }
   </div>
+
+  <p id="arac-bos" hidden class="mt-10 text-center text-slate-500">
+    Aramanla eşleşen araç bulunamadı. Farklı bir kelime dene ya da
+    <button type="button" id="arac-temizle" class="font-semibold text-brand-dark underline">
+      filtreyi temizle</button
+    >.
+  </p>
 </BaseLayout>
 
 <script>
-  // Basit istemci tarafı kategori filtresi.
-  const butonlar = document.querySelectorAll<HTMLButtonElement>('[data-filtre]');
-  const kartlar = document.querySelectorAll<HTMLElement>('[data-arac-liste] [data-kategori]');
+  // İstemci tarafı arama + kategori filtresi + sıralama (ek bağımlılık yok, statik çalışır).
+  const input = document.getElementById('arac-ara') as HTMLInputElement | null;
+  const sirala = document.getElementById('arac-sirala') as HTMLSelectElement | null;
+  const liste = document.querySelector<HTMLElement>('[data-arac-liste]');
+  const sayac = document.getElementById('arac-sonuc');
+  const bos = document.getElementById('arac-bos');
+  const temizle = document.getElementById('arac-temizle');
+  const butonlar = Array.from(document.querySelectorAll<HTMLButtonElement>('[data-filtre]'));
+  const kartlar = Array.from(document.querySelectorAll<HTMLElement>('[data-card]'));
+
+  // Varsayılan (önerilen) sırayı koru → sıfırlamada geri yüklenir.
+  const varsayilanSira = kartlar.slice();
+  let aktifKategori = 'all';
+
+  const norm = (s: string) => s.toLocaleLowerCase('tr').trim();
+
+  function siralamaUygula() {
+    const mod = sirala?.value ?? 'varsayilan';
+    const sirali = varsayilanSira.slice();
+    if (mod === 'ad') {
+      sirali.sort((a, b) => (a.dataset.ad ?? '').localeCompare(b.dataset.ad ?? '', 'tr'));
+    } else if (mod === 'puan') {
+      // Puanı olmayan araçlar sona; eşit puanlar isimle stabilize edilir.
+      const p = (el: HTMLElement) => (el.dataset.puan ? parseFloat(el.dataset.puan) : -1);
+      sirali.sort(
+        (a, b) => p(b) - p(a) || (a.dataset.ad ?? '').localeCompare(b.dataset.ad ?? '', 'tr')
+      );
+    }
+    sirali.forEach((el) => liste?.appendChild(el));
+  }
+
+  function uygula() {
+    const sorgu = norm(input?.value ?? '');
+    let gorunen = 0;
+
+    kartlar.forEach((kart) => {
+      const metin = kart.dataset.search ?? '';
+      const kat = kart.dataset.kategori ?? '';
+      const kategoriUydu = aktifKategori === 'all' || kat === aktifKategori;
+      const sorguUydu = sorgu === '' || metin.includes(sorgu);
+      const goster = kategoriUydu && sorguUydu;
+      kart.hidden = !goster;
+      if (goster) gorunen++;
+    });
+
+    if (sayac) sayac.textContent = `${gorunen} araç gösteriliyor`;
+    if (bos) bos.hidden = gorunen !== 0;
+    if (liste) liste.hidden = gorunen === 0;
+  }
+
+  input?.addEventListener('input', uygula);
+  sirala?.addEventListener('change', siralamaUygula);
 
   butonlar.forEach((btn) => {
     btn.addEventListener('click', () => {
-      const secili = btn.dataset.filtre;
-
-      butonlar.forEach((b) => b.classList.remove('chip-active'));
-      btn.classList.add('chip-active');
-
-      kartlar.forEach((kart) => {
-        const goster = secili === 'all' || kart.dataset.kategori === secili;
-        kart.style.display = goster ? '' : 'none';
-      });
+      aktifKategori = btn.dataset.filtre ?? 'all';
+      butonlar.forEach((b) => b.classList.toggle('chip-active', b === btn));
+      uygula();
     });
   });
+
+  temizle?.addEventListener('click', () => {
+    if (input) input.value = '';
+    aktifKategori = 'all';
+    butonlar.forEach((b) => b.classList.toggle('chip-active', b.dataset.filtre === 'all'));
+    uygula();
+  });
+
+  uygula();
 </script>
