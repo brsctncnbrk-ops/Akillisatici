@@ -32,6 +32,10 @@
 - Kalite kapısı yeşil: **build 34 (+22 pin görseli +Rehberler) · lint 0/0 · test 27/27.** main'e merge + canlı.
 - **Süreç kuralı (CLAUDE.md #8):** oturum kapanışında ("bitti"/`/clear`/`/compact` öncesi)
   önce HANDOFF güncellenip commit edilir → bağlam kaybolmadan ucuz oturum sıfırlama.
+- **Güvenlik ağı (SessionEnd hook):** `.claude/settings.json` → `scripts/handoff-guard.sh`.
+  `/clear`/logout sırasında commit edilmemiş değişiklik varsa otomatik "wip" güvenlik commit'i
+  atar (push yok, özet yazmaz; yalnızca veri kaybını önler). Yeni `.claude/` olduğundan ilk sefer
+  `/hooks` açıp yeniden yüklemek/yeniden başlatmak gerekebilir.
 
 ### Sırada / Kullanıcı aksiyonu
 1. Pinterest: panoları aç + ilk pinler (`/pin/<slug>.png` + kit §4 metinleri). En kolayı yazı altı buton.
