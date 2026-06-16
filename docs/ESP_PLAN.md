@@ -1,8 +1,9 @@
 # ESP_PLAN — Profesyonel E-posta Altyapısı ve Welcome Serisi Planı
 
-> Durum: **Plan (kullanıcı kararı bekliyor)** · Oluşturulma: 2026-06-16
-> Mevcut altyapı: Google Sheets + Apps Script (çift onaylı). Çalışıyor ama ölçeklenince
-> teslim edilebilirlik (deliverability), otomasyon ve İYS uyumu sınırlı kalır.
+> Durum: **Karar verildi — şimdilik Google Sheets'te kalınıyor (2026-06-16).** Plan, ESP'ye geçiş
+> gündeme geldiğinde uygulanmak üzere referans olarak saklanır. Lead magnet altyapısı mevcut
+> çift-onaylı akışta çalışmaya devam eder; welcome serisi (Bölüm 3) ESP'ye geçilince devreye alınır.
+> Oluşturulma: 2026-06-16 · Mevcut altyapı: Google Sheets + Apps Script (çift onaylı).
 
 ## 1. Neden geçiş?
 
