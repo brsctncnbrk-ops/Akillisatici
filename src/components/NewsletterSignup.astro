@@ -4,6 +4,30 @@
 // bir "doğrulama" maili çıkar ve adres ancak linke tıklanınca listeye "onaylandı" yazılır.
 // Uç nokta önceliği: ortam değişkeni (PUBLIC_NEWSLETTER_ENDPOINT) > koda gömülü varsayılan.
 // URL gizli değildir (istemci tarafına render edilir), bu yüzden varsayılan olarak gömülebilir.
+//
+// Lead magnet modu: `leadMagnetUrl` verilirse başlık/metin teşvik odaklı olur ve kayıt başarılı
+// olunca kullanıcıya kaynağa erişim düğmesi gösterilir (anında ödül). Props verilmezse genel bülten.
+interface Props {
+  baslik?: string;
+  aciklama?: string;
+  cta?: string;
+  /** Lead magnet kaynağının yolu (ör. kontrol listesi sayfası). Verilince teşvik modu açılır. */
+  leadMagnetUrl?: string;
+  /** Başarı kutusundaki erişim düğmesi metni. */
+  leadMagnetLabel?: string;
+  /** Kayıt kaynağını ayırt etmek için etiket (analitik). */
+  source?: string;
+}
+
+const {
+  baslik = 'Bültene katıl',
+  aciklama = 'Online satıcılar için yeni AI araçları ve rehberleri doğrudan e-postana gelsin.',
+  cta = 'Kayıt ol',
+  leadMagnetUrl,
+  leadMagnetLabel = 'Kaynağa eriş',
+  source = 'site',
+} = Astro.props;
+
 const VARSAYILAN_ENDPOINT =
   'https://script.google.com/macros/s/AKfycbwAfRp5xNv3_DMKvImyLx1KrtmMBEyIxWPyiFNh0fG1-KL2EyjvmY9KsHkHvm0nZJTE/exec';
 const endpoint = import.meta.env.PUBLIC_NEWSLETTER_ENDPOINT || VARSAYILAN_ENDPOINT;
@@ -13,9 +37,16 @@ const aktif = Boolean(endpoint);
 <section
   class="my-12 overflow-hidden rounded-3xl bg-ink px-6 py-10 text-center sm:px-12 sm:py-12"
 >
-  <h2 class="font-display text-2xl font-bold text-white sm:text-3xl">Bültene katıl</h2>
+  {
+    leadMagnetUrl && (
+      <span class="mb-3 inline-flex items-center gap-1.5 rounded-full bg-brand/20 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-brand">
+        Ücretsiz kaynak
+      </span>
+    )
+  }
+  <h2 class="font-display text-2xl font-bold text-white sm:text-3xl">{baslik}</h2>
   <p class="mx-auto mt-2 max-w-md text-sm leading-6 text-slate-300">
-    Online satıcılar için yeni AI araçları ve rehberleri doğrudan e-postana gelsin.
+    {aciklama}
   </p>
 
   {
@@ -24,6 +55,7 @@ const aktif = Boolean(endpoint);
         <form
           id="newsletter-form"
           data-endpoint={endpoint}
+          data-source={source}
           class="mx-auto mt-6 flex max-w-md flex-col gap-3"
         >
           <div class="flex flex-col gap-2 sm:flex-row">
@@ -43,7 +75,7 @@ const aktif = Boolean(endpoint);
               type="submit"
               class="shrink-0 rounded-xl bg-brand px-5 py-3 text-sm font-semibold text-white transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60"
             >
-              Kayıt ol
+              {cta}
             </button>
           </div>
 
@@ -77,6 +109,17 @@ const aktif = Boolean(endpoint);
             E-posta adresine bir <strong>doğrulama bağlantısı</strong> gönderdik. Kaydını
             tamamlamak için lütfen gelen kutunu (ve spam klasörünü) kontrol edip linke tıkla.
           </p>
+          {
+            leadMagnetUrl && (
+              <a
+                href={leadMagnetUrl}
+                class="mt-4 inline-flex items-center gap-2 rounded-xl bg-brand px-5 py-3 text-sm font-semibold text-white transition hover:opacity-90"
+              >
+                {leadMagnetLabel}
+                <span aria-hidden="true">→</span>
+              </a>
+            )
+          }
         </div>
       </>
     ) : (
@@ -137,7 +180,11 @@ const aktif = Boolean(endpoint);
       button.disabled = true;
       status.textContent = 'Gönderiliyor…';
 
-      const body = new URLSearchParams({ email, consent: 'true', source: 'site' });
+      const body = new URLSearchParams({
+        email,
+        consent: 'true',
+        source: form.dataset.source || 'site',
+      });
 
       try {
         await fetch(endpoint, { method: 'POST', mode: 'no-cors', body });

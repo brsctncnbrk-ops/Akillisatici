@@ -1,0 +1,109 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { MARKA_ADI, ILETISIM_EPOSTA } from '../data/site';
+
+const markaAdi = MARKA_ADI;
+
+// Çerez türleri — şeffaflık tablosu. Reklam çerezleri yalnızca onay + reklam yayını aktifken.
+const cerezler = [
+  {
+    tur: 'Zorunlu çerezler',
+    amac: 'Sitenin temel işlevleri ve çerez tercihinizin hatırlanması için gereklidir. Onaya tabi değildir.',
+    onay: 'Gerekli',
+  },
+  {
+    tur: 'Analitik çerezler',
+    amac: 'Siteyi nasıl geliştireceğimizi anlamak için anonim, toplu kullanım istatistikleri ölçer.',
+    onay: 'Onaya bağlı',
+  },
+  {
+    tur: 'Reklam çerezleri',
+    amac: 'Reklam yayını etkinleştirildiğinde, alakalı reklam göstermek için kullanılabilir. Yalnızca açık onayınızla devreye girer.',
+    onay: 'Onaya bağlı',
+  },
+];
+---
+
+<BaseLayout
+  title={`Çerez Politikası — ${markaAdi}`}
+  description="Sitede hangi çerezlerin kullanıldığı, ne işe yaradıkları ve çerez tercihinizi nasıl yönetebileceğiniz."
+>
+  <h1 class="font-display text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
+    Çerez Politikası
+  </h1>
+
+  <div class="icerik mt-6 max-w-2xl">
+    <p>
+      Çerezler, ziyaret ettiğiniz siteler tarafından cihazınıza kaydedilen küçük metin
+      dosyalarıdır. {markaAdi}, siteyi çalıştırmak, kullanımını ölçmek ve (etkinleştirildiğinde)
+      reklam göstermek için çerez kullanabilir. Bu sayfa, kullanılan çerez türlerini ve
+      tercihlerinizi nasıl yöneteceğinizi açıklar. Kişisel verilerin işlenmesine dair genel bilgi
+      için <a href="/gizlilik/">Gizlilik Politikası</a> sayfasına bakabilirsiniz.
+    </p>
+
+    <h2>Kullanılan çerez türleri</h2>
+  </div>
+
+  <div class="mt-6 max-w-2xl overflow-hidden rounded-2xl border border-slate-200">
+    <table class="w-full text-left text-sm">
+      <thead class="bg-slate-50 text-slate-600">
+        <tr>
+          <th class="px-4 py-3 font-semibold">Tür</th>
+          <th class="px-4 py-3 font-semibold">Amaç</th>
+          <th class="whitespace-nowrap px-4 py-3 font-semibold">Onay</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-slate-100">
+        {
+          cerezler.map((c) => (
+            <tr class="align-top">
+              <td class="px-4 py-3 font-semibold text-ink">{c.tur}</td>
+              <td class="px-4 py-3 text-slate-600">{c.amac}</td>
+              <td class="whitespace-nowrap px-4 py-3 text-slate-600">{c.onay}</td>
+            </tr>
+          ))
+        }
+      </tbody>
+    </table>
+  </div>
+
+  <div class="icerik mt-8 max-w-2xl">
+    <h2>Onayınızı yönetme</h2>
+    <p>
+      Siteye ilk girişinizde bir çerez bilgilendirme bandı görürsünüz; onaya bağlı çerezleri
+      <strong>kabul edebilir</strong> veya <strong>reddedebilirsiniz</strong>. Tercihiniz cihazınızda
+      saklanır. Tercihinizi dilediğiniz an aşağıdaki düğmeyle sıfırlayıp yeniden belirleyebilirsiniz:
+    </p>
+    <p class="not-prose">
+      <button
+        type="button"
+        id="cerez-tercih-sifirla"
+        class="inline-flex items-center rounded-lg border border-slate-300 px-4 py-2 text-sm font-semibold text-ink transition hover:border-brand hover:text-brand-dark"
+      >
+        Çerez tercihimi sıfırla
+      </button>
+    </p>
+    <p>
+      Ayrıca tarayıcınızın ayarlarından çerezleri tümüyle engelleyebilir veya silebilirsiniz; ancak
+      bu durumda sitenin bazı bölümleri beklendiği gibi çalışmayabilir.
+    </p>
+
+    <h2>İletişim</h2>
+    <p>
+      Çerez kullanımıyla ilgili sorularınız için:{' '}
+      <a href={`mailto:${ILETISIM_EPOSTA}`}>{ILETISIM_EPOSTA}</a>
+    </p>
+  </div>
+</BaseLayout>
+
+<script>
+  // "Çerez tercihimi sıfırla" → saklı tercihi sil ve bandı yeniden göster.
+  document.getElementById('cerez-tercih-sifirla')?.addEventListener('click', () => {
+    try {
+      localStorage.removeItem('cerez-onay');
+    } catch {
+      /* localStorage engelliyse sessizce geç */
+    }
+    location.reload();
+  });
+</script>

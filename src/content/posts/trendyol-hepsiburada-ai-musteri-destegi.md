@@ -49,13 +49,13 @@ Trendyol ve Hepsiburada'nın kendi mesajlaşma panelleri vardır ve üçüncü t
 | Özellik | Tidio |
 |--------|-------|
 | Canlı chatbot (kendi site) | Var |
-| Türkçe yanıt kalitesi | — |
+| Türkçe yanıt kalitesi | Test edilmedi |
 | Hazır yanıt şablonları | Var |
 | Trendyol/Hepsiburada doğrudan entegrasyon | Yok |
-| Fiyat (aylık) | — |
-| Affiliate programı | — |
+| Fiyat (aylık) | Doğrulanmadı |
+| Affiliate programı | Doğrulanmadı |
 
-> Tek araçla başladık; rekabetçi alternatifler ayrı yazılarda ele alınacaktır. Tabloda **—** ile gösterilen alanlar doğrulanmamış bilgileri ifade eder; güncel fiyatı aracın resmi sitesinden kontrol edin.
+> Tek araçla başladık; rekabetçi alternatifler ayrı yazılarda ele alınacaktır. **Tablo notu:** "Test edilmedi" = bu aracı o boyutta bizzat denemedik; "Doğrulanmadı" = ilgili fiyat/komisyon resmi kaynaktan henüz teyit edilmedi. Güncel fiyatı aracın resmi sitesinden kontrol edin.
 
 ## Artılar ve eksiler
 

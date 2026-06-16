@@ -1,20 +1,34 @@
 ---
 import type { CollectionEntry } from 'astro:content';
-import ToolLink from './ToolLink.astro';
 
 interface Props {
   tool: CollectionEntry<'tools'>;
 }
 
 const { tool } = Astro.props;
-const { ad, kategori, fiyat, artilar, eksiler, officialUrl, affiliateUrl, aciklama } = tool.data;
+const { ad, kategori, fiyat, artilar, eksiler, aciklama, puan } = tool.data;
+const detayYolu = `/araclar/${tool.id}/`;
+const tamYildiz = puan != null ? Math.round(puan) : 0;
 ---
 
 <article class="card flex flex-col p-6" data-kategori={kategori}>
   <div class="flex items-start justify-between gap-3">
     <div>
-      <h3 class="text-xl font-bold tracking-tight text-ink">{ad}</h3>
+      <h3 class="text-xl font-bold tracking-tight text-ink">
+        <a class="transition hover:text-brand-dark" href={detayYolu}>{ad}</a>
+      </h3>
       <p class="mt-1 text-xs font-semibold uppercase tracking-wide text-brand-dark">{kategori}</p>
+      {
+        puan != null && (
+          <p class="mt-1 flex items-center gap-1.5 text-sm" aria-label={`5 üzerinden ${puan}`}>
+            <span class="text-amber-400" aria-hidden="true">
+              {'★'.repeat(tamYildiz)}
+              {'☆'.repeat(5 - tamYildiz)}
+            </span>
+            <span class="text-xs font-semibold text-slate-600">{puan.toFixed(1)}</span>
+          </p>
+        )
+      }
     </div>
     {
       fiyat && (
@@ -65,6 +79,9 @@ const { ad, kategori, fiyat, artilar, eksiler, officialUrl, affiliateUrl, acikla
   </div>
 
   <div class="mt-5 border-t border-slate-100 pt-4">
-    <ToolLink officialUrl={officialUrl} affiliateUrl={affiliateUrl} label={`${ad}’i incele`} />
+    <a href={detayYolu} class="btn-primary w-full">
+      {ad}’i incele
+      <span aria-hidden="true">→</span>
+    </a>
   </div>
 </article>

@@ -32,9 +32,9 @@ Bu yazıda Canva AI araçlarını e-ticaret satıcısı perspektifinden değerle
 | AI metin üretimi (Magic Write) | Var | Yok |
 | Toplu görsel işleme | Sınırlı | API ile mümkün |
 | Ücretsiz plan | Var | Var (düşük çözünürlük) |
-| Aylık ücretli plan | $14.99 | — |
+| Aylık ücretli plan | $14.99 | Doğrulanmadı |
 
-> Tabloda **—** ile gösterilen alanlar doğrulanmamış bilgileri ifade eder. Güncel fiyatlar için resmi siteleri kontrol edin.
+> **Tablo notu:** "Doğrulanmadı" = ilgili fiyat/özellik resmi kaynaktan henüz teyit edilmedi; "Test edilmedi" = o boyutu bizzat denemedik. Teyit/test ettikçe güncelliyoruz. Güncel fiyatlar için resmi siteleri kontrol edin.
 
 ## Artılar ve eksiler
 

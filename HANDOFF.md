@@ -6,6 +6,135 @@
 
 ---
 
+## Oturum: 2026-06-16 — Faz 5 (E-E-A-T ince ayar) — DENETİM PLANI TAMAMLANDI
+
+### Yapıldı
+- **Yazar şeması:** `Author`'a opsiyonel `foto` + `sosyal[]` eklendi (boşken baş harf avatarı; uydurma yok).
+- **`AuthorAvatar.astro`:** foto varsa görsel, yoksa baş harf — tek kaynak (post kutusu, Hakkında, yazar sayfası).
+- **Yazar arşiv sayfası `/yazar/[id]`:** biyografi, sosyal (varsa), imzalı yazılar (22), Person/ProfilePage
+  + `sameAs` JSON-LD. `hakkindaYolu` artık `/yazar/baris-cetin/`.
+- **Linkleme:** post byline adı + Hakkında "tüm yazılar →" yazar sayfasına gider. "yazar kadromuz" → tekil dil.
+- **dateModified stratejisi:** `docs/CONTENT_EVIDENCE.md §4b` — sahte güncelleme tarihi yok; yalnızca
+  gerçek revizyonda `guncellenme` ayarlanır (byline "Güncellendi" + JSON-LD dateModified otomatik).
+- Kalite kapısı yeşil: **build 55 (+1) · lint 0/0 · test 27/27.** Render doğrulandı (yazar sayfası, byline, schema).
+- **ESP kararı:** kullanıcı **şimdilik Google Sheets**'i seçti; welcome serisi/ESP ileriye bırakıldı (`docs/ESP_PLAN.md`).
+
+### Denetim planı durumu — TAMAMLANDI ✓ (`docs/AUDIT_PLAN.md`)
+5 fazın tamamı uygulandı. Kalan her şey kullanıcı verisine bağlı (uydurulamaz): işletme kimliği/sosyal/İYS,
+araç puanları, ekran görüntüleri, yazar foto/sosyal. Altyapı hazır → veri girilince otomatik devreye girer.
+
+### Sırada / Kullanıcı aksiyonu
+1. (Opsiyonel) Yazar fotoğrafı `public/authors/baris-cetin.jpg` + `authors.ts` `foto`; sosyal profiller `sosyal[]`.
+2. (Opsiyonel) Gerçek araç puanları, ekran görüntüleri, işletme kimliği — ilgili dosyalara girilince otomatik görünür.
+3. Branş `claude/review-site-audit-plan-wp26jp` → main'e merge (kullanıcı onayı/PR ile).
+
+---
+
+## Oturum: 2026-06-16 — Faz 4 (Dönüşüm: lead magnet + ESP planı)
+
+### Yapıldı
+- **Lead magnet (E11):** Gerçek, yazdırılabilir "AI Araç Seçim Kontrol Listesi" (6 adımlık karar
+  çerçevesi — uydurma veri yok) → `src/pages/kaynaklar/ai-arac-secim-kontrol-listesi.astro`
+  (yazdır/PDF düğmesi, interaktif checkbox'lar). `/kaynaklar` ücretsiz kaynaklar hub'ı (genişletilebilir).
+- **NewsletterSignup lead-magnet modu:** opsiyonel props (`baslik`, `aciklama`, `cta`, `leadMagnetUrl`,
+  `leadMagnetLabel`, `source`). `leadMagnetUrl` verilince "Ücretsiz kaynak" rozeti + kayıt başarısında
+  anında erişim düğmesi. `source` artık forma data-attribute olarak geçiyor (analitik ayrımı). Props
+  verilmezse mevcut genel bülten davranışı korunur (geriye uyumlu).
+- **Navigasyon:** Header (masaüstü + mobil) ve Footer'a "Kaynaklar" linki.
+- **ESP planı (E13):** `docs/ESP_PLAN.md` — neden geçiş, seçenek tablosu (öneri **Brevo**), welcome
+  serisi taslağı (4 e-posta), teknik entegrasyon adımları (Tercih A: Brevo formu / B: serverless
+  route + `BREVO_API_KEY`), İYS notu. Kod hazır: `NewsletterSignup` uç noktayı `PUBLIC_NEWSLETTER_ENDPOINT`'ten okur.
+- Kalite kapısı yeşil: **build 54 (+2) · lint 0/0 · test 27/27.** Render doğrulandı.
+
+### Sırada / Kullanıcı aksiyonu
+1. **ESP kararı (`docs/ESP_PLAN.md` §5):** ESP seçimi (Brevo öneri), gönderen alan adı, entegrasyon
+   tercihi → karar verilince entegrasyon + welcome serisi uygulanır.
+2. **Faz 5** (son): E-E-A-T ince ayar — yazar foto/sosyal alanları, "yazar kadromuz" → tekil dil,
+   yazar arşiv sayfası, dateModified stratejisi (`docs/AUDIT_PLAN.md` §Faz 5).
+
+---
+
+## Oturum: 2026-06-16 — Faz 3 (İçerik kanıtı: tablolar + ekran görüntüsü akışı + iç linkleme)
+
+### Yapıldı
+- **Karşılaştırma tabloları (10 yazı):** belirsiz `—` hücreleri **`Test edilmedi`** (o boyutu bizzat
+  denemedik) ve **`Doğrulanmadı`** (fiyat/özellik resmi kaynaktan teyit edilmedi) etiketleriyle
+  değiştirildi; her tabloya açıklayıcı "Tablo notu" eklendi. Amazon yazısında "Türkçe çıktı kalitesi"
+  satırı, yazının gövdesindeki gerçek gözlemlerle uzlaştırıldı (ChatGPT "İyi", Writesonic "Değişken",
+  Jasper "Test edilmedi"). **Hiçbir değer uydurulmadı.** Kalan `| —` hücresi yok.
+- **Görsel kanıt akışı (E6):** araç detay sayfası `screenshot` alanı doluysa görseli **"Kendi
+  testimizden"** rozeti + alt-metin + alt yazı ile render eder (boşken görünmez). Gerçek görseller
+  kullanıcıdan gelecek (`public/screenshots/<slug>.png` + JSON `screenshot`).
+- **İç linkleme (pillar/cluster):** `src/data/site.ts` → `PILLAR_REHBER` sabiti; `[...slug].astro`
+  içerik başında callout ile pillar rehberine geri link (pillar yazısının kendisi hariç). Önceden
+  hiçbir küme pillar'a geri link vermiyordu.
+- **Rehber:** `docs/CONTENT_EVIDENCE.md` — tablo etiket konvansiyonu, ekran görüntüsü ekleme kuralları
+  (konum/isim/gizlilik), Markdown kanıt deseni, iç linkleme, yayın öncesi kontrol listesi.
+- Kalite kapısı yeşil: **build 52 · lint 0/0 · test 27/27.** Çıktı doğrulandı (callout + etiketler render).
+
+### Sırada / Kullanıcı aksiyonu
+1. **Gerçek ekran görüntüleri:** `docs/CONTENT_EVIDENCE.md` §2-3'e göre ekle → kanıt otomatik görünür.
+2. **Faz 4** (onay bekliyor): dönüşüm altyapısı — lead magnet (checklist karşılığı bülten) + ESP planı
+   (`docs/AUDIT_PLAN.md` §Faz 4).
+
+---
+
+## Oturum: 2026-06-16 — Faz 2 (Araç detay sayfaları + Review schema + dizin arama/sıralama)
+
+### Yapıldı
+- **Şema (`content.config.ts` tools):** opsiyonel alanlar eklendi — `puan` (0–5, null), `puanlamaKriterleri[]`,
+  `degerlendirme`, `kimlerIcin`, `alternatifler[]` (tool id), `sss[]`, `sonGuncelleme`. Hepsi boşken
+  render EDİLMEZ; mevcut 15 araç sorunsuz build olur. **Puan uydurulmaz** (CLAUDE.md #6).
+- **Araç detay sayfası `src/pages/araclar/[slug].astro`:** breadcrumb, kategori/fiyat, varsa yıldız
+  puan + "nasıl puanlıyoruz" (→ /metodoloji), değerlendirme, artı/eksi kutuları, kriter çubukları,
+  "kimler için", araca özel SSS, alternatifler, "bu aracı inceleyen yazılar", çift CTA + affiliate ifşa.
+  - JSON-LD: **Product** (+ puan varsa editöryel **Review**) + **BreadcrumbList** (+ SSS varsa FAQPage).
+  - Alternatifler: elle verilmezse aynı kategoriden otomatik 3 araç (iç linkleme; uydurma değil).
+- **İç yönlendirme:** `ToolCard`, araçlar dizini ve yazı içi "incelenen araçlar" kutuları artık dış
+  affiliate yerine **iç detay sayfasına** gider. Affiliate linkleri detay sayfasında toplandı.
+  (`ToolLink` importu yazı sayfasından kaldırıldı; lib hâlâ detay sayfasında kullanılıyor.)
+- **Dizin (`araclar.astro`):** istemci tarafı **arama** + **sıralama** (önerilen / ad A-Z / puan
+  yüksek-düşük) + sonuç sayacı + boş durum. Kategori filtresi korundu. ItemList Product url'leri iç
+  detay sayfasına işaret ediyor.
+- ToolCard: başlık + "incele" düğmesi detaya gider; varsa yıldız puan rozeti.
+- Kalite kapısı yeşil: **build 52 (+15 araç detay) · lint 0/0 · test 27/27.**
+
+### Sırada / Kullanıcı aksiyonu
+1. **Gerçek puan/değerlendirme:** araç JSON'larına (`src/content/tools/*.json`) test sonucuna dayalı
+   `puan`, `degerlendirme`, `kimlerIcin`, `sss`, `alternatifler` eklenince yıldız + Review snippet
+   otomatik çıkar. Uydurma yasak — gerçek testten gelmeli.
+2. **Faz 3** (onay bekliyor): içerik kanıtı — tablo "—" boşlukları, ekran görüntüsü (`screenshot`)
+   render akışı, pillar/cluster iç linkleme (`docs/AUDIT_PLAN.md` §Faz 3).
+
+---
+
+## Oturum: 2026-06-16 — Site denetimi planı + Faz 1 (Güven & yasal)
+
+### Yapıldı
+- **Denetim planı:** `docs/AUDIT_PLAN.md` — harici site denetimi kod tabanıyla doğrulandı (bazı
+  notlar bayatmış: araç dizini 15, FAQ/Breadcrumb/ItemList schema ve site içi arama zaten var).
+  Gerçek eksikler E1–E14 olarak listelendi, 5 faza bölündü.
+- **Faz 1 — Güven & yasal omurga (TAMAMLANDI):**
+  - Yeni sayfalar: `/metodoloji` (test/puanlama kriterleri + ağırlık tablosu, bağımsızlık ilkesi),
+    `/kullanim-sartlari` (Terms), `/cerez-politikasi` (çerez türleri tablosu + tercih sıfırlama).
+  - `src/components/CookieConsent.astro`: KVKK/GDPR çerez onay bandı. BaseLayout'ta her sayfada;
+    localStorage `cerez-onay` (kabul/red); varsayılan gizli → flash yok; JS'siz fallback = footer'daki
+    Çerez Politikası linki. Reklam/analitik çerezleri ileride bu tercihe bağlanacak (şu an yüklenmiyor).
+  - Footer: yeni yasal linkler (Metodoloji, Çerez Politikası, Kullanım Şartları) + KOŞULLU sosyal
+    hesaplar / kurumsal kimlik (adres) / İYS notu — boşken render edilmez (uydurma yok).
+  - `src/data/site.ts`: merkezi sabitler `ILETISIM_EPOSTA`, `ISLETME{unvan,adres,vergi}`,
+    `IYS_KAYITLI`, `SOSYAL[]` (hepsi boş/false varsayılan).
+  - Çapraz link: gizlilik→çerez politikası, hakkında→metodoloji.
+  - Kalite kapısı yeşil: **build 37 (+3) · lint 0/0 · test 27/27.**
+
+### Sırada / Kullanıcı aksiyonu
+1. **Faz 1 verisi (site.ts):** işletme ünvanı/adres/vergi, sosyal hesaplar, İYS kaydı durumu →
+   verilince tek dosyadan doldurulur, footer otomatik gösterir.
+2. **Faz 2** (onay bekliyor): araç detay sayfaları (`/araclar/[slug]`) + Review/AggregateRating
+   schema + dizinde arama/sıralama. Şemaya puan alanları eklenecek (`docs/AUDIT_PLAN.md` §Faz 2).
+
+---
+
 ## Oturum: 2026-06-15 — Adım 6: Dağıtım (ilk ziyaretçiyi "tohumlama")
 
 ### Yapıldı

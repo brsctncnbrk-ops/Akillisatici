@@ -28,12 +28,12 @@ Bu yazıda Trendyol ürün başlığı yazımında AI araçlarının nasıl kull
 | Özellik | ChatGPT | Copy.ai |
 |--------|---------|---------|
 | Trendyol'a özel şablon | Yok (prompt ile yapılır) | Yok (prompt ile yapılır) |
-| Türkçe anahtar kelime desteği | Güçlü | — |
-| Karakter limiti uyarısı | Prompt ile yönetilir | — |
+| Türkçe anahtar kelime desteği | Güçlü | Test edilmedi |
+| Karakter limiti uyarısı | Prompt ile yönetilir | Doğrulanmadı |
 | Toplu başlık üretimi | Yok | Workflow ile |
-| Aylık fiyat | Ücretsiz / $20 | — |
+| Aylık fiyat | Ücretsiz / $20 | Doğrulanmadı |
 
-> Tabloda **—** ile gösterilen alanlar doğrulanmamış bilgileri ifade eder. Güncel özellikler için resmi siteleri kontrol edin.
+> **Tablo notu:** "Test edilmedi" = bu aracı o boyutta bizzat denemedik; "Doğrulanmadı" = ilgili fiyat/özellik resmi kaynaktan henüz teyit edilmedi. Teyit/test ettikçe güncelliyoruz. Güncel özellikler için resmi siteleri kontrol edin.
 
 ## Artılar ve eksiler
 
