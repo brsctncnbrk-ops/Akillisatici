@@ -1,0 +1,70 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { MARKA_ADI, ILETISIM_EPOSTA } from '../data/site';
+
+const markaAdi = MARKA_ADI;
+const guncellenme = '16 Haziran 2026';
+---
+
+<BaseLayout
+  title={`Kullanım Şartları — ${markaAdi}`}
+  description="Siteyi kullanırken geçerli olan koşullar: içeriğin kullanımı, sorumluluk reddi, affiliate bağlantılar ve fikri mülkiyet."
+>
+  <h1 class="font-display text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
+    Kullanım Şartları
+  </h1>
+
+  <div class="icerik mt-6 max-w-2xl">
+    <p class="text-sm text-slate-500">Son güncelleme: {guncellenme}</p>
+
+    <p>
+      Bu siteyi ({markaAdi}) ziyaret ederek ve kullanarak aşağıdaki şartları kabul etmiş olursunuz.
+      Şartları kabul etmiyorsanız lütfen siteyi kullanmayın.
+    </p>
+
+    <h2>İçeriğin amacı</h2>
+    <p>
+      Sitedeki incelemeler, karşılaştırmalar ve rehberler yalnızca <strong>bilgilendirme</strong>
+      amaçlıdır. İçerik, profesyonel danışmanlık (hukuki, mali veya ticari) yerine geçmez. İş
+      kararlarınızı vermeden önce kendi araştırmanızı yapmanızı ve ilgili aracın resmi kaynaklarını
+      kontrol etmenizi öneririz.
+    </p>
+
+    <h2>Doğruluk ve sorumluluk reddi</h2>
+    <p>
+      İçeriği doğru ve güncel tutmak için makul çaba gösteririz; ancak araçların özellikleri,
+      fiyatları ve koşulları sağlayıcılar tarafından önceden haber verilmeksizin değiştirilebilir.
+      {markaAdi}, sitedeki bilgilerin eksiksiz, güncel veya hatasız olduğunu garanti etmez ve bu
+      bilgilere dayanarak alınan kararlardan doğabilecek zararlardan sorumlu tutulamaz.
+    </p>
+
+    <h2>Üçüncü taraf bağlantıları ve affiliate</h2>
+    <p>
+      Site, üçüncü taraf web sitelerine bağlantılar içerir; bunların bir kısmı affiliate (ortaklık)
+      bağlantısıdır. Bu sitelerin içeriğinden, gizlilik uygulamalarından veya hizmetlerinden
+      {markaAdi} sorumlu değildir. Affiliate ilişkimizin ayrıntıları için{' '}
+      <a href="/affiliate-aciklama/">Affiliate Açıklaması</a> ve değerlendirme bağımsızlığımız için{' '}
+      <a href="/metodoloji/">Metodoloji</a> sayfalarına bakabilirsiniz.
+    </p>
+
+    <h2>Fikri mülkiyet</h2>
+    <p>
+      Sitedeki özgün metin, görsel ve düzenlemeler {markaAdi}'na aittir ve kaynak gösterilmeden
+      kopyalanamaz, çoğaltılamaz veya ticari olarak kullanılamaz. Anılan marka ve ürün adları ilgili
+      sahiplerine aittir.
+    </p>
+
+    <h2>Değişiklikler</h2>
+    <p>
+      Bu şartlar zaman zaman güncellenebilir. Güncel sürüm her zaman bu sayfada yayımlanır;
+      değişikliklerden sonra siteyi kullanmaya devam etmeniz, güncellenmiş şartları kabul ettiğiniz
+      anlamına gelir.
+    </p>
+
+    <h2>İletişim</h2>
+    <p>
+      Sorularınız için:{' '}
+      <a href={`mailto:${ILETISIM_EPOSTA}`}>{ILETISIM_EPOSTA}</a>
+    </p>
+  </div>
+</BaseLayout>

@@ -6,6 +6,33 @@
 
 ---
 
+## Oturum: 2026-06-16 — Site denetimi planı + Faz 1 (Güven & yasal)
+
+### Yapıldı
+- **Denetim planı:** `docs/AUDIT_PLAN.md` — harici site denetimi kod tabanıyla doğrulandı (bazı
+  notlar bayatmış: araç dizini 15, FAQ/Breadcrumb/ItemList schema ve site içi arama zaten var).
+  Gerçek eksikler E1–E14 olarak listelendi, 5 faza bölündü.
+- **Faz 1 — Güven & yasal omurga (TAMAMLANDI):**
+  - Yeni sayfalar: `/metodoloji` (test/puanlama kriterleri + ağırlık tablosu, bağımsızlık ilkesi),
+    `/kullanim-sartlari` (Terms), `/cerez-politikasi` (çerez türleri tablosu + tercih sıfırlama).
+  - `src/components/CookieConsent.astro`: KVKK/GDPR çerez onay bandı. BaseLayout'ta her sayfada;
+    localStorage `cerez-onay` (kabul/red); varsayılan gizli → flash yok; JS'siz fallback = footer'daki
+    Çerez Politikası linki. Reklam/analitik çerezleri ileride bu tercihe bağlanacak (şu an yüklenmiyor).
+  - Footer: yeni yasal linkler (Metodoloji, Çerez Politikası, Kullanım Şartları) + KOŞULLU sosyal
+    hesaplar / kurumsal kimlik (adres) / İYS notu — boşken render edilmez (uydurma yok).
+  - `src/data/site.ts`: merkezi sabitler `ILETISIM_EPOSTA`, `ISLETME{unvan,adres,vergi}`,
+    `IYS_KAYITLI`, `SOSYAL[]` (hepsi boş/false varsayılan).
+  - Çapraz link: gizlilik→çerez politikası, hakkında→metodoloji.
+  - Kalite kapısı yeşil: **build 37 (+3) · lint 0/0 · test 27/27.**
+
+### Sırada / Kullanıcı aksiyonu
+1. **Faz 1 verisi (site.ts):** işletme ünvanı/adres/vergi, sosyal hesaplar, İYS kaydı durumu →
+   verilince tek dosyadan doldurulur, footer otomatik gösterir.
+2. **Faz 2** (onay bekliyor): araç detay sayfaları (`/araclar/[slug]`) + Review/AggregateRating
+   schema + dizinde arama/sıralama. Şemaya puan alanları eklenecek (`docs/AUDIT_PLAN.md` §Faz 2).
+
+---
+
 ## Oturum: 2026-06-15 — Adım 6: Dağıtım (ilk ziyaretçiyi "tohumlama")
 
 ### Yapıldı
