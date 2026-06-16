@@ -1,12 +1,13 @@
 # Telegram Günlük Trafik Raporu
 
-> Son güncelleme: 2026-06-15
+> Son güncelleme: 2026-06-16
 
 Trend keşif ajanıyla **aynı Telegram botu** her sabah dünün site trafiğini özetleyip
 sana mesaj atar. Veri kaynağı: **Google Analytics 4** (sitede zaten kurulu — `G-7TYLWS8G6S`).
 
 - Script: `scripts/notify-traffic.ts` (`npm run agent:traffic`)
-- Zamanlama: `.github/workflows/daily-traffic.yml` — her gün **04:00 UTC = 07:00 TR** + elle tetik
+- Zamanlama: `.github/workflows/daily-traffic.yml` — her gün **~04:19 UTC ≈ 07:19 TR** + elle tetik
+  (saat başından kasıtlı kaçınıldı: GitHub'ın zamanlanmış işleri saat başı yoğunlukta gecikir/atlanır)
 - Ek bağımlılık yok: GA4 Data API çağrısı `node:crypto` ile imzalanan service-account JWT akışı kullanır.
 
 ## Rapor içeriği
