@@ -8,7 +8,7 @@ import ShareButtons from '../../components/ShareButtons.astro';
 import { slugByKategori } from '../../lib/categories';
 import { getYayindaPosts, getTools } from '../../lib/content';
 import { getAuthorByName } from '../../data/authors';
-import { MARKA_ADI, VARSAYILAN_OG_GORSEL } from '../../data/site';
+import { MARKA_ADI, VARSAYILAN_OG_GORSEL, PILLAR_REHBER } from '../../data/site';
 
 export async function getStaticPaths() {
   // Yalnızca yayında olan yazılar için sayfa üretilir (editöryel kapı).
@@ -184,6 +184,23 @@ const jsonLd = {
         }
       </div>
     </header>
+
+    {
+      post.id !== PILLAR_REHBER.id && (
+        <aside class="mb-8 flex items-start gap-3 rounded-2xl border border-brand/20 bg-brand/5 p-4 text-sm">
+          <span class="mt-0.5 shrink-0 text-brand" aria-hidden="true">
+            ◆
+          </span>
+          <p class="leading-6 text-slate-700">
+            Bu yazı, daha geniş{' '}
+            <a class="font-semibold text-brand-dark underline" href={`/posts/${PILLAR_REHBER.id}/`}>
+              {PILLAR_REHBER.baslik}
+            </a>{' '}
+            rehberinin bir bölümüdür. Tüm iş akışına kuş bakışı bir giriş için rehberi okuyun.
+          </p>
+        </aside>
+      )
+    }
 
     <div class="icerik">
       <Content />

@@ -156,8 +156,30 @@ const ogImage = d.ogImage ?? VARSAYILAN_OG_GORSEL;
       }
     </header>
 
+    <!-- Görsel kanıt: yalnızca gerçek ekran görüntüsü tanımlıysa render edilir (uydurma yok) -->
+    {
+      d.screenshot && (
+        <figure class="mt-2">
+          <div class="overflow-hidden rounded-2xl border border-slate-200">
+            <img
+              src={d.screenshot}
+              alt={`${d.ad} arayüzü/çıktısından ekran görüntüsü`}
+              loading="lazy"
+              class="w-full"
+            />
+          </div>
+          <figcaption class="mt-2 flex items-center gap-2 text-xs text-slate-500">
+            <span class="inline-flex items-center rounded-full bg-emerald-50 px-2 py-0.5 font-semibold text-emerald-700">
+              Kendi testimizden
+            </span>
+            {d.ad} arayüzünden alınmış ekran görüntüsü.
+          </figcaption>
+        </figure>
+      )
+    }
+
     <!-- Birincil CTA -->
-    <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+    <div class="mt-6 rounded-2xl border border-slate-200 bg-slate-50 p-5">
       <ToolLink
         officialUrl={d.officialUrl}
         affiliateUrl={d.affiliateUrl}

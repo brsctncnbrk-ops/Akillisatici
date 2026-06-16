@@ -27,14 +27,14 @@ Bu yazıda ChatGPT ve Tidio'yu **Etsy convo yönetimi senaryosu** üzerinden ele
 
 | Özellik | ChatGPT | Tidio |
 |--------|---------|-------|
-| Etsy doğrudan entegrasyonu | Yok | — |
+| Etsy doğrudan entegrasyonu | Yok | Doğrulanmadı |
 | Hazır yanıt şablonu | Yok (prompt ile) | Var |
-| Türkçe + İngilizce yanıt | Güçlü | — |
+| Türkçe + İngilizce yanıt | Güçlü | Test edilmedi |
 | Canlı sohbet widget'ı | Yok | Var |
 | Ücretsiz plan | Var | Var (sınırlı) |
-| Aylık ücretli plan | $20 | — |
+| Aylık ücretli plan | $20 | Doğrulanmadı |
 
-> Tabloda **—** ile gösterilen alanlar doğrulanmamış bilgileri ifade eder. Güncel özellikler için resmi siteleri kontrol edin.
+> **Tablo notu:** "Test edilmedi" = bu aracı o boyutta bizzat denemedik; "Doğrulanmadı" = ilgili fiyat/özellik resmi kaynaktan henüz teyit edilmedi. Teyit/test ettikçe güncelliyoruz. Güncel özellikler için resmi siteleri kontrol edin.
 
 ## Artılar ve eksiler
 

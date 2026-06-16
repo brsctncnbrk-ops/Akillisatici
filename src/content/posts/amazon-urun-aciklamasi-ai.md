@@ -29,11 +29,11 @@ Bu yazıda Amazon ürün açıklaması yazımında üç farklı AI aracını **g
 |--------|---------|--------|------------|
 | Amazon bullet point şablonu | Yok (prompt ile yapılır) | Var | Var |
 | A+ içerik bölüm desteği | Yok (prompt ile yapılır) | Kısmi | Kısmi |
-| Türkçe çıktı kalitesi | — | — | — |
+| Türkçe çıktı kalitesi | İyi (genel Türkçe metinde güçlü) | Test edilmedi | Değişken olabilir |
 | Toplu ürün işleme | Yok | Workflow ile | Toplu üretim var |
-| Aylık fiyat | Ücretsiz / $20 | — | Ücretsiz / ücretli |
+| Aylık fiyat | Ücretsiz / $20 | Doğrulanmadı | Ücretsiz / ücretli |
 
-> Tabloda **—** ile gösterilen alanlar doğrulanmamış bilgileri ifade eder. Güncel fiyat ve özellikler için resmi siteleri kontrol edin.
+> **Tablo notu:** "Test edilmedi" = bu aracı o boyutta bizzat denemedik; "Doğrulanmadı" = ilgili fiyat/özellik resmi kaynaktan henüz teyit edilmedi. Türkçe çıktı kalitesi gözlemleri, bu yazıdaki test senaryomuza dayanır. Güncel fiyat ve özellikler için resmi siteleri kontrol edin.
 
 ## Artılar ve eksiler
 

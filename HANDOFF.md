@@ -6,6 +6,31 @@
 
 ---
 
+## Oturum: 2026-06-16 — Faz 3 (İçerik kanıtı: tablolar + ekran görüntüsü akışı + iç linkleme)
+
+### Yapıldı
+- **Karşılaştırma tabloları (10 yazı):** belirsiz `—` hücreleri **`Test edilmedi`** (o boyutu bizzat
+  denemedik) ve **`Doğrulanmadı`** (fiyat/özellik resmi kaynaktan teyit edilmedi) etiketleriyle
+  değiştirildi; her tabloya açıklayıcı "Tablo notu" eklendi. Amazon yazısında "Türkçe çıktı kalitesi"
+  satırı, yazının gövdesindeki gerçek gözlemlerle uzlaştırıldı (ChatGPT "İyi", Writesonic "Değişken",
+  Jasper "Test edilmedi"). **Hiçbir değer uydurulmadı.** Kalan `| —` hücresi yok.
+- **Görsel kanıt akışı (E6):** araç detay sayfası `screenshot` alanı doluysa görseli **"Kendi
+  testimizden"** rozeti + alt-metin + alt yazı ile render eder (boşken görünmez). Gerçek görseller
+  kullanıcıdan gelecek (`public/screenshots/<slug>.png` + JSON `screenshot`).
+- **İç linkleme (pillar/cluster):** `src/data/site.ts` → `PILLAR_REHBER` sabiti; `[...slug].astro`
+  içerik başında callout ile pillar rehberine geri link (pillar yazısının kendisi hariç). Önceden
+  hiçbir küme pillar'a geri link vermiyordu.
+- **Rehber:** `docs/CONTENT_EVIDENCE.md` — tablo etiket konvansiyonu, ekran görüntüsü ekleme kuralları
+  (konum/isim/gizlilik), Markdown kanıt deseni, iç linkleme, yayın öncesi kontrol listesi.
+- Kalite kapısı yeşil: **build 52 · lint 0/0 · test 27/27.** Çıktı doğrulandı (callout + etiketler render).
+
+### Sırada / Kullanıcı aksiyonu
+1. **Gerçek ekran görüntüleri:** `docs/CONTENT_EVIDENCE.md` §2-3'e göre ekle → kanıt otomatik görünür.
+2. **Faz 4** (onay bekliyor): dönüşüm altyapısı — lead magnet (checklist karşılığı bülten) + ESP planı
+   (`docs/AUDIT_PLAN.md` §Faz 4).
+
+---
+
 ## Oturum: 2026-06-16 — Faz 2 (Araç detay sayfaları + Review schema + dizin arama/sıralama)
 
 ### Yapıldı

@@ -45,3 +45,10 @@ export const IYS_KAYITLI = false;
 // Sosyal medya hesapları. Boş dizi → footer'da sosyal bölüm render EDİLMEZ.
 // Örnek: [{ ad: 'X', url: 'https://x.com/...' }, { ad: 'Instagram', url: '...' }]
 export const SOSYAL: { ad: string; url: string }[] = [];
+
+// Pillar (hub) rehber yazısı — küme yazılarından buraya geri link verilir (iç linkleme/SEO).
+// `id`, yazının dosya adı slug'ıdır. Bu yazının kendisinde callout gösterilmez.
+export const PILLAR_REHBER = {
+  id: 'e-ticaret-yapay-zeka-araclari-rehberi',
+  baslik: 'E-ticaret İçin Yapay Zeka Araçları: Online Satıcının 2026 Yol Haritası',
+};
