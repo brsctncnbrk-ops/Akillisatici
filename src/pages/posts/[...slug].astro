@@ -7,6 +7,7 @@ import PostCover from '../../components/PostCover.astro';
 import ShareButtons from '../../components/ShareButtons.astro';
 import AuthorAvatar from '../../components/AuthorAvatar.astro';
 import { slugByKategori } from '../../lib/categories';
+import { buildBreadcrumbLd } from '../../lib/breadcrumb';
 import { getYayindaPosts, getTools } from '../../lib/content';
 import { getAuthorByName } from '../../data/authors';
 import { MARKA_ADI, VARSAYILAN_OG_GORSEL, PILLAR_REHBER } from '../../data/site';
@@ -81,23 +82,12 @@ const articleLd = {
   keywords: data.anahtarKelime,
 };
 
-const breadcrumbLd = {
-  '@type': 'BreadcrumbList',
-  itemListElement: [
-    { '@type': 'ListItem', position: 1, name: 'Ana sayfa', item: `${site}/` },
-    ...(kategoriSlug
-      ? [
-          {
-            '@type': 'ListItem',
-            position: 2,
-            name: data.kategori,
-            item: `${site}/kategori/${kategoriSlug}/`,
-          },
-        ]
-      : []),
-    { '@type': 'ListItem', position: kategoriSlug ? 3 : 2, name: data.baslik, item: canonical },
-  ],
-};
+// BreadcrumbList: görsel kırıntıyla birebir, paylaşılan yardımcıdan (tek kaynak).
+const breadcrumbLd = buildBreadcrumbLd(site, [
+  { name: 'Ana sayfa', path: '/' },
+  ...(kategoriSlug ? [{ name: data.kategori, path: `/kategori/${kategoriSlug}/` }] : []),
+  { name: data.baslik, path: `/posts/${post.id}/` },
+]);
 
 // FAQPage: yalnızca yazıda SSS tanımlıysa eklenir (sesli arama + AI cevap motoru hedefleme).
 const faqLd =
