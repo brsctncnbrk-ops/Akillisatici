@@ -6,7 +6,37 @@
 
 ---
 
-## Oturum: 2026-06-16 — Faz 5 (E-E-A-T ince ayar) — DENETİM PLANI TAMAMLANDI
+## Oturum: 2026-06-17 — Araç incelemeleri + branch konsolidasyonu
+
+### Yapıldı
+- **15 araç incelemesi (PR #23, merge):** Dizindeki her araç için ayrı `*-inceleme.md`
+  (AdCreative.ai, Canva AI, ChatGPT, Copy.ai, Freshdesk, Gorgias, Inventory Planner, Jasper,
+  Pebblely, Photoroom, Remove.bg, Semrush, Shopify Magic, Tidio, Writesonic). İçerik araç
+  JSON verisine dayalı; fiyatlar uydurulmadı ("resmi siteden teyit edin"). Kullanıcı onayıyla
+  **`durumu: yayinda`** yapıldı (kural #3 — insan onayı alındı).
+- **Kategori breadcrumb JSON-LD (PR #24, merge):** Yeni `src/lib/breadcrumb.ts` (`buildBreadcrumbLd`,
+  tek kaynak) + 3 test; kategori sayfalarına `BreadcrumbList` JSON-LD eklendi; yazı sayfasındaki
+  inline kırıntı yardımcıya taşındı (DRY). `claude/saticikutusu-remaining-work`'teki tek değerli
+  işin main'e uyarlaması.
+- Kalite kapısı yeşil: **build 70 · lint 0/0 · test 30/30.** Kategori HTML çıktısında BreadcrumbList doğrulandı.
+
+### Branch konsolidasyonu (KÖK SORUN ÇÖZÜLDÜ)
+- Sorun: ~25 branch + **default branch yanlış** (`claude/project-initialization-system-4xz843`, 5 araçlı eski).
+  Gerçek üretim branch'i **`main`** (15 araç, tüm özellikler).
+- **Default branch → `main`** yapıldı (kullanıcı, GitHub ayarından). Artık tek kaynak `main`.
+- Tüm feature branch'lerin işi `main`'de toplandı (GA4, turuncu renk, IndexNow, newsletter, OG,
+  Telegram trafik otomasyonu, fiyatlar, mobil menü, breadcrumb — hepsi main'de doğrulandı).
+
+### Sırada / Kullanıcı aksiyonu
+1. **Deploy** `main`'den → 15 inceleme + kategori breadcrumb canlıya gelir.
+2. **Awin/PhotoRoom'a yeniden başvur** — artık `/posts/photoroom-inceleme/` yayında; "URL markayla
+   alakasız" reddi giderildi. Önce Awin profilindeki site URL'ini teyit et.
+3. **Branch temizliği (manuel — ortamdan `403`):** `main` hariç ~24 branch silinecek (hepsinin işi
+   main'de). Silme komut bloğu sohbet geçmişinde mevcut; kendi makinenden veya GitHub Branches sayfasından.
+4. (Opsiyonel) Kalan E-E-A-T verileri: yazar fotoğrafı/sosyal, gerçek araç puanları, ekran görüntüleri.
+
+---
+
 
 ### Yapıldı
 - **Yazar şeması:** `Author`'a opsiyonel `foto` + `sosyal[]` eklendi (boşken baş harf avatarı; uydurma yok).
