@@ -9,7 +9,7 @@ seoBaslik: 'Gorgias İncelemesi ve Kullanım Rehberi (2026)'
 seoAciklama: 'Gorgias AI müşteri destek platformunun incelemesi: Shopify entegrasyonu, sipariş verisi, makro otomasyon, fiyat ve e-ticaret için pratik kullanım.'
 anahtarKelime: 'gorgias inceleme'
 incelenenAraclar: ['gorgias']
-durumu: 'taslak'
+durumu: 'yayinda'
 ---
 
 Müşteri "siparişim nerede?" diye yazdığında, destek ekranınızla sipariş paneliniz ayrıysa her seferinde sekme değiştirirsiniz. Gorgias, **sipariş verisini doğrudan destek ekranına** taşıyan, e-ticaret (özellikle Shopify) odaklı bir AI destek platformudur.

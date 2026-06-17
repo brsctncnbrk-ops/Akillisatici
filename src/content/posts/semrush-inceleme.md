@@ -9,7 +9,7 @@ seoBaslik: 'Semrush İncelemesi ve Kullanım Rehberi (2026)'
 seoAciklama: 'Semrush SEO platformunun incelemesi: anahtar kelime araştırması, rakip analizi, içerik optimizasyonu, fiyat ve e-ticaret satıcıları için pratik kullanım.'
 anahtarKelime: 'semrush inceleme'
 incelenenAraclar: ['semrush']
-durumu: 'taslak'
+durumu: 'yayinda'
 ---
 
 Ürün sayfanız ne kadar iyi olursa olsun, doğru **anahtar kelimeleri** hedeflemiyorsa aranmaz. Semrush, anahtar kelime araştırması, rakip analizi ve içerik optimizasyonunu tek çatı altında toplayan kapsamlı bir SEO platformudur.

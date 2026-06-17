@@ -9,7 +9,7 @@ seoBaslik: 'ChatGPT İncelemesi ve Kullanım Rehberi (2026)'
 seoAciklama: 'ChatGPT AI asistanının incelemesi: ürün açıklaması, reklam metni ve müşteri yanıtı üretimi, çok dil desteği, fiyat ve e-ticaret için pratik kullanım.'
 anahtarKelime: 'chatgpt inceleme'
 incelenenAraclar: ['chatgpt']
-durumu: 'taslak'
+durumu: 'yayinda'
 ---
 
 ChatGPT, e-ticarete özel bir araç değil; ama tam da bu yüzden **çok yönlü** bir asistan. Ürün açıklaması, reklam metni, müşteri yanıtı, fikir üretimi — hepsini tek bir sohbet penceresinden yapabilirsiniz.

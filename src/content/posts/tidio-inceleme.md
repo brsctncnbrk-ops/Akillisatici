@@ -9,7 +9,7 @@ seoBaslik: 'Tidio İncelemesi ve Kullanım Rehberi (2026)'
 seoAciklama: 'Tidio AI canlı sohbet ve chatbot aracının incelemesi: hızlı kurulum, hazır yanıt akışları, ücretsiz plan, fiyat ve online satıcılar için pratik kullanım.'
 anahtarKelime: 'tidio inceleme'
 incelenenAraclar: ['tidio']
-durumu: 'taslak'
+durumu: 'yayinda'
 ---
 
 Kendi sitenizde satış yapıyorsanız, ziyaretçinin sorusunu **anında** yanıtlamak dönüşümü artırır. Tidio, kendi web siteniz için AI destekli canlı sohbet ve chatbot kurmanızı sağlayan, **ücretsiz planıyla** başlangıç dostu bir araçtır.

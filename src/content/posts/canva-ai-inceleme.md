@@ -9,7 +9,7 @@ seoBaslik: 'Canva AI İncelemesi ve Kullanım Rehberi (2026)'
 seoAciklama: 'Canva AI görsel ve içerik araçlarının incelemesi: Magic Design, Magic Write, şablonlar, fiyat ve e-ticaret satıcıları için pratik kullanım.'
 anahtarKelime: 'canva ai inceleme'
 incelenenAraclar: ['canva-ai']
-durumu: 'taslak'
+durumu: 'yayinda'
 ---
 
 Canva, tasarım bilgisi olmayan satıcıların en çok başvurduğu araçlardan biri. AI özellikleri (Magic Design, Magic Write) eklendikten sonra ise yalnızca şablon değil, **fikirden tasarıma** geçişi de hızlandırıyor.

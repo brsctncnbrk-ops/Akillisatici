@@ -9,7 +9,7 @@ seoBaslik: 'Remove.bg İncelemesi ve Kullanım Rehberi (2026)'
 seoAciklama: 'Remove.bg arka plan silme aracının incelemesi: otomatik arka plan kaldırma, API ile toplu işlem, ücretsiz plan, fiyat ve e-ticaret için pratik kullanım.'
 anahtarKelime: 'remove.bg inceleme'
 incelenenAraclar: ['remove-bg']
-durumu: 'taslak'
+durumu: 'yayinda'
 ---
 
 Amazon ve Trendyol gibi pazaryerleri ana görselde **beyaz arka plan** ister. Remove.bg, tam da bu tek işi yapan, sürükle-bırak kadar kolay ve **otomatik** çalışan özelleşmiş bir arka plan silme aracıdır.

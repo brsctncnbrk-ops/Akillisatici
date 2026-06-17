@@ -9,7 +9,7 @@ seoBaslik: 'Copy.ai İncelemesi ve Kullanım Rehberi (2026)'
 seoAciklama: 'Copy.ai AI yazım aracının incelemesi: şablon odaklı hızlı metin üretimi, ücretsiz plan, fiyat ve online satıcılar için pratik kullanım.'
 anahtarKelime: 'copy.ai inceleme'
 incelenenAraclar: ['copyai']
-durumu: 'taslak'
+durumu: 'yayinda'
 ---
 
 Copy.ai, ürün açıklaması ve pazarlama metni için **şablon odaklı** bir yapay zeka yazım aracıdır. Basit arayüzü ve **ücretsiz planı** sayesinde, AI içerik üretimine yeni başlayan satıcılar için iyi bir giriş noktasıdır.

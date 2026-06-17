@@ -9,7 +9,7 @@ seoBaslik: 'Pebblely İncelemesi ve Kullanım Rehberi (2026)'
 seoAciklama: 'Pebblely AI ürün görseli aracının incelemesi: yaratıcı sahne üretimi, ürünü farklı ortamlara yerleştirme, fiyat ve online satıcılar için pratik kullanım.'
 anahtarKelime: 'pebblely inceleme'
 incelenenAraclar: ['pebblely']
-durumu: 'taslak'
+durumu: 'yayinda'
 ---
 
 Sade bir ürün çekimi satışı yapar; ama ürünü bir **ortam içinde** gösteren görsel marka algısını güçlendirir. Pebblely, ürün fotoğraflarını yapay zekayla **farklı sahnelere yerleştiren** bir görsel üretim aracıdır.

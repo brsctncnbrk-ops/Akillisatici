@@ -9,7 +9,7 @@ seoBaslik: 'Inventory Planner İncelemesi ve Kullanım Rehberi (2026)'
 seoAciklama: 'Inventory Planner AI stok aracının incelemesi: satış tahmini, satın alma planlaması, Shopify/Amazon entegrasyonu, fiyat ve e-ticaret için pratik kullanım.'
 anahtarKelime: 'inventory planner inceleme'
 incelenenAraclar: ['inventory-planner']
-durumu: 'taslak'
+durumu: 'yayinda'
 ---
 
 Fazla stok parayı rafa kilitler; tükenen stok ise satışı kaçırır. Inventory Planner, **geçmiş satış verisini** analiz ederek ne zaman, ne kadar sipariş vermeniz gerektiğini tahmin eden bir stok planlama aracıdır.

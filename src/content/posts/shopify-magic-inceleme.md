@@ -9,7 +9,7 @@ seoBaslik: 'Shopify Magic İncelemesi ve Kullanım Rehberi (2026)'
 seoAciklama: 'Shopify Magic AI içerik aracının incelemesi: ürün açıklaması ve e-posta üretimi, Shopify entegrasyonu, maliyet ve satıcılar için pratik kullanım.'
 anahtarKelime: 'shopify magic inceleme'
 incelenenAraclar: ['shopify-magic']
-durumu: 'taslak'
+durumu: 'yayinda'
 ---
 
 Ayrı bir araca geçip metni kopyala-yapıştır yapmak küçük ama tekrar eden bir sürtünmedir. Shopify Magic, içerik üretimini **Shopify admin paneline gömerek** bu adımı ortadan kaldıran yerleşik bir AI aracıdır.

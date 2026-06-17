@@ -9,7 +9,7 @@ seoBaslik: 'Photoroom İncelemesi ve Kullanım Rehberi (2026)'
 seoAciklama: 'Photoroom AI ürün fotoğrafı aracının incelemesi: arka plan temizleme, sahne üretimi, toplu işleme, fiyat ve online satıcılar için adım adım kullanım.'
 anahtarKelime: 'photoroom inceleme'
 incelenenAraclar: ['photoroom']
-durumu: 'taslak'
+durumu: 'yayinda'
 ---
 
 Photoroom, ürün fotoğraflarından **arka planı saniyeler içinde temizleyen** ve ürünü farklı sahnelere yerleştirebilen bir yapay zeka görsel aracıdır. Stüdyo bütçesi olmayan satıcılar için telefonla çekilmiş bir fotoğrafı satışa hazır hale getirmenin en hızlı yollarından biridir.

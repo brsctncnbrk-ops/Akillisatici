@@ -9,7 +9,7 @@ seoBaslik: 'Freshdesk İncelemesi ve Kullanım Rehberi (2026)'
 seoAciklama: 'Freshdesk AI helpdesk aracının incelemesi: çok kanallı destek, AI bilet önceliklendirme, ücretsiz plan, fiyat ve e-ticaret için pratik kullanım.'
 anahtarKelime: 'freshdesk inceleme'
 incelenenAraclar: ['freshdesk']
-durumu: 'taslak'
+durumu: 'yayinda'
 ---
 
 Müşteri mesajları e-posta, canlı sohbet ve sosyal medyaya dağıldığında takip zorlaşır. Freshdesk, tüm bu kanalları **tek panelde** toplayan ve AI ile bilet önceliklendiren, **ücretsiz planıyla** başlangıç dostu bir destek yazılımıdır.

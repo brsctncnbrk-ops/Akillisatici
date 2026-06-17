@@ -9,7 +9,7 @@ seoBaslik: 'AdCreative.ai İncelemesi ve Kullanım Rehberi (2026)'
 seoAciklama: 'AdCreative.ai AI reklam aracının incelemesi: reklam görseli ve metni üretimi, performans tahmini, platform formatları, fiyat ve e-ticaret için pratik kullanım.'
 anahtarKelime: 'adcreative.ai inceleme'
 incelenenAraclar: ['adcreative-ai']
-durumu: 'taslak'
+durumu: 'yayinda'
 ---
 
 Reklam görselini tasarımcıya, metnini ayrı bir araca yaptırıp ikisini birleştirmek; küçük bir satıcı için hem zaman hem bütçe kaybıdır. AdCreative.ai, **reklam görseli ve metnini tek seferde** üretip performans tahminiyle birlikte sunarak bu süreci kısaltmayı vaat ediyor.

@@ -9,7 +9,7 @@ seoBaslik: 'Writesonic İncelemesi ve Kullanım Rehberi (2026)'
 seoAciklama: 'Writesonic AI metin aracının incelemesi: e-ticaret şablonları, SEO uyumlu içerik, pazarlama çerçeveleri, fiyat ve satıcılar için pratik kullanım.'
 anahtarKelime: 'writesonic inceleme'
 incelenenAraclar: ['writesonic']
-durumu: 'taslak'
+durumu: 'yayinda'
 ---
 
 Genel amaçlı bir AI'dan e-ticaret metni istemek mümkün; ama **hazır pazaryeri şablonları** işi hızlandırır. Writesonic, Amazon ve Shopify gibi formatlara özel şablonlar ve SEO uyumlu üretimiyle e-ticaret odaklı bir metin yazma aracıdır.
