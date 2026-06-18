@@ -1,9 +1,9 @@
 {
   "ad": "Gorgias",
   "kategori": "Müşteri desteği",
-  "fiyat": null,
+  "fiyat": "Starter $10/ay (50 talep); Basic $60/ay; AI çözüm başına ~$1",
   "artilar": ["Shopify ile yerel (native) entegrasyon", "AI ile rutin destek taleplerini otomatik yanıtlama", "Sipariş/iade işlemlerini panelden yönetme"],
-  "eksiler": ["Türkçe dil desteği doğrulanmalı", "Küçük mağazalar için maliyet yüksek olabilir", "Fiyatlandırma teyit edilmeli (TBD)"],
+  "eksiler": ["Türkçe dil desteği doğrulanmalı", "Talep/AI çözüm bazlı fatura maliyeti öngörülemeyebilir"],
   "officialUrl": "https://www.gorgias.com/",
   "affiliateUrl": null,
   "screenshot": null,

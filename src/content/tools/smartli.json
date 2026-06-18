@@ -1,9 +1,9 @@
 {
   "ad": "Smartli",
   "kategori": "İçerik üretimi",
-  "fiyat": null,
+  "fiyat": "7 gün ücretsiz deneme; Starter $29/ay, Pro $59/ay (yıllık $24/ay)",
   "artilar": ["E-ticarete özel ürün açıklaması ve reklam metni", "SEO odaklı içerik üretimi", "Toplu metin oluşturma"],
-  "eksiler": ["Türkçe çıktı kalitesi doğrulanmalı", "Fiyatlandırma teyit edilmeli (TBD)"],
+  "eksiler": ["Türkçe çıktı kalitesi doğrulanmalı", "Yüksek hacim için pahalı üst planlar"],
   "officialUrl": "https://www.smartli.ai/",
   "affiliateUrl": null,
   "screenshot": null,

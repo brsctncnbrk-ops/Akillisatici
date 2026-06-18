@@ -1,9 +1,9 @@
 {
   "ad": "LiveChat",
   "kategori": "Müşteri desteği",
-  "fiyat": null,
+  "fiyat": "14 gün ücretsiz deneme; Starter $25/ay (yıllık $19), Team $49/ay; ChatBot ayrı $52/ay",
   "artilar": ["Kendi sitede hızlı kurulan canlı sohbet", "ChatBot ile AI destekli otomatik yanıtlar", "Çok kanallı destek (Text ekosistemi)"],
-  "eksiler": ["Tam otomasyon için ChatBot ayrı ürün", "Türkçe dil desteği doğrulanmalı", "Fiyatlandırma teyit edilmeli (TBD)"],
+  "eksiler": ["Tam otomasyon için ChatBot ayrı ücretli ürün", "Türkçe dil desteği doğrulanmalı"],
   "officialUrl": "https://www.livechat.com/",
   "affiliateUrl": null,
   "screenshot": null,
