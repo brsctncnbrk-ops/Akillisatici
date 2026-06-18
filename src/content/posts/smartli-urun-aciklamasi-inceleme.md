@@ -9,7 +9,7 @@ seoBaslik: 'Smartli İncelemesi: E-ticaret İçin AI Ürün Açıklaması (2026)
 seoAciklama: 'Smartli AI yazım aracı incelemesi: ürün açıklaması, SEO ve reklam metni üretimi. Copy.ai ve Jasper ile karşılaştırma, fiyat ve Türkçe kullanım notları.'
 anahtarKelime: 'smartli ürün açıklaması ai'
 incelenenAraclar: ['smartli', 'copyai', 'jasper']
-durumu: 'taslak'
+durumu: 'yayinda'
 ---
 
 Online satıcıların en çok zaman harcadığı işlerden biri **ürün açıklaması yazmak**: yüzlerce ürün, her biri için özgün, satışa dönük ve SEO uyumlu metin. **Smartli**, tam olarak bu sorunu hedefleyen, e-ticarete odaklanmış bir AI yazım aracı.

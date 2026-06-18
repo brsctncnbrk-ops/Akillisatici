@@ -9,7 +9,7 @@ seoBaslik: 'Gorgias vs LiveChat: Shopify İçin AI Müşteri Desteği (2026)'
 seoAciklama: 'Shopify satıcıları için Gorgias ve LiveChat karşılaştırması: native entegrasyon, AI otomasyonu, fiyat ve Türkçe kullanım. Hangi araç hangi mağazaya uygun?'
 anahtarKelime: 'shopify ai müşteri desteği'
 incelenenAraclar: ['gorgias', 'livechat', 'tidio']
-durumu: 'taslak'
+durumu: 'yayinda'
 ---
 
 Kendi **Shopify** mağazanızı yönetiyorsanız, müşteri sorularının çoğu birbirine benzer: "Siparişim nerede?", "İade nasıl yapılır?", "Bu ürün stokta mı?". Yapay zeka destekli destek araçları bu tekrarlayan yükü azaltır — ancak doğru aracı seçmek, mağazanızın ölçeğine ve iş akışınıza bağlıdır.
