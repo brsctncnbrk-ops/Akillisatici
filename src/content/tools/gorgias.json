@@ -1,0 +1,11 @@
+{
+  "ad": "Gorgias",
+  "kategori": "Müşteri desteği",
+  "fiyat": null,
+  "artilar": ["Shopify ile yerel (native) entegrasyon", "AI ile rutin destek taleplerini otomatik yanıtlama", "Sipariş/iade işlemlerini panelden yönetme"],
+  "eksiler": ["Türkçe dil desteği doğrulanmalı", "Küçük mağazalar için maliyet yüksek olabilir", "Fiyatlandırma teyit edilmeli (TBD)"],
+  "officialUrl": "https://www.gorgias.com/",
+  "affiliateUrl": null,
+  "screenshot": null,
+  "aciklama": "Shopify mağazaları için yapay zeka destekli müşteri hizmetleri ve yardım masası (helpdesk) aracı."
+}
