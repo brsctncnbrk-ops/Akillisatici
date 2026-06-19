@@ -4,7 +4,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import AdSlot from '../../components/AdSlot.astro';
 import PostCard from '../../components/PostCard.astro';
 import { slugByKategori } from '../../lib/categories';
-import { getYayindaPosts } from '../../lib/content';
+import { getTools, getYayindaPosts } from '../../lib/content';
 import { getAuthorByName } from '../../data/authors';
 import { MARKA_ADI, VARSAYILAN_OG_GORSEL } from '../../data/site';
 
@@ -35,6 +35,10 @@ const tumPosts = await getYayindaPosts();
 const ilgili = tumPosts
   .filter((p) => p.data.kategori === data.kategori && p.id !== post.id)
   .slice(0, 2);
+
+// Yazıda incelenen araçlar → araç detay sayfalarına iç link (frontmatter incelenenAraclar).
+const tumTools = await getTools();
+const incelenenAraclar = tumTools.filter((t) => data.incelenenAraclar.includes(t.id));
 
 const site = Astro.site?.href.replace(/\/$/, '') ?? '';
 const canonical = `${site}/posts/${post.id}/`;
@@ -141,6 +145,28 @@ const jsonLd = { '@context': 'https://schema.org', '@graph': [articleLd, breadcr
     <div class="icerik">
       <Content />
     </div>
+
+    {
+      incelenenAraclar.length > 0 && (
+        <aside class="mt-10 rounded-2xl border border-slate-200 bg-slate-50 p-6">
+          <p class="text-sm font-semibold uppercase tracking-wide text-slate-500">
+            Bu yazıda incelenen araçlar
+          </p>
+          <ul class="mt-3 flex flex-wrap gap-2">
+            {incelenenAraclar.map((t) => (
+              <li>
+                <a
+                  class="inline-flex items-center gap-1 rounded-full border border-slate-200 bg-white px-3 py-1.5 text-sm font-medium text-ink transition hover:border-brand hover:text-brand"
+                  href={`/araclar/${t.id}/`}
+                >
+                  {t.data.ad} <span aria-hidden="true">→</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </aside>
+      )
+    }
 
     <AdSlot slot="yazi-alti" />
 

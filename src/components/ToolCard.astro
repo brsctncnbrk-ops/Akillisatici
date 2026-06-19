@@ -8,12 +8,15 @@ interface Props {
 
 const { tool } = Astro.props;
 const { ad, kategori, fiyat, artilar, eksiler, officialUrl, affiliateUrl, aciklama } = tool.data;
+const detayYolu = `/araclar/${tool.id}/`;
 ---
 
 <article class="card flex flex-col p-6" data-kategori={kategori}>
   <div class="flex items-start justify-between gap-3">
     <div>
-      <h3 class="text-xl font-bold tracking-tight text-ink">{ad}</h3>
+      <h3 class="text-xl font-bold tracking-tight text-ink">
+        <a class="transition hover:text-brand" href={detayYolu}>{ad}</a>
+      </h3>
       <p class="mt-1 text-xs font-semibold uppercase tracking-wide text-brand-dark">{kategori}</p>
     </div>
     {
@@ -66,5 +69,11 @@ const { ad, kategori, fiyat, artilar, eksiler, officialUrl, affiliateUrl, acikla
 
   <div class="mt-5 border-t border-slate-100 pt-4">
     <ToolLink officialUrl={officialUrl} affiliateUrl={affiliateUrl} label={`${ad}’i incele`} />
+    <a
+      class="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-brand-dark transition hover:gap-2"
+      href={detayYolu}
+    >
+      Detaylı inceleme <span aria-hidden="true">→</span>
+    </a>
   </div>
 </article>
