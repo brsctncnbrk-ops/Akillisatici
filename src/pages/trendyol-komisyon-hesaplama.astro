@@ -1,32 +1,34 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-// Trendyol kategori komisyon oranları (tahmini; kesin oran için seller.trendyol.com)
+// Trendyol kategori komisyon oranları — Haziran 2026 tahmini.
+// Telefon %7 ve Bilgisayar %7,5 birden fazla kaynakta doğrulandı.
+// Diğer oranlar 2026 genel trend verilerine dayanır; kesin oran için seller.trendyol.com.
 const kategoriler = [
-  { id: 'elektronik', ad: 'Elektronik', oran: 5 },
-  { id: 'telefon', ad: 'Telefon & Aksesuarlar', oran: 5 },
-  { id: 'bilgisayar', ad: 'Bilgisayar & Tablet', oran: 5 },
-  { id: 'beyaz-esya', ad: 'Beyaz Eşya', oran: 8 },
-  { id: 'kea', ad: 'Küçük Ev Aletleri', oran: 10 },
-  { id: 'kadin-giyim', ad: 'Kadın Giyim', oran: 20 },
-  { id: 'erkek-giyim', ad: 'Erkek Giyim', oran: 20 },
-  { id: 'cocuk-giyim', ad: 'Çocuk Giyim', oran: 12 },
-  { id: 'ayakkabi-canta', ad: 'Ayakkabı & Çanta', oran: 20 },
-  { id: 'saat-taki', ad: 'Saat & Takı', oran: 20 },
-  { id: 'spor', ad: 'Spor & Outdoor', oran: 12 },
+  { id: 'telefon', ad: 'Telefon & Aksesuarlar', oran: 7 },
+  { id: 'bilgisayar', ad: 'Bilgisayar & Tablet', oran: 7.5 },
+  { id: 'elektronik', ad: 'Elektronik (Genel)', oran: 8 },
+  { id: 'beyaz-esya', ad: 'Beyaz Eşya', oran: 10 },
+  { id: 'kea', ad: 'Küçük Ev Aletleri', oran: 12 },
   { id: 'kitap', ad: 'Kitap & Müzik & Film', oran: 8 },
   { id: 'oyuncak', ad: 'Oyuncak & Oyun', oran: 15 },
-  { id: 'ev-yasam', ad: 'Ev & Yaşam', oran: 15 },
-  { id: 'mobilya', ad: 'Mobilya', oran: 10 },
+  { id: 'spor', ad: 'Spor & Outdoor', oran: 14 },
+  { id: 'ev-yasam', ad: 'Ev & Yaşam', oran: 14 },
+  { id: 'mobilya', ad: 'Mobilya', oran: 12 },
   { id: 'bahce', ad: 'Bahçe & Dış Mekan', oran: 12 },
   { id: 'yapi-market', ad: 'Yapı Market', oran: 10 },
-  { id: 'kozmetik', ad: 'Kozmetik & Parfüm', oran: 15 },
-  { id: 'kisisel-bakim', ad: 'Kişisel Bakım', oran: 12 },
+  { id: 'kozmetik', ad: 'Kozmetik & Parfüm', oran: 17 },
+  { id: 'kisisel-bakim', ad: 'Kişisel Bakım', oran: 14 },
   { id: 'gida', ad: 'Gıda & İçecek', oran: 12 },
-  { id: 'pet-shop', ad: 'Pet Shop', oran: 12 },
+  { id: 'pet-shop', ad: 'Pet Shop', oran: 14 },
   { id: 'otomotiv', ad: 'Otomotiv', oran: 10 },
   { id: 'anne-bebek', ad: 'Anne & Bebek', oran: 12 },
   { id: 'kirtasiye', ad: 'Kırtasiye & Ofis', oran: 10 },
+  { id: 'kadin-giyim', ad: 'Kadın Giyim', oran: 22 },
+  { id: 'erkek-giyim', ad: 'Erkek Giyim', oran: 22 },
+  { id: 'cocuk-giyim', ad: 'Çocuk Giyim', oran: 15 },
+  { id: 'ayakkabi-canta', ad: 'Ayakkabı & Çanta', oran: 22 },
+  { id: 'saat-taki', ad: 'Saat & Takı', oran: 22 },
 ];
 
 const jsonLd = {
@@ -52,8 +54,8 @@ const jsonLd = {
 ---
 
 <BaseLayout
-  title="Trendyol Komisyon Hesaplama — Ücretsiz Kâr Marjı Aracı | Satıcı Kutusu"
-  description="Trendyol'da sattığınız ürünün komisyon tutarını, net gelirinizi ve kâr marjınızı anında hesaplayın. Kategori bazlı oranlar, ücretsiz araç."
+  title="Trendyol Komisyon Hesaplama 2026 — Ücretsiz Kâr Marjı Aracı | Satıcı Kutusu"
+  description="Trendyol'da sattığınız ürünün 2026 komisyon tutarını, net gelirinizi ve kâr marjınızı anında hesaplayın. Kategori bazlı güncel oranlar, ücretsiz araç."
   jsonLd={jsonLd}
 >
   <!-- Başlık alanı -->
@@ -252,16 +254,16 @@ const jsonLd = {
           </div>
 
           <p class="pt-2 text-xs leading-relaxed text-slate-400">
-            * Tahmini değerler. Trendyol hizmet bedeli, KDV ve diğer kesintiler değişebilir.
-            Kesin hesap için
+            * Haziran 2026 tahmini. KDV, hizmet bedeli ve diğer kesintiler değişebilir.
+            Kesin oran için
             <a
               href="https://partner.trendyol.com"
               target="_blank"
               rel="noopener noreferrer"
               class="text-brand-dark underline underline-offset-2"
             >
-              Trendyol Satıcı Paneli</a
-            >'ni kullanın.
+              Satıcı Paneli</a
+            >'ni kontrol edin.
           </p>
         </div>
       </div>
@@ -271,11 +273,19 @@ const jsonLd = {
   <!-- Komisyon oranları tablosu -->
   <section class="mt-12">
     <h2 class="mb-4 font-display text-xl font-bold text-ink">
-      Trendyol Kategori Komisyon Oranları (2025)
+      Trendyol Kategori Komisyon Oranları (2026)
     </h2>
     <p class="mb-5 text-sm text-slate-500">
-      Aşağıdaki oranlar genel bilgi amaçlıdır. Trendyol komisyon oranları değişebilir; güncel
-      bilgi için satıcı panelinizi kontrol edin.
+      Aşağıdaki oranlar Haziran 2026 itibarıyla çeşitli kaynaklardan derlenen tahmini
+      değerlerdir. Telefon (%7) ve Bilgisayar (%7,5) oranları birden fazla kaynakta
+      doğrulandı; diğerleri genel trend verilerine dayanır. Kesin ve bağlayıcı oran için
+      <a
+        href="https://partner.trendyol.com"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="font-medium text-brand-dark underline underline-offset-2"
+        >Trendyol Satıcı Paneli</a
+      >'nizdeki sözleşme eklerini inceleyin.
     </p>
     <div class="overflow-hidden rounded-2xl border border-slate-200">
       <table class="w-full text-sm">
@@ -351,10 +361,10 @@ const jsonLd = {
           </svg>
         </summary>
         <div class="border-t border-slate-100 px-5 py-4 text-sm leading-7 text-slate-600">
-          En düşük komisyon oranları genellikle Elektronik, Telefon & Aksesuar ve Bilgisayar &
-          Tablet kategorilerinde görülmektedir (%5 civarı). Kitap & Müzik kategorisi de düşük
-          oranlara sahiptir (%8). Öte yandan Giyim, Ayakkabı ve Saat & Takı gibi kategorilerde
-          komisyon %20'ye kadar çıkabilmektedir.
+          2026 itibarıyla en düşük oranlar Telefon (%7) ve Bilgisayar & Tablet (%7,5)
+          kategorilerindedir. Kitap & Müzik ile Yapı Market da %8-10 bandında seyrediyor.
+          Öte yandan Kadın Giyim, Erkek Giyim, Ayakkabı & Çanta ile Saat & Takı gibi
+          kategorilerde komisyon %22'ye kadar çıkabilmektedir.
         </div>
       </details>
 
