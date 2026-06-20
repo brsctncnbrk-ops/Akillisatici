@@ -1,0 +1,529 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+// Trendyol kategori komisyon oranları (tahmini; kesin oran için seller.trendyol.com)
+const kategoriler = [
+  { id: 'elektronik', ad: 'Elektronik', oran: 5 },
+  { id: 'telefon', ad: 'Telefon & Aksesuarlar', oran: 5 },
+  { id: 'bilgisayar', ad: 'Bilgisayar & Tablet', oran: 5 },
+  { id: 'beyaz-esya', ad: 'Beyaz Eşya', oran: 8 },
+  { id: 'kea', ad: 'Küçük Ev Aletleri', oran: 10 },
+  { id: 'kadin-giyim', ad: 'Kadın Giyim', oran: 20 },
+  { id: 'erkek-giyim', ad: 'Erkek Giyim', oran: 20 },
+  { id: 'cocuk-giyim', ad: 'Çocuk Giyim', oran: 12 },
+  { id: 'ayakkabi-canta', ad: 'Ayakkabı & Çanta', oran: 20 },
+  { id: 'saat-taki', ad: 'Saat & Takı', oran: 20 },
+  { id: 'spor', ad: 'Spor & Outdoor', oran: 12 },
+  { id: 'kitap', ad: 'Kitap & Müzik & Film', oran: 8 },
+  { id: 'oyuncak', ad: 'Oyuncak & Oyun', oran: 15 },
+  { id: 'ev-yasam', ad: 'Ev & Yaşam', oran: 15 },
+  { id: 'mobilya', ad: 'Mobilya', oran: 10 },
+  { id: 'bahce', ad: 'Bahçe & Dış Mekan', oran: 12 },
+  { id: 'yapi-market', ad: 'Yapı Market', oran: 10 },
+  { id: 'kozmetik', ad: 'Kozmetik & Parfüm', oran: 15 },
+  { id: 'kisisel-bakim', ad: 'Kişisel Bakım', oran: 12 },
+  { id: 'gida', ad: 'Gıda & İçecek', oran: 12 },
+  { id: 'pet-shop', ad: 'Pet Shop', oran: 12 },
+  { id: 'otomotiv', ad: 'Otomotiv', oran: 10 },
+  { id: 'anne-bebek', ad: 'Anne & Bebek', oran: 12 },
+  { id: 'kirtasiye', ad: 'Kırtasiye & Ofis', oran: 10 },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebApplication',
+  name: 'Trendyol Komisyon Hesaplama Aracı',
+  description:
+    'Trendyol satıcıları için ücretsiz online komisyon ve kâr marjı hesaplama aracı. Kategori seçin, satış fiyatını girin — komisyon ve net kârınızı anında görün.',
+  applicationCategory: 'BusinessApplication',
+  operatingSystem: 'All',
+  offers: {
+    '@type': 'Offer',
+    price: '0',
+    priceCurrency: 'TRY',
+  },
+  featureList: [
+    'Kategori bazlı komisyon hesaplama',
+    'Net kâr ve kâr marjı hesaplama',
+    'Kargo maliyeti dahil hesaplama',
+    'Ücretsiz ve anlık sonuç',
+  ],
+};
+---
+
+<BaseLayout
+  title="Trendyol Komisyon Hesaplama — Ücretsiz Kâr Marjı Aracı | Satıcı Kutusu"
+  description="Trendyol'da sattığınız ürünün komisyon tutarını, net gelirinizi ve kâr marjınızı anında hesaplayın. Kategori bazlı oranlar, ücretsiz araç."
+  jsonLd={jsonLd}
+>
+  <!-- Başlık alanı -->
+  <header class="mb-8 max-w-3xl">
+    <div class="mb-3 flex items-center gap-2">
+      <span
+        class="inline-flex items-center gap-1.5 rounded-full border border-brand/20 bg-brand/5 px-3 py-1 text-xs font-semibold text-brand-dark"
+      >
+        Ücretsiz Araç · Trendyol
+      </span>
+    </div>
+    <h1 class="font-display text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
+      Trendyol Komisyon Hesaplama
+    </h1>
+    <p class="mt-3 text-lg leading-8 text-slate-600">
+      Kategori seçin, satış fiyatını girin — Trendyol'un keseceği komisyonu, net gelirinizi ve kâr
+      marjınızı anında görün. Tamamen ücretsiz, kayıt gerekmez.
+    </p>
+  </header>
+
+  <!-- Hesaplama alanı -->
+  <div class="grid gap-6 lg:grid-cols-5">
+    <!-- Form (sol / üst) -->
+    <div class="lg:col-span-3">
+      <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-soft">
+        <h2 class="mb-5 text-base font-semibold text-ink">Ürün bilgilerini girin</h2>
+
+        <div class="space-y-5">
+          <!-- Kategori -->
+          <div>
+            <label for="kategori" class="mb-1.5 block text-sm font-medium text-slate-700">
+              Ürün Kategorisi <span class="text-brand">*</span>
+            </label>
+            <div class="relative">
+              <select
+                id="kategori"
+                class="w-full appearance-none rounded-xl border border-slate-300 bg-white px-4 py-3 pr-10 text-sm text-slate-700 shadow-sm transition focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/20"
+              >
+                <option value="">— Kategori seçin —</option>
+                {kategoriler.map((k) => <option value={k.oran}>{k.ad} (%{k.oran})</option>)}
+              </select>
+              <svg
+                class="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"
+                ></path>
+              </svg>
+            </div>
+          </div>
+
+          <!-- Satış fiyatı -->
+          <div>
+            <label for="satis-fiyati" class="mb-1.5 block text-sm font-medium text-slate-700">
+              Satış Fiyatı (TL) <span class="text-brand">*</span>
+            </label>
+            <div class="relative">
+              <input
+                type="number"
+                id="satis-fiyati"
+                min="0"
+                step="0.01"
+                placeholder="0,00"
+                class="w-full rounded-xl border border-slate-300 bg-white py-3 pl-4 pr-12 text-sm text-slate-700 shadow-sm transition focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/20"
+              />
+              <span
+                class="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-sm font-medium text-slate-400"
+                >TL</span
+              >
+            </div>
+            <p class="mt-1 text-xs text-slate-400">Alıcının gördüğü fiyat (KDV dahil)</p>
+          </div>
+
+          <!-- Ürün maliyeti -->
+          <div>
+            <label for="maliyet" class="mb-1.5 block text-sm font-medium text-slate-700">
+              Ürün Maliyeti (TL)
+              <span class="ml-1 text-xs font-normal text-slate-400">— isteğe bağlı</span>
+            </label>
+            <div class="relative">
+              <input
+                type="number"
+                id="maliyet"
+                min="0"
+                step="0.01"
+                placeholder="0,00"
+                class="w-full rounded-xl border border-slate-300 bg-white py-3 pl-4 pr-12 text-sm text-slate-700 shadow-sm transition focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/20"
+              />
+              <span
+                class="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-sm font-medium text-slate-400"
+                >TL</span
+              >
+            </div>
+            <p class="mt-1 text-xs text-slate-400">Tedarik / üretim maliyeti (KDV hariç veya dahil)</p>
+          </div>
+
+          <!-- Kargo maliyeti -->
+          <div>
+            <label for="kargo" class="mb-1.5 block text-sm font-medium text-slate-700">
+              Kargo Maliyeti (TL)
+              <span class="ml-1 text-xs font-normal text-slate-400">— isteğe bağlı</span>
+            </label>
+            <div class="relative">
+              <input
+                type="number"
+                id="kargo"
+                min="0"
+                step="0.01"
+                placeholder="0,00"
+                class="w-full rounded-xl border border-slate-300 bg-white py-3 pl-4 pr-12 text-sm text-slate-700 shadow-sm transition focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/20"
+              />
+              <span
+                class="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-sm font-medium text-slate-400"
+                >TL</span
+              >
+            </div>
+          </div>
+        </div>
+
+        <!-- Özel oran girişi -->
+        <div class="mt-5 border-t border-slate-100 pt-5">
+          <label class="flex cursor-pointer items-center gap-2 text-sm text-slate-500">
+            <input type="checkbox" id="ozel-oran-toggle" class="rounded border-slate-300 text-brand" />
+            Farklı bir komisyon oranı kullanmak istiyorum
+          </label>
+          <div id="ozel-oran-alan" class="mt-3 hidden">
+            <div class="relative">
+              <input
+                type="number"
+                id="ozel-oran"
+                min="0"
+                max="100"
+                step="0.1"
+                placeholder="Örn: 18"
+                class="w-full rounded-xl border border-slate-300 bg-white py-3 pl-4 pr-10 text-sm text-slate-700 shadow-sm transition focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/20"
+              />
+              <span
+                class="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-sm font-medium text-slate-400"
+                >%</span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sonuçlar (sağ / alt) -->
+    <div class="lg:col-span-2">
+      <div
+        id="sonuc-kart"
+        class="sticky top-24 rounded-2xl border border-slate-200 bg-white p-6 shadow-soft"
+      >
+        <h2 class="mb-5 text-base font-semibold text-ink">Hesaplama Sonucu</h2>
+
+        <!-- Boş durum -->
+        <div id="bos-durum" class="flex flex-col items-center py-8 text-center">
+          <div
+            class="mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-slate-100 text-2xl"
+          >
+            🧮
+          </div>
+          <p class="text-sm text-slate-400">Kategori ve satış fiyatını girin</p>
+        </div>
+
+        <!-- Sonuçlar -->
+        <div id="sonuclar" class="hidden space-y-3">
+          <div class="flex items-center justify-between rounded-xl bg-slate-50 px-4 py-3">
+            <span class="text-sm text-slate-600">Satış fiyatı</span>
+            <span id="r-satis" class="text-sm font-semibold text-ink">—</span>
+          </div>
+          <div class="flex items-center justify-between rounded-xl bg-orange-50 px-4 py-3">
+            <span class="text-sm text-orange-700">
+              Komisyon (<span id="r-oran">—</span>)
+            </span>
+            <span id="r-komisyon" class="text-sm font-semibold text-orange-800">—</span>
+          </div>
+          <div class="flex items-center justify-between rounded-xl bg-slate-50 px-4 py-3">
+            <span class="text-sm text-slate-600">Net gelir</span>
+            <span id="r-net" class="text-sm font-semibold text-ink">—</span>
+          </div>
+
+          <!-- Kâr satırı (maliyet girilirse görünür) -->
+          <div id="kar-bolum" class="hidden">
+            <div class="mt-1 border-t border-slate-100 pt-3">
+              <div id="kar-satir" class="flex items-center justify-between rounded-xl px-4 py-3">
+                <span class="text-sm font-medium" id="kar-etiket">Net kâr</span>
+                <span id="r-kar" class="text-sm font-bold">—</span>
+              </div>
+              <div class="mt-1 flex items-center justify-between rounded-xl bg-slate-50 px-4 py-3">
+                <span class="text-sm text-slate-600">Kâr marjı</span>
+                <span id="r-marj" class="text-sm font-semibold text-ink">—</span>
+              </div>
+            </div>
+          </div>
+
+          <p class="pt-2 text-xs leading-relaxed text-slate-400">
+            * Tahmini değerler. Trendyol hizmet bedeli, KDV ve diğer kesintiler değişebilir.
+            Kesin hesap için
+            <a
+              href="https://partner.trendyol.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-brand-dark underline underline-offset-2"
+            >
+              Trendyol Satıcı Paneli</a
+            >'ni kullanın.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Komisyon oranları tablosu -->
+  <section class="mt-12">
+    <h2 class="mb-4 font-display text-xl font-bold text-ink">
+      Trendyol Kategori Komisyon Oranları (2025)
+    </h2>
+    <p class="mb-5 text-sm text-slate-500">
+      Aşağıdaki oranlar genel bilgi amaçlıdır. Trendyol komisyon oranları değişebilir; güncel
+      bilgi için satıcı panelinizi kontrol edin.
+    </p>
+    <div class="overflow-hidden rounded-2xl border border-slate-200">
+      <table class="w-full text-sm">
+        <thead>
+          <tr class="border-b border-slate-200 bg-slate-50">
+            <th class="px-4 py-3 text-left font-semibold text-ink">Kategori</th>
+            <th class="px-4 py-3 text-right font-semibold text-ink">Komisyon Oranı</th>
+            <th class="hidden px-4 py-3 text-right font-semibold text-ink sm:table-cell">
+              100 TL'de Kesinti
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            kategoriler.map((k, i) => (
+              <tr class={`border-b border-slate-100 ${i % 2 === 1 ? 'bg-slate-50/50' : 'bg-white'}`}>
+                <td class="px-4 py-3 text-slate-700">{k.ad}</td>
+                <td class="px-4 py-3 text-right font-semibold text-slate-800">%{k.oran}</td>
+                <td class="hidden px-4 py-3 text-right text-slate-500 sm:table-cell">
+                  {k.oran} TL
+                </td>
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- SSS / SEO içeriği -->
+  <section class="mt-12 max-w-3xl">
+    <h2 class="mb-6 font-display text-xl font-bold text-ink">
+      Trendyol Komisyon Hakkında Sık Sorulan Sorular
+    </h2>
+
+    <div class="space-y-5">
+      <details class="group rounded-xl border border-slate-200 bg-white">
+        <summary
+          class="flex cursor-pointer items-center justify-between gap-4 px-5 py-4 text-sm font-semibold text-ink list-none"
+        >
+          Trendyol komisyon oranı nasıl hesaplanır?
+          <svg
+            class="h-4 w-4 shrink-0 text-slate-400 transition group-open:rotate-180"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"
+            ></path>
+          </svg>
+        </summary>
+        <div class="border-t border-slate-100 px-5 py-4 text-sm leading-7 text-slate-600">
+          Trendyol komisyonu, satış fiyatının (KDV dahil) belirlenen yüzdesi olarak hesaplanır.
+          Örneğin kadın giyim kategorisinde 200 TL'ye ürün sattığınızda %20 oranında 40 TL
+          komisyon kesilerek size 160 TL aktarılır. Kesin tutar için Trendyol satıcı panelinizi
+          kontrol edin.
+        </div>
+      </details>
+
+      <details class="group rounded-xl border border-slate-200 bg-white">
+        <summary
+          class="flex cursor-pointer items-center justify-between gap-4 px-5 py-4 text-sm font-semibold text-ink list-none"
+        >
+          En düşük Trendyol komisyon oranı hangi kategoride?
+          <svg
+            class="h-4 w-4 shrink-0 text-slate-400 transition group-open:rotate-180"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"
+            ></path>
+          </svg>
+        </summary>
+        <div class="border-t border-slate-100 px-5 py-4 text-sm leading-7 text-slate-600">
+          En düşük komisyon oranları genellikle Elektronik, Telefon & Aksesuar ve Bilgisayar &
+          Tablet kategorilerinde görülmektedir (%5 civarı). Kitap & Müzik kategorisi de düşük
+          oranlara sahiptir (%8). Öte yandan Giyim, Ayakkabı ve Saat & Takı gibi kategorilerde
+          komisyon %20'ye kadar çıkabilmektedir.
+        </div>
+      </details>
+
+      <details class="group rounded-xl border border-slate-200 bg-white">
+        <summary
+          class="flex cursor-pointer items-center justify-between gap-4 px-5 py-4 text-sm font-semibold text-ink list-none"
+        >
+          Trendyol komisyonuna KDV dahil mi?
+          <svg
+            class="h-4 w-4 shrink-0 text-slate-400 transition group-open:rotate-180"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"
+            ></path>
+          </svg>
+        </summary>
+        <div class="border-t border-slate-100 px-5 py-4 text-sm leading-7 text-slate-600">
+          Trendyol, komisyonu KDV dahil satış fiyatı üzerinden hesaplar. Ayrıca Trendyol'un
+          size kestiği komisyon hizmeti için de KDV uygulanabilir. Vergisel konularda mali
+          müşavirinize danışmanızı öneririz.
+        </div>
+      </details>
+
+      <details class="group rounded-xl border border-slate-200 bg-white">
+        <summary
+          class="flex cursor-pointer items-center justify-between gap-4 px-5 py-4 text-sm font-semibold text-ink list-none"
+        >
+          Trendyol kargo ücretini kim öder?
+          <svg
+            class="h-4 w-4 shrink-0 text-slate-400 transition group-open:rotate-180"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"
+            ></path>
+          </svg>
+        </summary>
+        <div class="border-t border-slate-100 px-5 py-4 text-sm leading-7 text-slate-600">
+          Kampanya koşullarına ve satıcı tercihine göre değişir. Trendyol'un anlaşmalı kargo
+          firmaları üzerinden gönderi yapıldığında indirimli kargo seçeneği sunulabilir.
+          Ücretsiz kargo kampanyalarında kargo maliyeti satıcıya yansıtılır. Bu nedenle
+          hesaplamamıza kargo maliyetini de girmenizi öneririz.
+        </div>
+      </details>
+
+      <details class="group rounded-xl border border-slate-200 bg-white">
+        <summary
+          class="flex cursor-pointer items-center justify-between gap-4 px-5 py-4 text-sm font-semibold text-ink list-none"
+        >
+          Kâr marjım ne kadar olmalı?
+          <svg
+            class="h-4 w-4 shrink-0 text-slate-400 transition group-open:rotate-180"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"
+            ></path>
+          </svg>
+        </summary>
+        <div class="border-t border-slate-100 px-5 py-4 text-sm leading-7 text-slate-600">
+          Pazaryeri satışlarında sürdürülebilir bir kâr marjı için genellikle %20-30 net marj
+          hedeflenir; ancak bu kategori ve ürüne göre büyük farklılık gösterir. Yüksek
+          komisyon oranlarına sahip kategorilerde (giyim, aksesuar) daha yüksek satış fiyatı
+          veya düşük maliyet yapısı gerekir. Reklam/kampanya maliyetlerini de hesaba katmayı
+          unutmayın.
+        </div>
+      </details>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  // Trendyol Komisyon Hesaplama — istemci tarafı hesaplama
+  const kategoriSec = document.getElementById('kategori') as HTMLSelectElement;
+  const satisFiyati = document.getElementById('satis-fiyati') as HTMLInputElement;
+  const maliyetInput = document.getElementById('maliyet') as HTMLInputElement;
+  const kargoInput = document.getElementById('kargo') as HTMLInputElement;
+  const ozelOranToggle = document.getElementById('ozel-oran-toggle') as HTMLInputElement;
+  const ozelOranAlan = document.getElementById('ozel-oran-alan') as HTMLDivElement;
+  const ozelOranInput = document.getElementById('ozel-oran') as HTMLInputElement;
+
+  const bosDurum = document.getElementById('bos-durum') as HTMLDivElement;
+  const sonuclar = document.getElementById('sonuclar') as HTMLDivElement;
+
+  const rSatis = document.getElementById('r-satis') as HTMLSpanElement;
+  const rOran = document.getElementById('r-oran') as HTMLSpanElement;
+  const rKomisyon = document.getElementById('r-komisyon') as HTMLSpanElement;
+  const rNet = document.getElementById('r-net') as HTMLSpanElement;
+  const karBolum = document.getElementById('kar-bolum') as HTMLDivElement;
+  const karSatir = document.getElementById('kar-satir') as HTMLDivElement;
+  const karEtiket = document.getElementById('kar-etiket') as HTMLSpanElement;
+  const rKar = document.getElementById('r-kar') as HTMLSpanElement;
+  const rMarj = document.getElementById('r-marj') as HTMLSpanElement;
+
+  function tl(sayi: number): string {
+    return sayi.toLocaleString('tr-TR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' TL';
+  }
+
+  function hesapla() {
+    const satis = parseFloat(satisFiyati.value) || 0;
+    const maliyet = parseFloat(maliyetInput.value) || 0;
+    const kargo = parseFloat(kargoInput.value) || 0;
+
+    let oran = 0;
+    if (ozelOranToggle.checked) {
+      oran = parseFloat(ozelOranInput.value) || 0;
+    } else {
+      oran = parseFloat(kategoriSec.value) || 0;
+    }
+
+    if (satis <= 0 || oran <= 0) {
+      bosDurum.classList.remove('hidden');
+      sonuclar.classList.add('hidden');
+      return;
+    }
+
+    const komisyon = satis * (oran / 100);
+    const netGelir = satis - komisyon;
+    const maliyetVar = maliyet > 0 || kargo > 0;
+    const toplamMaliyet = maliyet + kargo;
+    const kar = netGelir - toplamMaliyet;
+    const marj = satis > 0 ? (kar / satis) * 100 : 0;
+
+    rSatis.textContent = tl(satis);
+    rOran.textContent = `%${oran}`;
+    rKomisyon.textContent = tl(komisyon);
+    rNet.textContent = tl(netGelir);
+
+    if (maliyetVar) {
+      karBolum.classList.remove('hidden');
+      rKar.textContent = tl(kar);
+      rMarj.textContent = `%${marj.toFixed(1)}`;
+
+      if (kar >= 0) {
+        karSatir.className = 'flex items-center justify-between rounded-xl bg-green-50 px-4 py-3';
+        karEtiket.className = 'text-sm font-medium text-green-800';
+        karEtiket.textContent = 'Net kâr';
+        rKar.className = 'text-sm font-bold text-green-700';
+      } else {
+        karSatir.className = 'flex items-center justify-between rounded-xl bg-red-50 px-4 py-3';
+        karEtiket.className = 'text-sm font-medium text-red-800';
+        karEtiket.textContent = 'Net zarar';
+        rKar.className = 'text-sm font-bold text-red-700';
+      }
+    } else {
+      karBolum.classList.add('hidden');
+    }
+
+    bosDurum.classList.add('hidden');
+    sonuclar.classList.remove('hidden');
+  }
+
+  // Özel oran toggle
+  ozelOranToggle.addEventListener('change', () => {
+    if (ozelOranToggle.checked) {
+      ozelOranAlan.classList.remove('hidden');
+    } else {
+      ozelOranAlan.classList.add('hidden');
+    }
+    hesapla();
+  });
+
+  // Tüm input'larda anlık hesaplama
+  [kategoriSec, satisFiyati, maliyetInput, kargoInput, ozelOranInput].forEach((el) => {
+    el.addEventListener('input', hesapla);
+    el.addEventListener('change', hesapla);
+  });
+</script>
