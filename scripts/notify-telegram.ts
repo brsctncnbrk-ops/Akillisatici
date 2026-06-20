@@ -69,10 +69,6 @@ async function main(): Promise<void> {
       continue;
     }
 
-    const rawContent = readFileSync(absPath, 'utf-8');
-    const tdbCount = (rawContent.match(/\bTBD\b/g) ?? []).length;
-    const tdbUyari = tdbCount > 0 ? `\n⚠️ *${tdbCount} TBD* — onaylamadan önce kontrol et!` : '';
-
     // Mesaj metni — "📁 dosyaadi.md" satırı webhook tarafından parse edilir.
     const text = [
       `📝 *Yeni Taslak Hazır*`,
@@ -80,21 +76,15 @@ async function main(): Promise<void> {
       `*Başlık:* ${fm.baslik || filename}`,
       `*Özet:* ${fm.ozet || '—'}`,
       `*Kategori:* ${fm.kategori || '—'}`,
-      tdbUyari,
       ``,
       `📁 ${filename}`,
-    ]
-      .filter((s) => s !== '')
-      .join('\n');
-
-    const githubUrl = `https://github.com/brsctncnbrk-ops/akillisatici/blob/main/drafts/${filename}`;
+    ].join('\n');
 
     const ok = await sendMessage(text, [
       [
         { text: '✅ Yayınla', callback_data: 'approve' },
         { text: '❌ Reddet', callback_data: 'reject' },
       ],
-      [{ text: '📖 Tam İçeriği Gör', url: githubUrl }],
     ]);
 
     console.log(`[telegram] ${filename}: ${ok ? 'bildirim gönderildi ✓' : 'başarısız ✗'}`);
