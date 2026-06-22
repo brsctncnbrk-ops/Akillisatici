@@ -20,6 +20,10 @@ const posts = defineCollection({
     seoAciklama: z.string().optional(),
     anahtarKelime: z.string().optional(),
     incelenenAraclar: z.array(z.string()).default([]),
+    // Ana sayfa vitrini: işaretli yazı "öne çıkan" olur (yoksa en yeni yazıya düşülür).
+    oneCikan: z.boolean().default(false),
+    // Vitrindeki yazı için hero butonu metni (alıcı-niyetli kısa CTA).
+    vitrinCta: z.string().optional(),
     // Editöryel kapı: yalnızca 'yayinda' olanlar listelenir/build'e girer.
     durumu: z.enum(['taslak', 'onaylandi', 'yayinda']),
   }),

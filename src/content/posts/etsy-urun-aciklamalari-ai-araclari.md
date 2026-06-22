@@ -9,6 +9,8 @@ seoBaslik: 'Etsy Ürün Açıklamaları İçin En İyi AI Araçları (2026)'
 seoAciklama: 'Etsy ürün açıklaması yazan AI araçlarının karşılaştırması: özellik, fiyat, artı/eksi ve Türkiye pazarına özel pratik kullanım rehberi.'
 anahtarKelime: 'etsy ürün açıklaması ai'
 incelenenAraclar: ['jasper', 'copyai']
+oneCikan: true
+vitrinCta: 'Etsy açıklaması yazan AI araçları →'
 durumu: 'yayinda'
 ---
 
