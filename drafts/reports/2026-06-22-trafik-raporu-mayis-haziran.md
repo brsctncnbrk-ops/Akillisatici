@@ -46,10 +46,10 @@ Site **mevcut anlamda 14 Haziran'da trafik almaya başladı** — dönemin ilk ~
 22.06  ▌                 👥 5    🔁 5    👁 5     ← dip
 ```
 
-**Okuma:**
-- **24 Mayıs–13 Haziran:** kayda değer trafik yok. Demek ki site/içerik bu pencerede yeni indekslendi veya ilk kez paylaşıldı.
-- **15–16 Haziran patlaması:** 174 görüntüleme/22 oturum = oturum başına ~8 sayfa. Bu, bir kampanya/paylaşım veya bir tarayıcının (crawler) çok sayfa gezmesiyle uyumlu. Tek seferlik bir olay gibi duruyor — kalıcı değil.
-- **17 Haziran'dan itibaren istikrarlı düşüş.** İlk dalga söndü; sürdürülebilir bir akış henüz kurulmamış.
+**Okuma (git geçmişiyle doğrulandı):**
+- **24 Mayıs–13 Haziran: trafik değil, VERİ yok.** Git geçmişi gösteriyor ki GA4 (`G-7TYLWS8G6S`) ve sitenin go-live'ı **14 Haziran'da** yapıldı (`feat: add Google Analytics 4` + `docs: ...live (go-live)`). Yani bu pencere ölçümden önce; "ziyaretçi yoktu" diyemeyiz, **ölçüm yoktu**. 30 günlük pencere analytics kurulumundan öncesini kapsıyor.
+- **15–16 Haziran patlaması ≈ lansman trafiği.** 15.06'daki 174 görüntülemelik zirve, `Modern görsel yenileme + SEO/performans optimizasyonu` deploy'uyla (15 Haz) birebir örtüşüyor. Oturum başına ~8 sayfa + %81 Direct deseni, **go-live günü kendi QA gezintilerin + siteyi ilk indeksleyen arama motoru tarayıcıları** ile uyumlu. **Organik okuyucu değil** — tekrarlanabilir bir kazanım değil.
+- **17 Haziran'dan itibaren istikrarlı düşüş.** Lansman dalgası söndü; sürdürülebilir organik akış henüz kurulmamış.
 
 ---
 
@@ -148,4 +148,4 @@ Toplam sayılar yerine **kalite metriklerini** takip et:
 
 ---
 
-*Not: Bu rapor elle çekilen GA4 özetine dayanır. Günlük kırılım yalnızca 14–22 Haziran arasını içerdiğinden, 24 Mayıs–13 Haziran dönemi "trafik yok" varsayılmıştır. Bot/iç trafik filtrelemesi yapılmadan üretildiği için mutlak sayılar gerçek hedef kitleyi olduğundan yüksek gösterebilir.*
+*Not: Bu rapor elle çekilen GA4 özetine dayanır. Günlük kırılım yalnızca 14–22 Haziran arasını içerir; git geçmişiyle doğrulandığı üzere bunun nedeni GA4'ün **14 Haziran'da kurulmuş** olmasıdır (24 Mayıs–13 Haziran ölçüm dışıdır, "trafik yok" değil "veri yok"). İlk günlerin trafiği büyük olasılıkla lansman/QA/crawler kaynaklıdır. Bot/iç trafik filtrelemesi yapılmadan üretildiği için mutlak sayılar gerçek hedef kitleyi olduğundan yüksek gösterebilir.*
