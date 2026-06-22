@@ -1,0 +1,142 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import NewsletterSignup from '../../components/NewsletterSignup.astro';
+import { MARKA_ADI } from '../../data/site';
+
+// Ücretsiz lead magnet: online satıcılar için AI aracı seçim kontrol listesi.
+// İçerik bir karar çerçevesidir (uydurma fiyat/özellik yok); Metodoloji ile tutarlıdır.
+const bolumler = [
+  {
+    baslik: '1. İhtiyacı netleştir',
+    maddeler: [
+      'En çok zaman kaybettiğim tek işi yazdım (açıklama / görsel / destek / reklam / stok).',
+      'Bu iş için "iyi sonuç" neye benziyor, bir cümleyle tanımladım.',
+      'Aylık kaç ürün/işlem için kullanacağımı tahmin ettim (hacim).',
+    ],
+  },
+  {
+    baslik: '2. Türkçe ve Türkiye uyumu',
+    maddeler: [
+      'Aracın Türkçe çıktı kalitesini kendi gerçek ürünümle test ettim.',
+      'Pazaryeri (Trendyol/Hepsiburada/Amazon TR) terminolojisine uygunluğunu kontrol ettim.',
+      'Kargo, garanti, iade gibi Türkiye’ye özgü bilgileri aracın atladığını ve bunları elle ekleyeceğimi not ettim.',
+    ],
+  },
+  {
+    baslik: '3. İş akışına oturma',
+    maddeler: [
+      'Aracı mevcut iş akışıma (mağaza paneli / pazaryeri) nasıl bağlayacağımı gördüm.',
+      'Toplu (bulk) işlem gerekiyorsa aracın bunu desteklediğini doğruladım.',
+      'Öğrenme eğrisini ölçtüm: ilk değere ne kadar sürede ulaştım?',
+    ],
+  },
+  {
+    baslik: '4. Fiyat ve değer',
+    maddeler: [
+      'Ücretsiz plan / deneme süresiyle gerçek bir partiyi (ör. 10 ürün) uçtan uca yaptım.',
+      'Kazandığım zamanı ölçtüm ve ücretli planın maliyetiyle karşılaştırdım.',
+      'Güncel fiyatı aracın resmi sitesinden teyit ettim (varsayımla ilerlemedim).',
+    ],
+  },
+  {
+    baslik: '5. Güven ve veri',
+    maddeler: [
+      'Verilerimin nasıl işlendiğini (gizlilik/şartlar) kısaca okudum.',
+      'Müşteri desteği ve dokümantasyonun yeterliliğine baktım.',
+      'Çıktıyı yayımlamadan önce bir insan gözüyle geçireceğimi (taslak → final) kabul ettim.',
+    ],
+  },
+  {
+    baslik: '6. Karar',
+    maddeler: [
+      'Tek bir araçla derinleşmeye karar verdim (aynı anda beş araç denemiyorum).',
+      'İlk iş akışı oturduktan sonra ikinci alana geçeceğim.',
+      '30 gün sonra gerçek zaman tasarrufunu yeniden değerlendireceğim tarihi belirledim.',
+    ],
+  },
+];
+---
+
+<BaseLayout
+  title={`AI Araç Seçim Kontrol Listesi (Ücretsiz) — ${MARKA_ADI}`}
+  description="Online satıcılar için yapay zeka aracı seçerken adım adım kontrol listesi: ihtiyaç, Türkçe uyumu, iş akışı, fiyat/değer ve karar. Yazdır veya PDF olarak kaydet."
+>
+  <article class="mx-auto max-w-3xl">
+    <nav class="mb-4 flex items-center gap-1.5 text-xs text-slate-400 print:hidden" aria-label="Breadcrumb">
+      <a class="transition hover:text-brand" href="/">Ana sayfa</a>
+      <span aria-hidden="true">/</span>
+      <a class="transition hover:text-brand" href="/kaynaklar/">Kaynaklar</a>
+      <span aria-hidden="true">/</span>
+      <span class="text-slate-500">Seçim kontrol listesi</span>
+    </nav>
+
+    <header class="mb-8">
+      <span
+        class="inline-flex rounded-full bg-brand/10 px-3 py-1 text-xs font-semibold text-brand-dark"
+        >Ücretsiz kaynak</span
+      >
+      <h1 class="mt-3 font-display text-3xl font-extrabold leading-tight tracking-tight text-ink sm:text-4xl">
+        AI Araç Seçim Kontrol Listesi
+      </h1>
+      <p class="mt-4 text-lg leading-8 text-slate-600">
+        Yanlış araca para ve zaman harcamadan önce bu 6 adımlık listeyi doldurun. Online satıcılar
+        için, gerçek test deneyimimize dayanan pratik bir karar çerçevesi.
+      </p>
+      <div class="mt-5 flex flex-wrap gap-3 print:hidden">
+        <button
+          type="button"
+          id="yazdir-btn"
+          class="inline-flex items-center gap-2 rounded-xl bg-ink px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-ink-soft"
+        >
+          Yazdır / PDF kaydet
+          <span aria-hidden="true">⎙</span>
+        </button>
+        <a
+          href="/metodoloji/"
+          class="inline-flex items-center gap-2 rounded-xl border border-slate-300 px-5 py-2.5 text-sm font-semibold text-ink transition hover:border-brand hover:text-brand-dark"
+        >
+          Nasıl puanlıyoruz?
+        </a>
+      </div>
+    </header>
+
+    <div class="space-y-6">
+      {
+        bolumler.map((bolum) => (
+          <section class="rounded-2xl border border-slate-200 p-5">
+            <h2 class="font-display text-lg font-bold tracking-tight text-ink">{bolum.baslik}</h2>
+            <ul class="mt-3 space-y-2.5">
+              {bolum.maddeler.map((madde) => (
+                <li class="flex items-start gap-3">
+                  <input
+                    type="checkbox"
+                    class="mt-1 h-4 w-4 shrink-0 rounded border-slate-300 accent-brand"
+                  />
+                  <span class="text-sm leading-6 text-slate-700">{madde}</span>
+                </li>
+              ))}
+            </ul>
+          </section>
+        ))
+      }
+    </div>
+
+    <p class="mt-6 text-xs text-slate-400">
+      Bu liste genel bir karar çerçevesidir; nihai karar kendi testinize ve güncel resmi bilgilere
+      dayanmalıdır. Fiyat ve özellikleri her zaman aracın resmi sitesinden doğrulayın.
+    </p>
+  </article>
+
+  <div class="print:hidden">
+    <NewsletterSignup
+      baslik="Yeni kontrol listeleri ve araç incelemeleri e-postana gelsin"
+      aciklama="Bu listeyi faydalı bulduysan, yeni AI araç incelemeleri ve pratik rehberler için bültene katıl. Spam yok, istediğin an çıkarsın."
+      cta="Bültene katıl"
+      source="lead-magnet-kontrol-listesi"
+    />
+  </div>
+</BaseLayout>
+
+<script>
+  document.getElementById('yazdir-btn')?.addEventListener('click', () => window.print());
+</script>

@@ -9,6 +9,26 @@ seoBaslik: 'Shopify İçin AI Ürün Fotoğrafı Araçları Karşılaştırması
 seoAciklama: 'Shopify satıcıları için AI ürün fotoğrafı araçlarının karşılaştırması: arka plan, sahne, toplu işleme, fiyat ve Türkiye pazarına özel pratik kullanım.'
 anahtarKelime: 'shopify ai ürün fotoğrafı'
 incelenenAraclar: ['photoroom', 'pebblely']
+sss:
+  - soru: >-
+      Telefonla çekilmiş ürün fotoğrafı AI ile profesyonel görünür mü?
+    cevap: >-
+      İyi ışıkta ve net çekilmiş bir fotoğraf, AI ile temiz arka plan veya
+      gerçekçi sahneye dönüştürülerek satışa hazır hale gelebilir. AI mucize
+      yaratmaz; kötü girdiyi düzeltmez, iyi girdiyi iyileştirir.
+  - soru: >-
+      Aynı görseli hem Trendyol/Hepsiburada hem Shopify için kullanabilir miyim?
+    cevap: >-
+      Evet. En pratik yöntem, pazaryeri görsel kurallarına uygun beyaz/temiz arka
+      planlı ana görseli AI ile üretmek; Shopify mağazasında ise aynı üründen
+      lifestyle sahneler kullanmaktır. Tek çekimden iki kanal için içerik çıkar.
+  - soru: >-
+      AI ürün görselinde nelere dikkat etmeliyim?
+    cevap: >-
+      Üretilen görselde gölge yönü ve perspektifi kontrol edin; gerçekçi olmayan
+      görsel iade oranını artırır. Ana görseli sade tutun, sahne/lifestyle
+      görselleri ikincil olarak ekleyin ve tüm katalogda tutarlı bir marka sahnesi
+      kullanın.
 durumu: 'yayinda'
 ---
 
@@ -29,12 +49,12 @@ Bu yazıda araçları, küçük bir ev tekstili mağazasının **50 ürünlük k
 |--------|-----------|----------|
 | Arka plan temizleme | Güçlü | Var |
 | AI sahne/arka plan üretimi | Var | Güçlü |
-| Toplu işleme | Var | — |
-| Shopify entegrasyonu | — | — |
-| Fiyat (aylık) | — | — |
-| Affiliate programı | — | — |
+| Toplu işleme | Var | Doğrulanmadı |
+| Shopify entegrasyonu | Doğrulanmadı | Doğrulanmadı |
+| Fiyat (aylık) | Doğrulanmadı | Doğrulanmadı |
+| Affiliate programı | Doğrulanmadı | Doğrulanmadı |
 
-> Tabloda **—** ile gösterilen alanlar, doğrulanmamış bilgileri (fiyat, entegrasyon, komisyon) ifade eder; teyit ettikçe güncelliyoruz. Güncel fiyatı her zaman aracın resmi sitesinden kontrol edin.
+> **Tablo notu:** "Doğrulanmadı" = ilgili fiyat/entegrasyon/komisyon resmi kaynaktan henüz teyit edilmedi; "Test edilmedi" = o boyutu bizzat denemedik. Teyit/test ettikçe güncelliyoruz. Güncel fiyatı her zaman aracın resmi sitesinden kontrol edin.
 
 ## Artılar ve eksiler
 

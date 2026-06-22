@@ -87,3 +87,5 @@
 - **2026-06-14:** Proje başlatıldı; dokümantasyon seti + Faz 1 iskelet kuruluyor. Detay → `HANDOFF.md`.
 - **2026-06-14:** Faz 1 tamamlandı ve Vercel'de yayına alındı (saticikutusu.com). Kalite kapısı yeşil. Sıradaki: Faz 2 (TASK-008).
 - **2026-06-14:** Faz 2 trend ajanı kuruldu ve uçtan uca doğrulandı (workflow success, PR akışı). Ajanın ürettiği 2 taslak editöryel düzenlemeden geçirilip yayımlandı (toplam 5 yayın).
+- **2026-06-15:** Ücretsiz trafik büyütme cephesi: FAQ schema + IndexNow + yazı↔araç çapraz linkleme + GSC doğrulama meta desteği (kod); pillar taslağı + mevcut yazılara SSS (içerik); `docs/TRAFFIC_PLAYBOOK.md` oyun kitabı. Kalite kapısı yeşil (build 32 · lint 0 · test 27). Detay → `HANDOFF.md`.
+- **2026-06-15:** Adım 6 — Dağıtım (ilk ziyaretçiyi tohumlama): yazı altına sosyal paylaşım butonları (`ShareButtons.astro`: WhatsApp/Pinterest/X/FB/LinkedIn/kopyala) + `docs/DISTRIBUTION_KIT.md` (kanal bazlı kopyala-yapıştır metinler ve haftalık ritim). Kalite kapısı yeşil (build 33 · lint 0 · test 27). Detay → `HANDOFF.md`.

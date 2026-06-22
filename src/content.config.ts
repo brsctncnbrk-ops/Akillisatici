@@ -24,6 +24,11 @@ const posts = defineCollection({
     oneCikan: z.boolean().default(false),
     // Vitrindeki yazı için hero butonu metni (alıcı-niyetli kısa CTA).
     vitrinCta: z.string().optional(),
+    // Sık sorulan sorular: hem görünür SSS bölümü hem FAQPage yapısal verisi.
+    // "İnsanlar şunu da soruyor" / sesli arama / AI cevap motoru hedefleme.
+    sss: z
+      .array(z.object({ soru: z.string(), cevap: z.string() }))
+      .default([]),
     // Editöryel kapı: yalnızca 'yayinda' olanlar listelenir/build'e girer.
     durumu: z.enum(['taslak', 'onaylandi', 'yayinda']),
   }),
@@ -48,6 +53,25 @@ const tools = defineCollection({
     // Araca özel OG görseli (yoksa site varsayılanına düşülür).
     ogImage: z.string().optional(),
     aciklama: z.string().optional(),
+
+    // --- Araç detay sayfası (Faz 2) — hepsi opsiyonel; doldurulmadıkça ilgili bölüm render EDİLMEZ ---
+    // Editöryel genel puan (0–5). GERÇEK testten gelir; uydurulmaz (CLAUDE.md #6). null → puan/Review yok.
+    // Yalnızca dolu olduğunda yıldız gösterimi + Review/AggregateRating yapısal verisi eklenir.
+    puan: z.number().min(0).max(5).nullable().default(null),
+    // İsteğe bağlı kriter bazlı alt puanlar (Metodoloji ağırlıklarıyla aynı kriterler).
+    puanlamaKriterleri: z
+      .array(z.object({ ad: z.string(), puan: z.number().min(0).max(5) }))
+      .default([]),
+    // Detay sayfası için daha uzun editöryel değerlendirme paragrafı (kısa `aciklama`'dan ayrı).
+    degerlendirme: z.string().optional(),
+    // "Kimler için uygun" — hedef kullanıcı tanımı.
+    kimlerIcin: z.string().optional(),
+    // Alternatif araçlar (dizindeki diğer araçların id'leri = dosya adı slug'ı). Eşleşmeyen sessizce atlanır.
+    alternatifler: z.array(z.string()).default([]),
+    // Araca özel SSS (görünür bölüm + FAQPage yapısal verisi).
+    sss: z.array(z.object({ soru: z.string(), cevap: z.string() })).default([]),
+    // İncelemenin son gözden geçirme tarihi (detay sayfasında "güncellendi" olarak gösterilir).
+    sonGuncelleme: z.coerce.date().optional(),
   }),
 });
 

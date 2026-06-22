@@ -43,3 +43,4 @@ Astro (statik, SEO) + Content Collections (Markdown/MDX), Tailwind CSS, TypeScri
 5. `.env`, API key, token asla commit'lenmez / koda gömülmez. Affiliate linkleri `rel="sponsored nofollow"` + görünür ifşa.
 6. Bilmediğin bilgiyi (fiyat, komisyon, özellik) uydurma; `TBD` yaz ve sor.
 7. Aynı hatada 3 başarısız denemeden sonra dur ve kullanıcıya raporla.
+8. **Oturum kapanışı:** Kullanıcı oturumu bitirdiğini belirttiğinde ("bitti", "temizleyeceğim", `/clear`/`/compact` öncesi), ÖNCE `HANDOFF.md`'yi güncelle (ne yapıldı, sırada ne var) ve commit et; ardından temizlenebilir. Böylece bağlam kaybolmaz.

@@ -1,0 +1,126 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { MARKA_ADI, ILETISIM_EPOSTA } from '../data/site';
+
+const markaAdi = MARKA_ADI;
+
+// Puanlama kriterleri ve ağırlıkları — araç incelemelerinde tutarlı tek kaynak.
+// İleride araç detay sayfalarındaki "puan" alanı bu ağırlıklara dayanacak (Faz 2).
+const kriterler = [
+  {
+    ad: 'Türkçe çıktı kalitesi',
+    agirlik: '%30',
+    aciklama:
+      'Aracın Türkçe ürün açıklaması, başlık veya yanıt üretimindeki doğallık ve dil bilgisi başarısı. Türkiye pazarına uygunluk bizim için birinci önceliktir.',
+  },
+  {
+    ad: 'E-ticaret iş akışına uygunluk',
+    agirlik: '%25',
+    aciklama:
+      'Pazaryeri (Trendyol, Hepsiburada, Amazon) ve mağaza (Shopify, Etsy) satıcısının gerçek görevine (açıklama, görsel, destek, reklam) ne kadar oturduğu.',
+  },
+  {
+    ad: 'Kullanım kolaylığı',
+    agirlik: '%20',
+    aciklama:
+      'Teknik olmayan bir satıcının öğrenme eğrisi, arayüz netliği ve ilk değere ulaşma süresi.',
+  },
+  {
+    ad: 'Fiyat / değer dengesi',
+    agirlik: '%15',
+    aciklama:
+      'Ücretsiz plan, deneme süresi ve ödenen ücret karşılığında alınan değer. Fiyatlar doğrulanmadan yayımlanmaz.',
+  },
+  {
+    ad: 'Destek ve güvenilirlik',
+    agirlik: '%10',
+    aciklama: 'Dokümantasyon, müşteri desteği, kesinti geçmişi ve veri/gizlilik yaklaşımı.',
+  },
+];
+
+const adimlar = [
+  'Aracı, satıcıların gerçekten yaptığı bir görevle (ör. bir ürün için Türkçe açıklama üretmek) bizzat deneriz.',
+  'Aynı görevi alternatif araçlarla tekrarlayıp çıktıları yan yana karşılaştırırız.',
+  'Yukarıdaki kriterlere göre güçlü/zayıf yönleri not eder, varsa ekran görüntüsüyle belgeleriz.',
+  'Fiyat, plan ve özellik bilgisini resmi kaynaktan doğrularız; doğrulayamadığımız değeri boş bırakırız (TBD).',
+  'İncelemeyi insan editör onayından geçiririz; yalnızca onaylanan içerik yayımlanır.',
+];
+---
+
+<BaseLayout
+  title={`Metodoloji — Araçları nasıl test ve puanlıyoruz · ${markaAdi}`}
+  description="Yapay zeka araçlarını hangi kriterlerle test ettiğimiz, nasıl puanladığımız ve incelemelerimizin nasıl hazırlandığına dair şeffaf metodoloji."
+>
+  <h1 class="font-display text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
+    Metodoloji
+  </h1>
+
+  <div class="icerik mt-6 max-w-2xl">
+    <p>
+      {markaAdi} olarak araç önerilerimizin arkasında durabilmemiz için her incelemeyi aynı,
+      şeffaf yöntemle hazırlarız. Bu sayfa, araçları <strong>nasıl test ettiğimizi</strong> ve
+      <strong>nasıl puanladığımızı</strong> açıklar. Amaç, okuduğunuz her değerlendirmenin neye
+      dayandığını net görmenizdir.
+    </p>
+
+    <h2>Nasıl test ediyoruz</h2>
+    <ol>
+      {adimlar.map((a) => <li>{a}</li>)}
+    </ol>
+
+    <h2>Bağımsızlık</h2>
+    <p>
+      Affiliate (ortaklık) ilişkisi, bir aracı önerme veya puanlama kararımızı
+      <strong>etkilemez</strong>. Komisyon kazanabileceğimiz bağlantılar her zaman görünür şekilde
+      ifşa edilir ve teknik olarak <code>rel="sponsored nofollow"</code> ile işaretlenir. Bir araç,
+      yalnızca ortaklık programı olduğu için daha yüksek puan almaz.
+    </p>
+
+    <h2>Puanlama kriterleri</h2>
+    <p>
+      Her aracı aşağıdaki beş kritere göre değerlendiririz. Parantez içindeki ağırlıklar, genel
+      puana katkıyı gösterir:
+    </p>
+  </div>
+
+  <div class="mt-6 max-w-2xl overflow-hidden rounded-2xl border border-slate-200">
+    <table class="w-full text-left text-sm">
+      <thead class="bg-slate-50 text-slate-600">
+        <tr>
+          <th class="px-4 py-3 font-semibold">Kriter</th>
+          <th class="px-4 py-3 font-semibold">Ağırlık</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-slate-100">
+        {
+          kriterler.map((k) => (
+            <tr class="align-top">
+              <td class="px-4 py-3">
+                <span class="font-semibold text-ink">{k.ad}</span>
+                <p class="mt-1 text-slate-600">{k.aciklama}</p>
+              </td>
+              <td class="whitespace-nowrap px-4 py-3 font-semibold text-brand-dark">{k.agirlik}</td>
+            </tr>
+          ))
+        }
+      </tbody>
+    </table>
+  </div>
+
+  <div class="icerik mt-8 max-w-2xl">
+    <h2>Doğruluk ve güncelleme</h2>
+    <p>
+      Fiyat, komisyon ve özellik gibi bilgileri doğrulamadan yayımlamayız; teyit edilemeyen değeri
+      paylaşmak yerine ilgili alanı boş bırakırız. Araçlar hızla değiştiği için incelemelerimizi
+      periyodik olarak gözden geçirir, önemli bir değişiklik olduğunda güncelleme tarihini
+      belirtiriz.
+    </p>
+
+    <h2>Hata bildirimi</h2>
+    <p>
+      Bir incelememizde eksik veya güncelliğini yitirmiş bir bilgi fark ederseniz, lütfen{' '}
+      <a href={`mailto:${ILETISIM_EPOSTA}`}>{ILETISIM_EPOSTA}</a> adresinden bildirin; en kısa
+      sürede inceleyip düzeltiriz.
+    </p>
+  </div>
+</BaseLayout>

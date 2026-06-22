@@ -1,0 +1,11 @@
+{
+  "ad": "Shopify Magic",
+  "kategori": "İçerik üretimi",
+  "fiyat": "Shopify planlarına dahil",
+  "artilar": ["Ek maliyet yok — Shopify planına dahil", "Ürün sayfasından çıkmadan kullanılır", "Mağaza dilini ve tonunu öğrenebilir"],
+  "eksiler": ["Yalnızca Shopify kullanıcılarına açık", "Özelleştirme seçenekleri üçüncü taraf araçlara göre sınırlı", "Karmaşık ürünlerde genel/yüzeysel çıktı üretebilir"],
+  "officialUrl": "https://www.shopify.com/magic",
+  "affiliateUrl": null,
+  "screenshot": null,
+  "aciklama": "Shopify'ın yerleşik AI içerik üretici. Ürün açıklaması, e-posta ve blog içeriği Shopify admin paneli içinden kolayca üretilir."
+}

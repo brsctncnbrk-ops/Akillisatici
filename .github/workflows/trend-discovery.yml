@@ -1,12 +1,17 @@
 name: Trend Keşif Ajanı (Faz 2)
 
-# Zamanlanmış + elle tetiklenebilir. Otomatik YAYIN YAPMAZ: yalnızca taslak
-# üretip drafts/'a commit eder ve Telegram bildirimi gönderir.
+# Otomatik YAYIN YAPMAZ: yalnızca taslak üretip drafts/'a commit eder ve
+# Telegram bildirimi gönderir.
 # Onay: Telegram mesajındaki ✅ Yayınla butonuna basılınca Vercel webhook devralır.
+#
+# NOT (2026-06-22): Otomatik (zamanlanmış) trend keşfi kullanıcı talebiyle DEVRE
+# DIŞI bırakıldı — içerik bundan sonra manuel hazırlanıyor. Aşağıdaki `schedule`
+# bloğu kapalıdır; yeniden açmak için yorumu kaldırmanız yeterli. Ajan yalnızca
+# `workflow_dispatch` ile elle tetiklenebilir.
 on:
-  schedule:
-    # Her Pazartesi 06:00 UTC
-    - cron: '0 6 * * 1'
+  # schedule:
+  #   # Her Pazartesi 06:00 UTC
+  #   - cron: '0 6 * * 1'
   workflow_dispatch:
     inputs:
       draft_count:

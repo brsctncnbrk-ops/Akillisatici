@@ -9,7 +9,7 @@ seoBaslik: 'AI Müşteri Botu: Dalkavukluk Yerine Dürüstlük'
 seoAciklama: 'Yapay zeka destek botunuzun gereksiz iltifat yerine net ve dürüst yanıt vermesi neden satışlarınız için daha iyi? Pratik rehber.'
 anahtarKelime: 'yapay zeka müşteri desteği'
 incelenenAraclar: []
-durumu: 'taslak'
+durumu: 'yayinda'
 ---
 Apple'ın yazılım başkanı Craig Federighi geçtiğimiz günlerde dikkat çekici bir şey söyledi: Yenilenen Siri, OpenAI veya Google gibi rakiplerin sohbet botları gibi "yağ çeken" (sycophantic) bir tonda davranmayacak. Yani sürekli "Harika bir soru!", "Çok haklısınız!" gibi içi boş iltifatlarla konuşmayacak; gerektiğinde susmayı bilecek.
 
@@ -74,6 +74,3 @@ Apple'ın Siri kararı aslında tüm yapay zeka kullanıcıları için bir hatı
 
 Kısacası: Botunuzu dürüst, net ve gerektiğinde "bilmiyorum" diyebilen bir yardımcı olarak kurgulayın. Müşteri memnuniyetini artıran şey, dalkavukluk değil; güvenilir cevaptır.
 
----
-
-*Bu taslak trend keşif ajanı tarafından üretildi (esin kaynağı: https://www.theverge.com/rss/ai-artificial-intelligence/index.xml — https://www.theverge.com/tech/948890/siri-wont-be-your-ai-girlfriend). Yayımlamadan önce bir editör tarafından gözden geçirilmeli; fiyat/komisyon gibi doğrulanmamış veriler TBD bırakılmalıdır.*

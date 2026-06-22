@@ -11,6 +11,7 @@ export default defineConfig({
     // applyBaseStyles: false → temel stilleri src/styles/global.css üzerinden kontrol ederiz
     tailwind({ applyBaseStyles: false }),
     mdx(),
-    sitemap(),
+    // lastmod: her build'de güncellenir (tazelik sinyali); changefreq/priority tarama ipucu.
+    sitemap({ changefreq: 'weekly', priority: 0.7, lastmod: new Date() }),
   ],
 });

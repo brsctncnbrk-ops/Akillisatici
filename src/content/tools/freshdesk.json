@@ -1,0 +1,11 @@
+{
+  "ad": "Freshdesk",
+  "kategori": "Müşteri desteği",
+  "fiyat": "Ücretsiz plan var; Growth $15/ay",
+  "artilar": ["Ücretsiz planla sınırsız temsilci", "Geniş entegrasyon ekosistemi", "AI destekli bilet önceliklendirme", "Çok dil desteği"],
+  "eksiler": ["Shopify entegrasyonu Gorgias kadar derin değil", "AI özellikleri üst planlarda", "Ayarlar karmaşık gelebilir"],
+  "officialUrl": "https://www.freshdesk.com/",
+  "affiliateUrl": null,
+  "screenshot": null,
+  "aciklama": "AI destekli müşteri destek yazılımı. E-posta, chat ve sosyal medya kanallarını tek platformda yöneten, ücretsiz planıyla başlangıç dostu helpdesk."
+}

@@ -1,0 +1,92 @@
+---
+// Çerez onay bandı (KVKK/GDPR). Tüm sayfalarda BaseLayout üzerinden render olur.
+// Davranış: localStorage'da 'cerez-onay' tercihi yoksa bant gösterilir; kullanıcı kabul/ret
+// seçince tercih saklanır ve bant gizlenir. Reklam/analitik çerezleri yalnızca "kabul" ile devreye
+// alınmalıdır (şu an site bunları yüklemiyor; tercih ileride AdSlot/analitik için okunacaktır).
+//
+// Yanıp sönmeyi (flash) önlemek için bant varsayılan olarak gizlidir ve yalnızca tercih yoksa
+// betikle açılır. JS'siz fallback: çerez bilgisi her sayfanın footer'ından erişilebilen
+// "Çerez Politikası" bağlantısıyla her zaman ulaşılabilir durumdadır.
+---
+
+<div
+  id="cerez-bant"
+  hidden
+  class="fixed inset-x-0 bottom-0 z-50 border-t border-slate-200 bg-white/95 shadow-[0_-4px_20px_rgba(0,0,0,0.06)] backdrop-blur print:hidden"
+  role="dialog"
+  aria-live="polite"
+  aria-label="Çerez tercihi"
+>
+  <div
+    class="mx-auto flex max-w-5xl flex-col gap-3 px-4 py-4 sm:flex-row sm:items-center sm:justify-between"
+  >
+    <p class="text-sm leading-6 text-slate-600">
+      Bu sitede temel işlevler ve anonim ölçümleme için çerez kullanırız; reklam çerezleri yalnızca
+      onayınızla devreye girer. Ayrıntılar için{' '}
+      <a class="font-semibold text-brand-dark underline" href="/cerez-politikasi/"
+        >Çerez Politikası</a
+      >.
+    </p>
+    <div class="flex shrink-0 gap-2">
+      <button
+        type="button"
+        data-cerez-karar="red"
+        class="rounded-lg border border-slate-300 px-4 py-2 text-sm font-semibold text-ink transition hover:border-slate-400"
+      >
+        Reddet
+      </button>
+      <button
+        type="button"
+        data-cerez-karar="kabul"
+        class="rounded-lg bg-brand px-4 py-2 text-sm font-semibold text-white transition hover:bg-brand-dark"
+      >
+        Kabul et
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+  const ANAHTAR = 'cerez-onay';
+  const bant = document.getElementById('cerez-bant');
+
+  function tercihOku(): string | null {
+    try {
+      return localStorage.getItem(ANAHTAR);
+    } catch {
+      return null;
+    }
+  }
+
+  function tercihYaz(deger: 'kabul' | 'red'): void {
+    try {
+      localStorage.setItem(ANAHTAR, deger);
+    } catch {
+      /* localStorage engelliyse sessizce geç */
+    }
+  }
+
+  // Sabit (fixed) bant, sayfanın son içeriğini örtmesin diye gövdeye bant yüksekliği kadar
+  // alt boşluk ekle; böylece içerik bandın üstüne kaydırılabilir. Bant gizlenince boşluk kalkar.
+  function altBoslukAyarla(goster: boolean): void {
+    document.body.style.paddingBottom = goster && bant ? `${bant.offsetHeight}px` : '';
+  }
+
+  // Tercih yoksa bandı göster (varsayılan gizli → flash olmaz).
+  if (bant && !tercihOku()) {
+    bant.hidden = false;
+    altBoslukAyarla(true);
+    // Ekran döndürme/yeniden boyutlandırmada boşluğu güncelle.
+    window.addEventListener('resize', () => {
+      if (!bant.hidden) altBoslukAyarla(true);
+    });
+  }
+
+  bant?.querySelectorAll<HTMLButtonElement>('[data-cerez-karar]').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      tercihYaz(btn.dataset.cerezKarar === 'kabul' ? 'kabul' : 'red');
+      if (bant) bant.hidden = true;
+      altBoslukAyarla(false);
+    });
+  });
+</script>
