@@ -20,6 +20,10 @@ const posts = defineCollection({
     seoAciklama: z.string().optional(),
     anahtarKelime: z.string().optional(),
     incelenenAraclar: z.array(z.string()).default([]),
+    // Ana sayfa vitrini: işaretli yazı "öne çıkan" olur (yoksa en yeni yazıya düşülür).
+    oneCikan: z.boolean().default(false),
+    // Vitrindeki yazı için hero butonu metni (alıcı-niyetli kısa CTA).
+    vitrinCta: z.string().optional(),
     // Sık sorulan sorular: hem görünür SSS bölümü hem FAQPage yapısal verisi.
     // "İnsanlar şunu da soruyor" / sesli arama / AI cevap motoru hedefleme.
     sss: z

@@ -8,8 +8,9 @@ import { getYayindaPosts } from '../lib/content';
 import { MARKA_ADI } from '../data/site';
 
 const posts = await getYayindaPosts();
-const oneCikan = posts[0];
-const digerleri = posts.slice(1);
+// Vitrin: editöryel olarak işaretli yazı (oneCikan: true); yoksa en yeni yazı.
+const oneCikan = posts.find((p) => p.data.oneCikan) ?? posts[0];
+const digerleri = posts.filter((p) => p.id !== oneCikan?.id);
 
 const pazaryerleri = [
   { ad: 'Shopify', emoji: '🛒' },
@@ -88,28 +89,32 @@ const kategoriDetay: Record<string, { emoji: string; aciklama: string }> = {
         class="animate-fade-up mt-8 flex flex-wrap items-center justify-center gap-3"
         style="animation-delay: 240ms"
       >
+        {
+          oneCikan && (
+            <a
+              href={`/posts/${oneCikan.id}/`}
+              class="btn-primary group px-6 py-3 text-base shadow-glow hover:-translate-y-0.5"
+            >
+              {oneCikan.data.vitrinCta ?? 'Öne çıkan rehberi oku'}
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-4 w-4 transition-transform group-hover:translate-x-1"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                stroke-width="2.5"
+              >
+                <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+              </svg>
+            </a>
+          )
+        }
         <a
           href="/araclar/"
-          class="btn-primary group px-6 py-3 text-base shadow-glow hover:-translate-y-0.5"
+          class={`${oneCikan ? 'btn-outline bg-white/60 backdrop-blur' : 'btn-primary group shadow-glow'} px-6 py-3 text-base hover:-translate-y-0.5`}
         >
           AI Araçlarını keşfet
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            class="h-4 w-4 transition-transform group-hover:translate-x-1"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            stroke-width="2.5"
-          >
-            <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"
-            ></path>
-          </svg>
         </a>
-        <a
-          href="#yazilar"
-          class="btn-outline bg-white/60 px-6 py-3 text-base backdrop-blur hover:-translate-y-0.5"
-          >Son yazılar</a
-        >
       </div>
 
       <!-- İstatistikler — kart şeklinde -->
