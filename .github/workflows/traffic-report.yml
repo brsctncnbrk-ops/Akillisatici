@@ -1,0 +1,62 @@
+name: Trafik Raporu (elle)
+
+# GA4 trafik raporunu istenen tarih aralığı için üretir ve çalışma özetine basar.
+# Telegram'a GÖNDERMEZ; çıktı Actions log'unda ve "Summary" bölümünde görünür.
+# Sadece okuma yapar; siteye/depoya yazmaz.
+on:
+  workflow_dispatch:
+    inputs:
+      from:
+        description: 'Başlangıç tarihi (YYYY-MM-DD). Boşsa "days" kullanılır.'
+        required: false
+        type: string
+      to:
+        description: 'Bitiş tarihi (YYYY-MM-DD). "from" ile birlikte verilmeli.'
+        required: false
+        type: string
+      days:
+        description: 'Son kaç gün (from/to boşsa). Varsayılan 7.'
+        required: false
+        default: '7'
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  rapor:
+    name: GA4 → çalışma özeti
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Node.js kurulumu
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Bağımlılıkları yükle
+        run: npm ci
+
+      - name: Raporu üret
+        env:
+          GA4_PROPERTY_ID: ${{ secrets.GA4_PROPERTY_ID }}
+          GA_SERVICE_ACCOUNT_JSON: ${{ secrets.GA_SERVICE_ACCOUNT_JSON }}
+          # Kullanıcı girdileri env üzerinden geçirilir (shell'e doğrudan değil).
+          FROM: ${{ inputs.from }}
+          TO: ${{ inputs.to }}
+          DAYS: ${{ inputs.days }}
+        run: |
+          set -eo pipefail
+          if [ -n "$FROM" ] && [ -n "$TO" ]; then
+            npm run --silent agent:traffic:report -- --from="$FROM" --to="$TO" | tee report.txt
+          else
+            npm run --silent agent:traffic:report -- --days="$DAYS" | tee report.txt
+          fi
+          {
+            echo '```'
+            cat report.txt
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
