@@ -14,6 +14,7 @@
     "lint": "astro check && eslint .",
     "format": "prettier --write .",
     "test": "vitest run",
+    "indexnow": "tsx scripts/ping-indexnow.ts",
     "agent:discover": "tsx scripts/discover-trends.ts",
     "agent:drafts": "tsx scripts/generate-drafts.ts",
     "agent:notify": "tsx scripts/notify-telegram.ts",
