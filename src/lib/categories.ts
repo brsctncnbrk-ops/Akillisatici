@@ -11,6 +11,7 @@ export const KATEGORILER: readonly Kategori[] = [
   { ad: 'Müşteri desteği', slug: 'musteri-destegi' },
   { ad: 'SEO & reklam', slug: 'seo-reklam' },
   { ad: 'Stok & operasyon', slug: 'stok-operasyon' },
+  { ad: 'Pazaryeri rehberleri', slug: 'pazaryeri-rehberleri' },
 ] as const;
 
 // İçerik şemasında `z.enum(...)` için kategori adları dizisi.

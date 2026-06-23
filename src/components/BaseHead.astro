@@ -5,6 +5,7 @@ import {
   VARSAYILAN_OG_GORSEL,
   GOOGLE_SITE_VERIFICATION,
   PINTEREST_DOMAIN_VERIFY,
+  CLARITY_PROJECT_ID,
 } from '../data/site';
 
 // Makaleye özel Open Graph alanları (yalnızca article=true sayfalarda kullanılır).
@@ -141,3 +142,16 @@ const siteJsonLd = {
   gtag('js', new Date());
   gtag('config', 'G-7TYLWS8G6S');
 </script>
+
+{
+  CLARITY_PROJECT_ID && (
+    <script is:inline define:vars={{ clarityId: CLARITY_PROJECT_ID }}>
+      (function(c,l,a,r,i,t,y){
+        // eslint-disable-next-line prefer-rest-params
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+      })(window, document, "clarity", "script", clarityId);
+    </script>
+  )
+}

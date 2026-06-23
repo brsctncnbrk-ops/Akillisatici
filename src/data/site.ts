@@ -18,6 +18,10 @@ export const INDEXNOW_KEY = 'cc0e070a8878e76f2d4932cdb0e7445d';
 // Boş bırakılırsa etiket render EDİLMEZ. (DNS doğrulaması tercih edenler bunu boş bırakabilir.)
 export const GOOGLE_SITE_VERIFICATION = '';
 
+// Microsoft Clarity proje kimliği (clarity.microsoft.com → Proje oluştur → Proje ID).
+// Isı haritası ve seans kaydı için. Boş bırakılırsa script render EDİLMEZ.
+export const CLARITY_PROJECT_ID = '';
+
 // Pinterest alan adı doğrulama kodu (meta etiketi yöntemi).
 // Pinterest → Ayarlar → Claim → Website → "Add HTML tag" → content="..." değerini buraya yapıştır.
 // Doğrulandıktan sonra pinlerde marka adı + analitik açılır. Boş bırakılırsa etiket render EDİLMEZ.
