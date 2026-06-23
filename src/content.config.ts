@@ -20,6 +20,10 @@ const posts = defineCollection({
     seoAciklama: z.string().optional(),
     anahtarKelime: z.string().optional(),
     incelenenAraclar: z.array(z.string()).default([]),
+    // SSS (FAQ) — FAQPage schema ve görsel accordion için.
+    faq: z
+      .array(z.object({ soru: z.string(), cevap: z.string() }))
+      .optional(),
     // Editöryel kapı: yalnızca 'yayinda' olanlar listelenir/build'e girer.
     durumu: z.enum(['taslak', 'onaylandi', 'yayinda']),
   }),

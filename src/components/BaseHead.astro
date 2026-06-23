@@ -86,3 +86,18 @@ const siteJsonLd = {
   gtag('js', new Date());
   gtag('config', 'G-7TYLWS8G6S');
 </script>
+
+{import.meta.env.PUBLIC_GSC_VERIFICATION && (
+  <meta name="google-site-verification" content={import.meta.env.PUBLIC_GSC_VERIFICATION} />
+)}
+
+{import.meta.env.PUBLIC_CLARITY_PROJECT_ID && (
+  <script is:inline define:vars={{ clarityId: import.meta.env.PUBLIC_CLARITY_PROJECT_ID }}>
+    (function(c,l,a,r,i,t,y){
+      // eslint-disable-next-line prefer-rest-params
+      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+      t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+      y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", clarityId);
+  </script>
+)}
