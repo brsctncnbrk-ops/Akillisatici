@@ -81,9 +81,19 @@
 
 ---
 
+### TASK-009 (SEO Büyüme Planı — Ay 1)
+- **Görev:** 6 aylık SEO büyüme planı Ay 1 (Hafta 1-4) uygulaması.
+- **Öncelik:** Yüksek · **Bağımlılıklar:** TASK-008
+- **Etkilenen Dosyalar:** `src/components/BaseHead.astro`, `src/lib/categories.ts`, `src/content.config.ts`, `src/pages/posts/[...slug].astro`, `src/data/keywords.ts`, `src/content/posts/*.md`, `.env.example`
+- **Tamamlanma Kriteri:** 10 yayın, 500+ anahtar kelime, FAQ schema, Clarity/GSC desteği; test + lint + build yeşil.
+- **Durum:** Tamamlandı ✓
+
+---
+
 ## Oturum Günlüğü
 > Detaylı oturum devri **`HANDOFF.md`** dosyasındadır (bkz. DECISIONS ADR-004). Burada yalnızca işaret tutulur.
 
 - **2026-06-14:** Proje başlatıldı; dokümantasyon seti + Faz 1 iskelet kuruluyor. Detay → `HANDOFF.md`.
 - **2026-06-14:** Faz 1 tamamlandı ve Vercel'de yayına alındı (saticikutusu.com). Kalite kapısı yeşil. Sıradaki: Faz 2 (TASK-008).
 - **2026-06-14:** Faz 2 trend ajanı kuruldu ve uçtan uca doğrulandı (workflow success, PR akışı). Ajanın ürettiği 2 taslak editöryel düzenlemeden geçirilip yayımlandı (toplam 5 yayın).
+- **2026-06-23:** SEO büyüme planı Ay 1 (Hafta 1-4) tamamlandı. 5 yeni yazı (toplam 10), 500+ kelime veritabanı, FAQ schema, Clarity/GSC altyapısı, "Pazaryeri rehberleri" kategorisi.

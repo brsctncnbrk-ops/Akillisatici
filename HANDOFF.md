@@ -6,6 +6,45 @@
 
 ---
 
+## Oturum: 2026-06-23 — SEO Büyüme Planı Ay 1 (Hafta 1-4)
+
+### Yapıldı
+
+**Hafta 1 — Teknik SEO Tamamlama:**
+- `BaseHead.astro`: Microsoft Clarity (`PUBLIC_CLARITY_PROJECT_ID`) ve Google Search Console doğrulama (`PUBLIC_GSC_VERIFICATION`) env-koşullu desteği eklendi.
+- `.env.example` güncellendi.
+- Mevcut teknik SEO durumu doğrulandı: sitemap ✓, robots.txt ✓, canonical ✓, 404 ✓, GA4 ✓.
+
+**Hafta 2 — Anahtar Kelime Veritabanı:**
+- `src/data/keywords.ts` oluşturuldu: 5 küme (Trendyol, Hepsiburada, Amazon, E-ticaret, AI Araçları), 500+ kelime, `tur` ve `oncelik` alanlarıyla etiketli.
+
+**Hafta 3 — 5 Yeni Blog Yazısı (Toplam 10):**
+- `trendyol-buybox-nedir.md` — Buybox algoritması, faktörler, AI araçları, FAQ
+- `trendyol-seo-rehberi.md` — Trendyol listing optimizasyonu, başlık/görsel/özellik rehberi
+- `eticaret-karlilik-hesaplama.md` — Net kâr formülü, maliyet kalemleri, AI araçları
+- `rakip-analizi-nasil-yapilir.md` — Sistematik rakip analizi, AI ile hızlandırma
+- `xml-entegrasyonu-nedir.md` — XML feed temelleri, platform entegrasyonu
+
+**Hafta 4 — Schema Kurulumu:**
+- `categories.ts`: "Pazaryeri rehberleri" kategorisi eklendi (slug: `pazaryeri-rehberleri`).
+- `content.config.ts`: Frontmatter'a isteğe bağlı `faq` dizisi (soru/cevap) eklendi.
+- `posts/[...slug].astro`: FAQPage JSON-LD schema + görsel SSS accordion bölümü — yalnızca `faq` alanı doluysa render edilir.
+
+**Kalite kapısı:** test 27/27 · lint 0/0 · build 22 sayfa · push ✓
+
+### Sırada (Ay 2 — Hafta 5-8)
+- **Hafta 5:** 10 yeni makale (toplam 20)
+- **Hafta 6:** 10 ücretsiz araç sayfası (Meta Tag Generator, Robots Generator vb.)
+- **Hafta 7:** İç linkleme sistemi (her yazıda 5 blog + 2 araç + 1 hizmet linki)
+- **Hafta 8:** İlk backlink çalışması (10 backlink: forumlar, Medium, LinkedIn)
+
+### Açık Görevler / Kullanıcı Aksiyonları
+- **Microsoft Clarity kurulumu:** clarity.microsoft.com adresinden proje oluştur → proje kimliğini Vercel'de `PUBLIC_CLARITY_PROJECT_ID` ortam değişkeni olarak tanımla.
+- **Google Search Console doğrulama:** GSC HTML meta tag doğrulama kodunu `PUBLIC_GSC_VERIFICATION` olarak Vercel'e ekle.
+- Mevcut açık sorular (renk teması, bülten sağlayıcısı, AdSense kimliği) hâlâ geçerli.
+
+---
+
 ## Oturum: 2026-06-14 — Proje başlatma + Faz 1 iskelet
 
 ### Yapıldı
